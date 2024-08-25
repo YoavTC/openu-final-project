@@ -17,13 +17,11 @@ public class EnemyManager : Singleton<EnemyManager>
         if (add) enemyList.Add(enemy);
         else enemyList.Remove(enemy);
         
-        Debug.Log("Calling back " + callback);
         callback?.Invoke();
     }
     
     public Enemy GetClosestEnemy(Vector3 position, float maxRange)
     {
-        Debug.Log("Getting closest enemy from: " + position);
         if (enemyList.Count <= 0) return null;
         
         Enemy closestEnemy = null;
