@@ -5,24 +5,25 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class VisualizeSpline : MonoBehaviour
 {
-    private Transform[] points;
+    private List<Transform> points = new List<Transform>();
     private string pathPoint = "pathPoint";
     private string pathEnd = "pathEnd";
     private string pathStart = "pathStart";
 
     private void OnDrawGizmos()
     {
+        points.Clear();
         for (int i = 0; i < transform.childCount; i++)
         {
-            points[i] = transform.GetChild(i);
+            points.Add(transform.GetChild(i));
         }
 
-        if (points == null || points.Length < 2)
+        if (points == null || points.Count < 2)
             return;
 
         Gizmos.color = Color.red;
 
-        for (int i = 0; i < points.Length - 1; i++)
+        for (int i = 0; i < points.Count - 1; i++)
         {
             if (points[i] != null && points[i + 1] != null)
             {
@@ -31,7 +32,7 @@ public class VisualizeSpline : MonoBehaviour
             }
         }
         
-        Gizmos.DrawIcon(points[points.Length - 1].position, pathEnd, false);
+        Gizmos.DrawIcon(points[points.Count - 1].position, pathEnd, false);
         Gizmos.DrawIcon(points[0].position, pathStart, false);
     }
 }
