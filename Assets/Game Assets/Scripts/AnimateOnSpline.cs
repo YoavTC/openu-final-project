@@ -26,7 +26,7 @@ public class AnimateOnSpline : MonoBehaviour
 
     private void Start()
     {
-        transform.position = currentSpline.firstPoint.position;
+        transform.position = currentSpline.GetFirstPoint().position;
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class AnimateOnSpline : MonoBehaviour
         else transform.position = Vector3.MoveTowards(transform.position,nextPoint.position, (Time.deltaTime * speed));
         
 
-        if (transform.position == currentSpline.lastPoint.position)
+        if (transform.position == currentSpline.GetLastPoint().position)
         {
             OnReachSplineEndEvent?.Invoke(transform);
             Destroy(this);

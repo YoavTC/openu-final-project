@@ -16,8 +16,14 @@ public class Enemy : MonoBehaviour
     
     private void ApplyDamage(float damage, Vector3 dir)
     {
-        //apply damage to health
-        StartCoroutine(DeathCoroutine());
+        if (health - damage <= 0)
+        {
+            StartCoroutine(DeathCoroutine());
+        }
+        else
+        {
+            health -= damage;
+        } 
     }
 
     private IEnumerator DeathCoroutine()

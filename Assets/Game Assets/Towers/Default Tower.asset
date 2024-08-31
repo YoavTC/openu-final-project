@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
   m_Name: Default Tower
   m_EditorClassIdentifier: 
-  maxRange: 10
-  damage: 5
-  attackCooldown: 0.2
+  maxRange: 15
+  damage: 1
+  attackCooldown: 0.75
   projectilePath:
     serializedVersion: 2
     m_Curve:

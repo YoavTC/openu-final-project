@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TestEnemySpawner : MonoBehaviour
 {
-    [SerializeField] private AnimateOnSpline testEnemy;
+    [SerializeField] private Spline spline;
+    [SerializeField] private GameObject testEnemy;
     [SerializeField] private float cooldown;
     private float elapsedTime;
     void Update()
@@ -14,8 +15,8 @@ public class TestEnemySpawner : MonoBehaviour
         if (Input.GetKey(KeyCode.P) && elapsedTime >= cooldown)
         {
             elapsedTime = 0f;
-            AnimateOnSpline animateOnSpline = Instantiate(testEnemy, transform.position, Quaternion.identity);
-            animateOnSpline.Init(GetComponent<Spline>(), 5f, EnemyReachedEnd);
+            AnimateOnSpline animateOnSpline = Instantiate(testEnemy, transform.position, Quaternion.identity).GetComponent<AnimateOnSpline>();
+            animateOnSpline.Init(spline, 5f, EnemyReachedEnd);
         }
     }
 

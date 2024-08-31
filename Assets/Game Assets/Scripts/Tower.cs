@@ -55,4 +55,6 @@ public class Tower : MonoBehaviour
         // Apply the scale to the GameObject
         rangeRenderer.transform.localScale = new Vector3(scale, scale, 1f);
     }
+
+    public float GetTowerRange() => towerSettings.maxRange;
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(VisualizeSpline))]
 public class Spline : MonoBehaviour
 {
-    public Transform lastPoint => splinePoints.Last();
-    public Transform firstPoint => splinePoints.First();
     private List<Transform> splinePoints = new List<Transform>();
 
     private void Start()
@@ -14,6 +12,8 @@ public class Spline : MonoBehaviour
         splinePoints = HelperFunctions.GetChildren(transform);
     }
     
+    public Transform GetLastPoint() => splinePoints[splinePoints.Count - 1];
+    public Transform GetFirstPoint() => splinePoints[0];
     
     // Function to find the closest point on the spline and return the next point
     private Transform GetNextPointByDistance(Vector2 point)
