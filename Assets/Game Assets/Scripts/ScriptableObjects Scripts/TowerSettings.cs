@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ public class TowerSettings : ScriptableObject
     public float attackCooldown;
 
     [Header("Projectile Settings")] 
-    [CurveRange(0, 1, 0, 1)]
-    public AnimationCurve projectilePath;
-    public float projectileMovementSpeed;
+    public AnimationCurve projectileCurve;
+    public AnimationCurve easingCurve; 
+    public float projectileMaxHeight;
+    public float projectileMaxMoveSpeed;
 }

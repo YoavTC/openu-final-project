@@ -12,10 +12,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private GameObject targetPrefab;
 
-    [SerializeField] private float projectileSpeed;
-    [SerializeField] private bool slerp;
-    [SerializeField] private float slerpAngle;
-
     private EnemyManager enemyManager;
 
     private void Start()
@@ -42,7 +38,7 @@ public class Tower : MonoBehaviour
     private void Shoot(Enemy target)
     {
         Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
-        newArrow.Init(target, towerSettings.damage, towerSettings.projectileMovementSpeed, slerp, slerpAngle);
+        newArrow.Init(target.transform, towerSettings);
     }
 
     private void VisualizeRange()

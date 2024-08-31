@@ -79,4 +79,14 @@ public class Spline : MonoBehaviour
 
         return -1;
     }
+
+    public Vector2 GetPointOnPathInTime(Vector2 currentPositionOnPath, float time, float speed)
+    {
+        Transform nextPoint = GetNextPointFromPath(currentPositionOnPath);
+        Vector2 virtualPointOnPath = currentPositionOnPath;
+        Vector2 moveDir = currentPositionOnPath - (Vector2) nextPoint.position;
+
+        virtualPointOnPath += (moveDir * speed) * time * Time.deltaTime;
+        return virtualPointOnPath;
+    }
 }

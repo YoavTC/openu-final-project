@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class AnimateOnSpline : MonoBehaviour
 {
-    [SerializeField] private Spline currentSpline;
-    [SerializeField] private float speed;
+    public Spline currentSpline { private set; get; }
+    public float speed { private set; get; }
     public Action<Transform> OnReachSplineEndEvent;
     private Transform nextPoint;
     
