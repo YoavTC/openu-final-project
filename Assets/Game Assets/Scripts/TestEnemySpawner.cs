@@ -7,12 +7,12 @@ public class TestEnemySpawner : MonoBehaviour
     [SerializeField] private Spline spline;
     [SerializeField] private GameObject testEnemy;
     [SerializeField] private float cooldown;
-    private float elapsedTime;
+    [SerializeField] private float elapsedTime;
     void Update()
     {
         elapsedTime += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.P) && elapsedTime >= cooldown)
+        if (Input.GetKey(KeyCode.P) && elapsedTime > cooldown)
         {
             elapsedTime = 0f;
             AnimateOnSpline animateOnSpline = Instantiate(testEnemy, transform.position, Quaternion.identity).GetComponent<AnimateOnSpline>();
