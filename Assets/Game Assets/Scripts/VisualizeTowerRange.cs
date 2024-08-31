@@ -22,7 +22,7 @@ public class VisualizeTowerRange : MonoBehaviour
     private void Draw()
     {
         float range = GetComponent<Tower>().GetTowerRange();
-        Gizmos.color = Color.magenta;
+        Handles.color = Color.magenta;
         //Gizmos.DrawWireSphere(transform.position, range);
         Handles.DrawWireArc(transform.position, Vector3.forward, Vector3.up, 360, range);
     }
