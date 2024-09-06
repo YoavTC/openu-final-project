@@ -2,7 +2,6 @@
 using System.Linq;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class VisualizeSpline : MonoBehaviour
 {
     private List<Transform> points = new List<Transform>();

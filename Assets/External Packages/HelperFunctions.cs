@@ -21,8 +21,9 @@ using Random = UnityEngine.Random;
 //    ╚═╝    ╚═════╝ ╚═╝  ╚═╝  ╚═══╝         ╚═╝    ╚═════╝
 //
 // You're welcome to change anything here and modify it for your personal use! Cheers!
-
-public class HelperFunctions : MonoBehaviour
+namespace External_Packages
+{
+    public class HelperFunctions : MonoBehaviour
 {
     #region Unity Runtime Related
 
@@ -384,3 +385,4 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 }
 
 #endregion
+}

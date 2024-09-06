@@ -524,7 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1243516213}
   - component: {fileID: 1243516215}
-  - component: {fileID: 1243516214}
+  - component: {fileID: 1243516216}
   m_Layer: 0
   m_Name: Spline
   m_TagString: Untagged
@@ -556,18 +556,6 @@ Transform:
   - {fileID: 1148216102}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1243516214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243516211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea67e7e6ae6d43c7bfdd3b127e850a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1243516215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,6 +566,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 698b551c7e5d6e54e92b6b404b4f9197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1243516216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243516211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea67e7e6ae6d43c7bfdd3b127e850a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1449186614
@@ -682,8 +682,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922981325}
-  - component: {fileID: 1922981324}
   - component: {fileID: 1922981326}
+  - component: {fileID: 1922981327}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -691,19 +691,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1922981324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922981323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523502a06c2ac3e4f8895d81fcd678eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyList: []
 --- !u!4 &1922981325
 Transform:
   m_ObjectHideFlags: 0
@@ -735,6 +722,20 @@ MonoBehaviour:
   testEnemy: {fileID: 7639445722337488393, guid: 6ef4b1759e09ed8438c8f3a53a2c54bd, type: 3}
   cooldown: 0.5
   elapsedTime: 0
+--- !u!114 &1922981327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922981323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523502a06c2ac3e4f8895d81fcd678eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLooping: 0
+  enemyList: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
