@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HubCameraController : MonoBehaviour, IEndDragHandler, IDragHandler
+public class HubCameraController : MonoBehaviour, IEndDragHandler, IDragHandler,  IBeginDragHandler
 {
     [Header("Settings")]
     [SerializeField] private float swipeTransitionDuration;
@@ -64,14 +64,21 @@ public class HubCameraController : MonoBehaviour, IEndDragHandler, IDragHandler
     [SerializeField] private float minDragDifference;
     [SerializeField] private float swipeEasing;
     private Vector3 panelLocation;
+    private Vector2 startDragLocation;
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        float closestPositionX = Mathf.Round((panelsContainer.anchoredPosition.x * swipeEasing) / panelWidth) * panelWidth;
+        //With swipe easing (adjusting it so it doesn't have to be 50% of the way to the next panel)
+        float offset = 0f;
+        float swipePercentage = ((startDragLocation.x - eventData.position.x) / panelWidth) * 100;
+        float absoluteSwipePercentage = Mathf.Abs(swipePercentage);
+        if (absoluteSwipePercentage > swipeEasing && absoluteSwipePercentage < 50f)
+        {
+            offset = panelWidth * Mathf.Sign(swipePercentage);
+        }
+        //Without swipe easing
+        float closestPositionX = Mathf.Round((panelsContainer.anchoredPosition.x + (offset) * Mathf.Sign(panelsContainer.anchoredPosition.x)) / panelWidth) * panelWidth;
         closestPositionX = Mathf.Clamp(closestPositionX,-1 * ((hubPanels.Count - 1) * panelWidth), 0);
-        
-        //TODO: Get the distance of the swipe, if its Abs value is more than half of the panel width, slide to the next
-        //position that can multiply by the width of the panel in the correct direction.
         
         panelsContainer.DOAnchorPosX(closestPositionX, swipeTransitionDuration).SetEase(swipeTransitionEaseType);
         panelLocation = new Vector3(closestPositionX, 0, 0);
@@ -82,8 +89,14 @@ public class HubCameraController : MonoBehaviour, IEndDragHandler, IDragHandler
         float dragDifference = eventData.pressPosition.x - eventData.position.x;
         if (Mathf.Abs(dragDifference) > minDragDifference)
         {
+            Debug.Log("Drag Direction:" + ((startDragLocation.x - eventData.position.x) / panelWidth) * 100);
             panelsContainer.anchoredPosition = panelLocation - new Vector3(dragDifference, 0, 0);
             Debug.DrawLine(eventData.pressPosition, eventData.position, Color.magenta);
         }
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        startDragLocation = eventData.pressPosition;
     }
 }
