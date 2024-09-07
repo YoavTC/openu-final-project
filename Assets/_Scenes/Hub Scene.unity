@@ -1297,9 +1297,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swipeTransitionDuration: 0.1
   swipeTransitionEaseType: 4
-  initialPanel: 0
+  initialPanel: 2
   minDragDifference: 20
-  swipeEasing: 5
+  swipeEasing: 25
 --- !u!1 &2037861240
 GameObject:
   m_ObjectHideFlags: 0
