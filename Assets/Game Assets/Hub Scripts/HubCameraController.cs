@@ -60,8 +60,12 @@ public class HubCameraController : MonoBehaviour, IEndDragHandler, IDragHandler,
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        float swipePercentage = GetSwipePercentage(startDragLocation, eventData.position);
-        float offset = (Mathf.Abs(swipePercentage) > swipeEasing && Mathf.Abs(swipePercentage) < 50f) ? panelWidth * Mathf.Sign(swipePercentage) : 0f;
+        float swipePercentage = GetSwipePercentage(startDragLocation, eventData.position) * -1;
+        
+        //Set the offset value of the swipe. 
+        //If the swiped % of the page is more than swipePercentage and less than 50%, force a swipe to the next page
+        float offset = (Mathf.Abs(swipePercentage) > swipeEasing && Mathf.Abs(swipePercentage) < 50f) ? 
+            panelWidth * Mathf.Sign(swipePercentage) : 0f;
 
         float closestPositionX = GetClosestPanelPosition(panelsContainer.anchoredPosition.x, offset);
 
