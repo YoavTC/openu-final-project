@@ -9,6 +9,7 @@ public class TowerSettings : ScriptableObject
     public float maxRange;
     public float damage;
     public float attackCooldown;
+    public float areaOfEffect;
 
     [Header("Projectile Settings")] 
     public AnimationCurve projectileCurve;
