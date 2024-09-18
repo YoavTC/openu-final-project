@@ -1244,7 +1244,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8832d71a219e0b944aef5a4ce193fccf, type: 2}
   m_sharedMaterial: {fileID: 1635177265056919381, guid: 8832d71a219e0b944aef5a4ce193fccf, type: 2}
@@ -2270,7 +2270,7 @@ MonoBehaviour:
   elixirBarSlider: {fileID: 1981992384}
   elixirBarAmountDisplay: {fileID: 413103352}
   defaultIncreaseAmount: 1
-  increaseCooldown: 0.2
+  increaseCooldown: 0.5
   timeElapsed: 0
 --- !u!4 &693042292
 Transform:
