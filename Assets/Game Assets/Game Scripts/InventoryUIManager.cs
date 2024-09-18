@@ -29,7 +29,10 @@ public class InventoryUIManager : MonoBehaviour
         inY = rectTransform.anchoredPosition.y;
     }
 
-    private void Update() => elapsedTime += Time.deltaTime;
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime; 
+    } 
     
     public void OnShowHideButtonPress()
     {
@@ -46,13 +49,7 @@ public class InventoryUIManager : MonoBehaviour
         }
     }
 
-    private void ShowItems()
-    {
-        rectTransform.DOAnchorPosY(inY, inTime).SetEase(easeType);
-    }
-
-    private void HideItems()
-    {
-        rectTransform.DOAnchorPosY(outY, outTime).SetEase(easeType);
-    }
+    private void ShowItems() => rectTransform.DOAnchorPosY(inY, inTime).SetEase(easeType);
+    private void HideItems() => rectTransform.DOAnchorPosY(outY, outTime).SetEase(easeType);
+    
 }
