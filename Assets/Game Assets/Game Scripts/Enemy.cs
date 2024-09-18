@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         } 
     }
 
-    private IEnumerator DeathCoroutine()
+    public IEnumerator DeathCoroutine()
     {
         //Wait for the Enemy manager to safely remove enemy from list
         bool callback = false;

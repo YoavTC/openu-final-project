@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Green
   m_EditorClassIdentifier: 
   maxRange: 10
-  damage: 3
-  attackCooldown: 3
+  damage: 8
+  attackCooldown: 2.5
   areaOfEffect: 0
   cost: 20
   sprite: {fileID: 21300000, guid: 9b55f689d2da737489aaef383779ce06, type: 3}

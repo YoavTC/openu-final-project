@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Yellow
   m_EditorClassIdentifier: 
   maxRange: 40
-  damage: 1
-  attackCooldown: 2
+  damage: 5
+  attackCooldown: 0.8
   areaOfEffect: 0
   cost: 20
   sprite: {fileID: 21300000, guid: 38b95a7e720fe884cbbd90a3521b0540, type: 3}
