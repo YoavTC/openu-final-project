@@ -10,6 +10,8 @@ public class TowerSettings : ScriptableObject
     public float damage;
     public float attackCooldown;
     public float areaOfEffect;
+    public int cost;
+    [ShowAssetPreview] public Sprite sprite;
 
     [Header("Projectile Settings")] 
     public AnimationCurve projectileCurve;

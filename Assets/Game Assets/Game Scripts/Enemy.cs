@@ -1,4 +1,5 @@
 using System.Collections;
+using BgTools.Utils;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour

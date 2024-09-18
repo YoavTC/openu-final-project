@@ -85,7 +85,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         GameObject card = results.First(a => a.gameObject.CompareTag("InventoryUICard")).gameObject;
         draggedCard = Instantiate(draggedCardPrefab, transform);
-        draggedCard.GetComponent<Image>().sprite = card.GetComponent<Image>().sprite;
+        draggedCard.GetComponent<Image>().sprite = card.GetComponent<InGameInventoryCard>().towerSettings.sprite;
         draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
         Debug.Log("Found: " + card);
     }

@@ -36,8 +36,8 @@ public class Projectile : MonoBehaviour
 
 
     private void Update() {
-
-
+        if (target == null) Destroy(gameObject);
+        
         UpdateProjectilePosition();
 
 
@@ -49,6 +49,7 @@ public class Projectile : MonoBehaviour
 
 
     private void UpdateProjectilePosition() {
+        if (target == null) Destroy(gameObject);
         trajectoryRange = target.position - trajectoryStartPoint;
 
 
