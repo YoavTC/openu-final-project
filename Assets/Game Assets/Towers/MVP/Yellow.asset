@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
   m_Name: Yellow
   m_EditorClassIdentifier: 
-  maxRange: 20
+  maxRange: 40
   damage: 1
   attackCooldown: 2
   areaOfEffect: 0

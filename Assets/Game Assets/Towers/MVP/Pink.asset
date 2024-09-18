@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
   m_Name: Pink
   m_EditorClassIdentifier: 
-  maxRange: 10
+  maxRange: 20
   damage: 5
   attackCooldown: 5
   areaOfEffect: 0

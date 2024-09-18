@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
   m_Name: Red
   m_EditorClassIdentifier: 
-  maxRange: 15
+  maxRange: 30
   damage: 0.5
   attackCooldown: 0.1
   areaOfEffect: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
   m_Name: Blue
   m_EditorClassIdentifier: 
-  maxRange: 7
+  maxRange: 14
   damage: 1
   attackCooldown: 0.75
   areaOfEffect: 0
