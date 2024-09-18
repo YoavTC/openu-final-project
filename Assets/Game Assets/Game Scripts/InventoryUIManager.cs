@@ -89,7 +89,11 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         currentDragPoint = eventData.position;
-        if (draggedCard != null) draggedCard.transform.position = currentDragPoint;
+        if (draggedCard != null)
+        {
+            draggedCard.transform.position = currentDragPoint;
+            //Set dragged card tower's radius and position on screen
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -97,7 +101,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         Vector2 placementPosition = mainCamera.ScreenToWorldPoint(eventData.position);
         if (IsValidPlacementPosition(placementPosition))
         {
-            Instantiate(towerPrefab, placementPosition, quaternion.identity);
+            GameObject newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity);
+            newTower.GetComponent<Tower>().towerPlaced = true;
         }
         
         if (draggedCard != null) Destroy(draggedCard);

@@ -1,8 +1,9 @@
 using UnityEngine;
-using CodeMonkey.Utils;
 
 public class Tower : MonoBehaviour
 {
+    public bool towerPlaced;
+    
     [SerializeField] private TowerSettings towerSettings;
     private float elapsedTime;
     
@@ -16,12 +17,14 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
+        towerPlaced = false;
         enemyManager = EnemyManager.Instance;
         VisualizeRange();
     }
 
     void Update()
     {
+        if (!towerPlaced) return;
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= towerSettings.attackCooldown)
         {
