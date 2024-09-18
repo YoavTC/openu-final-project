@@ -37,49 +37,52 @@ public class Projectile : MonoBehaviour
 
     private void Update() {
         if (target == null) Destroy(gameObject);
-        
-        UpdateProjectilePosition();
+        else
+        {
+            UpdateProjectilePosition();
 
 
-        if (Vector3.Distance(transform.position, target.position) < distanceToTargetToDestroyProjectile) {
-            target.GetComponent<Enemy>().TakeDamage(damage);
-            Destroy(gameObject);
+            if (Vector3.Distance(transform.position, target.position) < distanceToTargetToDestroyProjectile) {
+                target.GetComponent<Enemy>().TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
     }
 
 
     private void UpdateProjectilePosition() {
         if (target == null) Destroy(gameObject);
-        trajectoryRange = target.position - trajectoryStartPoint;
+        else
+        {
+            trajectoryRange = target.position - trajectoryStartPoint;
 
 
-        if(Mathf.Abs(trajectoryRange.normalized.x) < Mathf.Abs(trajectoryRange.normalized.y)) {
-            // Projectile will be curved on the X axis
+            if(Mathf.Abs(trajectoryRange.normalized.x) < Mathf.Abs(trajectoryRange.normalized.y)) {
+                // Projectile will be curved on the X axis
 
 
-            if (trajectoryRange.y < 0) {
-                // Target is located under shooter
-                moveSpeed = -moveSpeed;
+                if (trajectoryRange.y < 0) {
+                    // Target is located under shooter
+                    moveSpeed = -moveSpeed;
+                }
+
+
+                UpdatePositionWithXCurve();
+
+
+            } else {
+                // Projectile will be curved on the Y axis
+
+
+                if (trajectoryRange.x < 0) {
+                    // Target is located behind shooter
+                    moveSpeed = -moveSpeed;
+                }
+
+
+                UpdatePositionWithYCurve();
             }
-
-
-            UpdatePositionWithXCurve();
-
-
-        } else {
-            // Projectile will be curved on the Y axis
-
-
-            if (trajectoryRange.x < 0) {
-                // Target is located behind shooter
-                moveSpeed = -moveSpeed;
-            }
-
-
-            UpdatePositionWithYCurve();
         }
-
-
     }
 
 

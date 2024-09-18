@@ -1,5 +1,6 @@
 using System.Collections;
 using BgTools.Utils;
+using CodeMonkey.Utils;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -17,6 +18,16 @@ public class Enemy : MonoBehaviour
     
     private void ApplyDamage(float damage, Vector3 dir)
     {
+        //TextPopupManager.Instance.DisplayPopup("-" + damage, transform.position, 5f, Color.red, 2f);
+        UtilsClass.CreateWorldTextPopup(
+            null,
+            "-" + damage,
+            transform.position,
+            10,
+            Color.red,
+            transform.position + new Vector3(0, 20),
+            2f);
+        
         if (health - damage <= 0)
         {
             StartCoroutine(DeathCoroutine());
