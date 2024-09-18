@@ -142,8 +142,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7032692552654824334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082cf4f1037485441a4e7e8311a531ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaced: 0
   towerSettings: {fileID: 11400000, guid: 4af3a3bf7b63b1f42b8defb748a603b6, type: 2}
   spriteRenderer: {fileID: 7976714890031304551}
   rangeRenderer: {fileID: 8961622952390712635}

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public bool isPlaced = false;
+    
     public TowerSettings towerSettings;
     private float elapsedTime;
     
@@ -21,6 +23,7 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
+        if (!isPlaced) return;
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= towerSettings.attackCooldown)
         {

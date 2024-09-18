@@ -67,6 +67,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private GameObject draggedCard;
 
     private TowerSettings draggedCardTowerSettings;
+    private Tower draggedTower;
     
     private Camera mainCamera;
     private Vector3 beginDragPoint;
@@ -84,10 +85,16 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
 
         GameObject card = results.First(a => a.gameObject.CompareTag("InventoryUICard")).gameObject;
+        Debug.Log("Found: " + card);
+        
         draggedCard = Instantiate(draggedCardPrefab, transform);
         draggedCard.GetComponent<Image>().sprite = card.GetComponent<InGameInventoryCard>().towerSettings.sprite;
+        //draggedCard.GetComponent<Image>().enabled = false;
         draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
-        Debug.Log("Found: " + card);
+
+        Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
+        draggedTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
+        draggedTower.towerSettings = draggedCardTowerSettings;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -95,18 +102,21 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         currentDragPoint = eventData.position;
         if (draggedCard != null)
         {
+            draggedTower.transform.position = ScreenToWorldPoint(currentDragPoint);
             draggedCard.transform.position = currentDragPoint;
-            //Set dragged card tower's radius and position on screen
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Vector2 placementPosition = mainCamera.ScreenToWorldPoint(eventData.position);
+        Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
         if (IsValidPlacementPosition(placementPosition))
         {
+            Destroy(draggedTower.gameObject);
             Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
             newTower.towerSettings = draggedCardTowerSettings;
+            newTower.isPlaced = true;
+            newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
         }
         
         if (draggedCard != null) Destroy(draggedCard);
@@ -115,5 +125,10 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private bool IsValidPlacementPosition(Vector2 pos)
     {
         return true;
+    }
+
+    private Vector2 ScreenToWorldPoint(Vector2 point)
+    {
+        return mainCamera.ScreenToWorldPoint(point);
     }
 }
