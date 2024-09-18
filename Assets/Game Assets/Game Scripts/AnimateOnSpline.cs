@@ -1,23 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AnimateOnSpline : MonoBehaviour
 {
-    public Spline currentSpline { private set; get; }
-    public float speed { private set; get; }
-    public Action<Transform> OnReachSplineEndEvent;
+    private Spline currentSpline;
+    private float speed;
+    private Action<Transform> OnReachSplineEndEvent;
     private Transform nextPoint;
     
-    public void Init(Spline currentSpline, float speed)
-    {
-        this.currentSpline = currentSpline;
-        this.speed = speed;
-    }
-    
-    public void Init(Spline currentSpline, float speed, Action<Transform> onReachSplineEndEvent)
+    public void Init(Spline currentSpline, float speed, Action<Transform> onReachSplineEndEvent = null)
     {
         this.currentSpline = currentSpline;
         this.speed = speed;

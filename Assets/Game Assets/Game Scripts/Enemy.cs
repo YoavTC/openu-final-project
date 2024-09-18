@@ -1,11 +1,10 @@
 using System.Collections;
-using BgTools.Utils;
 using CodeMonkey.Utils;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float health;
+    public float health;
     public bool isDead;
     
     void Start()
