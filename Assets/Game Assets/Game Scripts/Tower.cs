@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public bool towerPlaced;
-    
-    [SerializeField] private TowerSettings towerSettings;
+    public TowerSettings towerSettings;
     private float elapsedTime;
     
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -17,14 +15,12 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
-        towerPlaced = false;
         enemyManager = EnemyManager.Instance;
         VisualizeRange();
     }
 
     void Update()
     {
-        if (!towerPlaced) return;
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= towerSettings.attackCooldown)
         {

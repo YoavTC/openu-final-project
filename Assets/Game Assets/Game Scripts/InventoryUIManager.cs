@@ -65,6 +65,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     [SerializeField] private GameObject draggedCardPrefab;
     [SerializeField] private GameObject towerPrefab;
     private GameObject draggedCard;
+
+    private TowerSettings draggedCardTowerSettings;
     
     private Camera mainCamera;
     private Vector3 beginDragPoint;
@@ -83,6 +85,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         GameObject card = results.First(a => a.gameObject.CompareTag("InventoryUICard")).gameObject;
         draggedCard = Instantiate(draggedCardPrefab, transform);
+        draggedCard.GetComponent<Image>().sprite = card.GetComponent<Image>().sprite;
+        draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
         Debug.Log("Found: " + card);
     }
 
@@ -101,8 +105,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         Vector2 placementPosition = mainCamera.ScreenToWorldPoint(eventData.position);
         if (IsValidPlacementPosition(placementPosition))
         {
-            GameObject newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity);
-            newTower.GetComponent<Tower>().towerPlaced = true;
+            Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
+            newTower.towerSettings = draggedCardTowerSettings;
         }
         
         if (draggedCard != null) Destroy(draggedCard);
