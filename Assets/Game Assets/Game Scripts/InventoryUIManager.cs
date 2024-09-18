@@ -109,14 +109,22 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-        if (IsValidPlacementPosition(placementPosition))
+        if (ElixirManager.Instance.TryAffordOperation(draggedCardTowerSettings.cost))
+        {
+            Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
+            if (IsValidPlacementPosition(placementPosition))
+            {
+                Destroy(draggedTower.gameObject);
+                Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
+                newTower.towerSettings = draggedCardTowerSettings;
+                newTower.isPlaced = true;
+                newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
+            }
+        }
+        else
         {
             Destroy(draggedTower.gameObject);
-            Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
-            newTower.towerSettings = draggedCardTowerSettings;
-            newTower.isPlaced = true;
-            newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
+            Debug.Log("Cant afford this tower!");
         }
         
         if (draggedCard != null) Destroy(draggedCard);

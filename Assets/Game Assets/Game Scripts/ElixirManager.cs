@@ -61,4 +61,16 @@ public class ElixirManager : Singleton<ElixirManager>
     public void IncreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir + amount, 0, 100);
     public void DecreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir - amount, 0, 100);
     public bool CanAffordOperation(int amount) => currentElixir - amount > 0;
+
+    public bool TryAffordOperation(int amount)
+    {
+        bool result = CanAffordOperation(amount);
+        if (result)
+        {
+            DecreaseElixir(amount);
+            return true;
+        }
+
+        return false;
+    }
 }
