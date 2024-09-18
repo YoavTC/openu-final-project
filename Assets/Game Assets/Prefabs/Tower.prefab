@@ -247,14 +247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082cf4f1037485441a4e7e8311a531ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSettings: {fileID: 11400000, guid: 74942fa6b6f590b4fbafe9e7be79a8ac, type: 2}
+  towerSettings: {fileID: 11400000, guid: 4af3a3bf7b63b1f42b8defb748a603b6, type: 2}
   spriteRenderer: {fileID: 7976714890031304551}
   rangeRenderer: {fileID: 8961622952390712635}
   arrowPrefab: {fileID: 3887719785123558364, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
   targetPrefab: {fileID: 6503770777685158468, guid: 991adcf5d7883584e953c41d3ac77ab8, type: 3}
-  projectileSpeed: 50
-  slerp: 0
-  slerpAngle: 1
 --- !u!114 &840105369428218391
 MonoBehaviour:
   m_ObjectHideFlags: 0

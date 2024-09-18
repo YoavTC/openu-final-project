@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 85221711}
   m_Layer: 5
   m_Name: Image (6)
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 446594028}
   m_Layer: 5
   m_Name: Image (2)
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 464289264}
   m_Layer: 5
   m_Name: Image (5)
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1147,18 +1147,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 840105369428218391, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
-      propertyPath: alwaysDraw
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4890592990759296144, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
-      propertyPath: slerp
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4890592990759296144, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
-      propertyPath: towerSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 4af3a3bf7b63b1f42b8defb748a603b6, type: 2}
     - target: {fileID: 6370213566684474273, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
       propertyPath: m_Name
       value: Tower (1)
@@ -1221,7 +1209,7 @@ GameObject:
   - component: {fileID: 1017540607}
   m_Layer: 5
   m_Name: Image (1)
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1358,7 +1346,7 @@ GameObject:
   - component: {fileID: 1151149708}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1549,6 +1537,8 @@ MonoBehaviour:
   outTime: 0.2
   inY: 167
   outY: -167
+  draggedCardPrefab: {fileID: 942815268228053748, guid: 557a1d3a709820847a80851be80b3860, type: 3}
+  towerPrefab: {fileID: 6370213566684474273, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
 --- !u!1 &1243516211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1797,7 @@ GameObject:
   - component: {fileID: 1415014470}
   m_Layer: 5
   m_Name: Image (3)
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1944,7 +1934,7 @@ GameObject:
   - component: {fileID: 1559383740}
   m_Layer: 5
   m_Name: Image (7)
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2402,7 +2392,7 @@ GameObject:
   - component: {fileID: 1978092159}
   m_Layer: 5
   m_Name: Image (4)
-  m_TagString: Untagged
+  m_TagString: InventoryUICard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
