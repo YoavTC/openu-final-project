@@ -11,6 +11,8 @@ public class Projectile : MonoBehaviour
     private float trajectoryMaxRelativeHeight;
     private float distanceToTargetToDestroyProjectile = 1f;
 
+    private float damage;
+
 
     private AnimationCurve trajectoryAnimationCurve;
     private AnimationCurve axisCorrectionAnimationCurve = AnimationCurve.Linear(0,0,1,1);
@@ -40,6 +42,7 @@ public class Projectile : MonoBehaviour
 
 
         if (Vector3.Distance(transform.position, target.position) < distanceToTargetToDestroyProjectile) {
+            target.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }
@@ -162,8 +165,8 @@ public class Projectile : MonoBehaviour
         maxMoveSpeed = towerSettings.projectileMaxMoveSpeed;
         trajectoryAnimationCurve = towerSettings.projectileCurve;
         projectileSpeedAnimationCurve = towerSettings.easingCurve;
-        
-        
+
+        damage = towerSettings.damage;
 
         float xDistanceToTarget = target.position.x - transform.position.x;
         trajectoryMaxRelativeHeight = Mathf.Abs(xDistanceToTarget) * towerSettings.projectileMaxHeight;

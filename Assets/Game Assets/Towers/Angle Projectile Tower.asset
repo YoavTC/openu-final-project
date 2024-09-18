@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Angle Projectile Tower
   m_EditorClassIdentifier: 
   maxRange: 15
-  damage: 0
+  damage: 1
   attackCooldown: 0.75
+  areaOfEffect: 0
   projectileCurve:
     serializedVersion: 2
     m_Curve:
