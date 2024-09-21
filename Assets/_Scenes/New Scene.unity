@@ -3514,7 +3514,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922981326}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestEnemySpawner, Assembly-CSharp
         m_MethodName: ReloadScene
         m_Mode: 1
@@ -7654,8 +7654,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922981325}
-  - component: {fileID: 1922981326}
   - component: {fileID: 1922981327}
+  - component: {fileID: 1922981328}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -7678,30 +7678,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1922981326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922981323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81aab2e8e5590d5429dccb079e47c2c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spline: {fileID: 1243516215}
-  testEnemy: {fileID: 7639445722337488393, guid: 6ef4b1759e09ed8438c8f3a53a2c54bd, type: 3}
-  cooldown: 0.75
-  elapsedTime: 0
-  enemyBankDisplay: {fileID: 518726258}
-  enemiesLeft: 500
-  enemyTypes:
-  - {fileID: 11400000, guid: 20f86a1e1ebef844db41a5ea59802ae2, type: 2}
-  - {fileID: 11400000, guid: 453e8e2fd4c025940a8204f339bff412, type: 2}
-  - {fileID: 11400000, guid: e3c79c1d752756e4c9d8f1710f422e14, type: 2}
-  - {fileID: 11400000, guid: f6b3a978f1a74fd41932762edd31f6b0, type: 2}
-  deathScreen: {fileID: 1197224502}
 --- !u!114 &1922981327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7715,6 +7691,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList: []
+--- !u!114 &1922981328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922981323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cad2ffc9af94eb58f365742ebbcdcfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyTypesWeightDictionary:
+    _serializedList: []
+  EnemyWaveTypesWeightDictionary:
+    _serializedList: []
 --- !u!1 &1937247804
 GameObject:
   m_ObjectHideFlags: 0
