@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Base Item", menuName = "Base Items/Base Item")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Inventory/Base Item")]
 public class BaseItemScriptableObject : ScriptableObject
 {
     //Visual information

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Base Item List", menuName = "Base Items/Base Item List")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Inventory/Base Item List")]
 public class BaseItemListScriptableObject : ScriptableObject
 {
     public BaseItemScriptableObject[] collection;

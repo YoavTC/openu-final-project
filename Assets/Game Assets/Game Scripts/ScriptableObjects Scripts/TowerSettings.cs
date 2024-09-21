@@ -2,7 +2,7 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Tower Settings")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Tower Settings")]
 public class TowerSettings : ScriptableObject
 {
     [Header("Base Settings")] 

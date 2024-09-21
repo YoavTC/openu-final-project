@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Enemy Settings")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Enemy Settings")]
 public class EnemySettings : ScriptableObject
 {
     [ShowAssetPreview] public Sprite sprite;
