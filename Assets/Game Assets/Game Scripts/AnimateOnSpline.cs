@@ -5,10 +5,10 @@ public class AnimateOnSpline : MonoBehaviour
 {
     private Spline currentSpline;
     private float speed;
-    private Action<Transform> OnReachSplineEndEvent;
+    private Action<Enemy> OnReachSplineEndEvent;
     private Transform nextPoint;
     
-    public void Init(Spline currentSpline, float speed, Action<Transform> onReachSplineEndEvent = null)
+    public void Init(Spline currentSpline, float speed, Action<Enemy> onReachSplineEndEvent = null)
     {
         this.currentSpline = currentSpline;
         this.speed = speed;
@@ -28,7 +28,7 @@ public class AnimateOnSpline : MonoBehaviour
 
         if (transform.position == currentSpline.GetLastPoint().position)
         {
-            OnReachSplineEndEvent?.Invoke(transform);
+            OnReachSplineEndEvent?.Invoke(transform.GetComponent<Enemy>());
             Destroy(this);
         }
     }
