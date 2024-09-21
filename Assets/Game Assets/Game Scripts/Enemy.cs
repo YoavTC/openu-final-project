@@ -1,15 +1,43 @@
+using System;
 using System.Collections;
 using CodeMonkey.Utils;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    public float health;
-    public bool isDead;
-    
-    void Start()
+    [SerializeField] private EnemySettings _enemySettings;
+    private Action<Enemy> OnDeathAction;
+
+    public EnemySettings enemySettings
     {
+        get
+        {
+            return _enemySettings;
+        }
+        private set
+        {
+            _enemySettings = value;
+        }
+    }
+    
+    private float health;
+    public bool isDead;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private AnimateOnSpline animateOnSpline;
+
+    public void Init(EnemySettings enemySettings, Action<Enemy> enemyReachEndEventListener, Action<Enemy> enemyDeathEventListener,Spline currentSpline)
+    {
+        _enemySettings = enemySettings;
+        
         EnemyManager.Instance.AddEnemy(this);
+        OnDeathAction += enemyDeathEventListener;
+        
+        animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndEventListener);
+
+        spriteRenderer.sprite = enemySettings.sprite;
+        health = enemySettings.health;
     }
 
     public void TakeDamage(float damage) => ApplyDamage(damage, Vector3.zero);
@@ -17,7 +45,6 @@ public class Enemy : MonoBehaviour
     
     private void ApplyDamage(float damage, Vector3 dir)
     {
-        //TextPopupManager.Instance.DisplayPopup("-" + damage, transform.position, 5f, Color.red, 2f);
         UtilsClass.CreateWorldTextPopup(
             null,
             "-" + damage,
@@ -37,7 +64,13 @@ public class Enemy : MonoBehaviour
         } 
     }
 
-    public IEnumerator DeathCoroutine()
+    private void OnDeathEvent(Enemy enemy)
+    {
+        OnDeathAction?.Invoke(enemy);
+        StartCoroutine(DeathCoroutine());
+    }
+    
+    private IEnumerator DeathCoroutine()
     {
         //Wait for the Enemy manager to safely remove enemy from list
         bool callback = false;

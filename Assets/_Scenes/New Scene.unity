@@ -7703,6 +7703,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cad2ffc9af94eb58f365742ebbcdcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBasePrefab: {fileID: 7639445722337488393, guid: 6ef4b1759e09ed8438c8f3a53a2c54bd, type: 3}
+  currentSpline: {fileID: 1243516215}
+  OnEnemyReachEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemySpawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
   EnemyTypesWeightDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: 453e8e2fd4c025940a8204f339bff412, type: 2}
@@ -7725,9 +7736,9 @@ MonoBehaviour:
       Value: 3
     - Key: {fileID: 11400000, guid: 085e8ae6ca4914b46992d5d261a80a0b, type: 2}
       Value: 2
-  startDelay: 0
+  startDelay: 0.5
   spawnerActive: 0
-  spawnCooldown: 0
+  spawnCooldown: 0.5
   elapsedTime: 0
   currentSpawnWave: {fileID: 0}
   currentSpawnWaveProgress: 0

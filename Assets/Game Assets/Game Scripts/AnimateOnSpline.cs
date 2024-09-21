@@ -1,22 +1,21 @@
 using System;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AnimateOnSpline : MonoBehaviour
 {
-    private Spline currentSpline;
-    private float speed;
+    [SerializeField] [ReadOnly] private float speed;
+    [SerializeField] [ReadOnly] private Transform nextPoint;
+    [SerializeField] [ReadOnly] private Spline currentSpline;
     private Action<Enemy> OnReachSplineEndEvent;
-    private Transform nextPoint;
     
-    public void Init(Spline currentSpline, float speed, Action<Enemy> onReachSplineEndEvent = null)
+    public void Init(Spline currentSpline, float speed, Action<Enemy> onReachSplineEndEvent)
     {
         this.currentSpline = currentSpline;
         this.speed = speed;
-        OnReachSplineEndEvent = onReachSplineEndEvent;
-    }
-
-    private void Start()
-    {
+        OnReachSplineEndEvent += onReachSplineEndEvent;
+        
         transform.position = currentSpline.GetFirstPoint().position;
     }
 

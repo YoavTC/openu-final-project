@@ -17,11 +17,12 @@ public class EnemySpawner : MonoBehaviour
     [Header("Events")]
     public UnityEvent<Enemy> OnEnemyReachEndEvent;
     public UnityEvent<Enemy> OnEnemySpawnEvent;
+    public UnityEvent<Enemy> OnEnemyDeathEvent;
     
     [Header("Dictionaries")]
     [SerializeField] private SerializedDictionary<EnemySettings, float> EnemyTypesWeightDictionary = new SerializedDictionary<EnemySettings, float>();
     [SerializeField] private SerializedDictionary<AnimationCurveObject, float> EnemyWaveTypesWeightDictionary = new SerializedDictionary<AnimationCurveObject, float>();
-    private List<EnemySettings> enemySettingsList = new List<EnemySettings>();
+    private List<EnemySettings> enemySettingsList;
 
     [Header("Settings")] 
     [SerializeField] private float startDelay;
@@ -55,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
         if (!spawnerActive) return;
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime >= spawnCooldown)
+        if (elapsedTime >= spawnCooldown && enemyQueue.Length > enemyQueueIndex)
         {
             elapsedTime = 0f;
             SpawnEnemy();
@@ -64,20 +65,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        EnemySettings newEnemySettings = enemySettingsList[enemyQueueIndex]; 
+        EnemySettings newEnemySettings = enemySettingsList[enemyQueue[enemyQueueIndex]]; 
         enemyQueueIndex++;
 
-        AnimateOnSpline newEnemy = Instantiate(enemyBasePrefab, transform.position, Quaternion.identity).GetComponent<AnimateOnSpline>();
-        newEnemy.Init(currentSpline, newEnemySettings.speed, OnEnemyReachEndCallback);
+        Enemy newEnemy = Instantiate(enemyBasePrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
+        newEnemy.Init(newEnemySettings, EnemyReachEndEventListener, EnemyDeathEventListener, currentSpline);
         
-        OnEnemySpawnEvent?.Invoke(newEnemy.GetComponent<Enemy>());
+        OnEnemySpawnEvent?.Invoke(newEnemy);
     }
 
-    private void OnEnemyReachEndCallback(Enemy enemy)
-    {
-        OnEnemyReachEndEvent?.Invoke(enemy);
-    }
-
+    private void EnemyReachEndEventListener(Enemy enemy) => OnEnemyReachEndEvent?.Invoke(enemy);
+    private void EnemyDeathEventListener(Enemy enemy) => OnEnemyDeathEvent?.Invoke(enemy);
+    
     private void GenerateEnemyQueue()
     {
         enemyQueue = new int[enemyQueueLength];

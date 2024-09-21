@@ -75,11 +75,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6118b36fdb5735f4a8e170d0a11fe46d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c7ee104b6f12da46b0550be17c8fe6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66626e80040d1764d9d32378c9889ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  nextPoint: {fileID: 0}
+  currentSpline: {fileID: 0}
 --- !u!114 &8716771926192060453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,5 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36af0d82acebeb04696fa5be549e50e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  _enemySettings: {fileID: 0}
   isDead: 0
+  spriteRenderer: {fileID: 4632492171938343152}
+  animateOnSpline: {fileID: 2922923268545865027}
