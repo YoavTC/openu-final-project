@@ -41,6 +41,7 @@ public class Tower : MonoBehaviour
     {
         Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
         newArrow.Init(target.transform, towerSettings);
+        target.CalculateDamage(towerSettings.damage);
     }
 
     private void VisualizeRange()

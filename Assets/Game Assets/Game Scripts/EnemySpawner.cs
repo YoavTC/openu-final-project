@@ -145,7 +145,7 @@ public class EnemySpawner : MonoBehaviour
         enemyQueueIndex++;
 
         Enemy newEnemy = Instantiate(enemyBasePrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
-        newEnemy.Init(newEnemySettings, EnemyReachEndEventListener, EnemyDeathEventListener, currentSpline);
+        newEnemy.Init(newEnemySettings, EnemyReachEndListener, EnemyDeathListener, currentSpline);
         
         OnEnemySpawnEvent?.Invoke(newEnemy);
         UpdateRemainingEnemiesDisplay();
@@ -160,7 +160,7 @@ public class EnemySpawner : MonoBehaviour
     #endregion
     
     #region Events
-    private void EnemyReachEndEventListener(Enemy enemy) => OnEnemyReachEndEvent?.Invoke(enemy);
-    private void EnemyDeathEventListener(Enemy enemy) => OnEnemyDeathEvent?.Invoke(enemy);
+    private void EnemyReachEndListener(Enemy enemy) => OnEnemyReachEndEvent?.Invoke(enemy);
+    private void EnemyDeathListener(Enemy enemy) => OnEnemyDeathEvent?.Invoke(enemy);
     #endregion
 }

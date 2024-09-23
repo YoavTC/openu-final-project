@@ -27,14 +27,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AnimateOnSpline animateOnSpline;
 
-    public void Init(EnemySettings enemySettings, Action<Enemy> enemyReachEndEventListener, Action<Enemy> enemyDeathEventListener,Spline currentSpline)
+    public void Init(EnemySettings enemySettings, Action<Enemy> enemyReachEndListener, Action<Enemy> enemyDeathListener,Spline currentSpline)
     {
         _enemySettings = enemySettings;
         
         EnemyManager.Instance.AddEnemy(this);
-        OnDeathAction += enemyDeathEventListener;
+        OnDeathAction += enemyDeathListener;
         
-        animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndEventListener);
+        animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndListener);
 
         spriteRenderer.sprite = enemySettings.sprite;
         health = enemySettings.health;
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
         
         if (health - damage <= 0)
         {
-            StartCoroutine(DeathCoroutine());
+            KillEnemy(this);
         }
         else
         {
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
         } 
     }
 
-    private void OnDeathEvent(Enemy enemy)
+    private void KillEnemy(Enemy enemy)
     {
         OnDeathAction?.Invoke(enemy);
         StartCoroutine(DeathCoroutine());
