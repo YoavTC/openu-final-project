@@ -462,7 +462,7 @@ Transform:
   m_GameObject: {fileID: 108464180}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4067942, y: -3.4867969, z: 7.143852}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1542,7 +1542,7 @@ GameObject:
   - component: {fileID: 518726259}
   - component: {fileID: 518726258}
   m_Layer: 5
-  m_Name: Enemy Bank
+  m_Name: Remaining Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 250/250
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8832d71a219e0b944aef5a4ce193fccf, type: 2}
   m_sharedMaterial: {fileID: 1635177265056919381, guid: 8832d71a219e0b944aef5a4ce193fccf, type: 2}
@@ -2366,7 +2366,7 @@ Transform:
   m_GameObject: {fileID: 684218556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4067942, y: -3.4867969, z: 7.143852}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3829,37 +3829,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992359124}
   m_CullTransparentMesh: 1
---- !u!1 &1046668602
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1046668604}
-  m_Layer: 0
-  m_Name: SingletonTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1046668604
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046668602}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1076386052
 GameObject:
   m_ObjectHideFlags: 0
@@ -7705,6 +7674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBasePrefab: {fileID: 7639445722337488393, guid: 6ef4b1759e09ed8438c8f3a53a2c54bd, type: 3}
   currentSpline: {fileID: 1243516215}
+  remainingEnemiesDisplay: {fileID: 518726258}
   OnEnemyReachEndEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7730,19 +7700,21 @@ MonoBehaviour:
       Value: 4
     - Key: {fileID: 11400000, guid: 258d7be308cad4f45b7944fc3bdd3721, type: 2}
       Value: 1
-    - Key: {fileID: 11400000, guid: 0d78235bacd2412449dd33dab67fac10, type: 2}
-      Value: 2
     - Key: {fileID: 11400000, guid: dd4df06fde78c024ab98f27d3f626276, type: 2}
       Value: 3
     - Key: {fileID: 11400000, guid: 085e8ae6ca4914b46992d5d261a80a0b, type: 2}
       Value: 2
-  startDelay: 0.5
-  spawnerActive: 0
   spawnCooldown: 0.5
   elapsedTime: 0
-  currentSpawnWave: {fileID: 0}
+  currentSpawnWave:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   currentSpawnWaveProgress: 0
-  enemyQueueLength: 15
+  nextSpawnDelay: 0
+  enemyQueueLength: 300
   enemyQueue: 
   enemyQueueIndex: 0
 --- !u!1 &1937247804
@@ -8741,7 +8713,6 @@ SceneRoots:
   - {fileID: 705157111}
   - {fileID: 1243516213}
   - {fileID: 1922981325}
-  - {fileID: 1046668604}
   - {fileID: 108464181}
   - {fileID: 1638351721}
   - {fileID: 1327226995}

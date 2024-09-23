@@ -4,6 +4,7 @@ using System.Linq;
 using AYellowpaper.SerializedCollections;
 using External_Packages;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = System.Random;
@@ -13,6 +14,10 @@ public class EnemySpawner : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameObject enemyBasePrefab;
     [SerializeField] private Spline currentSpline;
+
+    [Header("UI Components")]
+    [SerializeField] private TMP_Text remainingEnemiesDisplay;
+    private int originalRemainingEnemies;
     
     [Header("Events")]
     public UnityEvent<Enemy> OnEnemyReachEndEvent;
@@ -23,59 +28,52 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private SerializedDictionary<EnemySettings, float> EnemyTypesWeightDictionary = new SerializedDictionary<EnemySettings, float>();
     [SerializeField] private SerializedDictionary<AnimationCurveObject, float> EnemyWaveTypesWeightDictionary = new SerializedDictionary<AnimationCurveObject, float>();
     private List<EnemySettings> enemySettingsList;
-
-    [Header("Settings")] 
-    [SerializeField] private float startDelay;
-    [SerializeField] [ReadOnly] private bool spawnerActive;
-
+    
     [Header("Spawner Settings")] 
     [SerializeField] private float spawnCooldown;
     [SerializeField] [ReadOnly] private float elapsedTime;
-    [SerializeField] [ReadOnly] private AnimationCurveObject currentSpawnWave;
+    [SerializeField] [ReadOnly] private AnimationCurve currentSpawnWave;
     [SerializeField] [ReadOnly] private float currentSpawnWaveProgress;
+    [SerializeField] [ReadOnly] private float nextSpawnDelay;
     
     [Header("Enemy Queue")]
     [SerializeField] private int enemyQueueLength;
     [SerializeField] [ReadOnly] private int[] enemyQueue;
     [SerializeField] [ReadOnly] private int enemyQueueIndex;
     
-    private IEnumerator Start()
+    private void Start()
     {
-        spawnerActive = false;
-
-        enemySettingsList = EnemyTypesWeightDictionary.Keys.ToList();
-        GenerateEnemyQueue();
-        SetNewSpawnWave();
-        
-        yield return HelperFunctions.GetWait(startDelay);
-        spawnerActive = true;
+        InitializeSpawner();
+        InitializeUI();
     }
-
+    
     private void Update()
     {
-        if (!spawnerActive) return;
         elapsedTime += Time.deltaTime;
-
-        if (elapsedTime >= spawnCooldown && enemyQueue.Length > enemyQueueIndex)
+        
+        if (elapsedTime >= nextSpawnDelay && enemyQueue.Length > enemyQueueIndex)
         {
+            nextSpawnDelay = GetNextSpawnDelay();
             elapsedTime = 0f;
             SpawnEnemy();
         }
     }
-
-    private void SpawnEnemy()
+    
+    #region Initialization
+    private void InitializeSpawner()
     {
-        EnemySettings newEnemySettings = enemySettingsList[enemyQueue[enemyQueueIndex]]; 
-        enemyQueueIndex++;
-
-        Enemy newEnemy = Instantiate(enemyBasePrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
-        newEnemy.Init(newEnemySettings, EnemyReachEndEventListener, EnemyDeathEventListener, currentSpline);
+        nextSpawnDelay = 2f;
+        enemySettingsList = EnemyTypesWeightDictionary.Keys.ToList();
         
-        OnEnemySpawnEvent?.Invoke(newEnemy);
+        GenerateEnemyQueue();
+        SetNewSpawnWave();
     }
 
-    private void EnemyReachEndEventListener(Enemy enemy) => OnEnemyReachEndEvent?.Invoke(enemy);
-    private void EnemyDeathEventListener(Enemy enemy) => OnEnemyDeathEvent?.Invoke(enemy);
+    private void InitializeUI()
+    {
+        originalRemainingEnemies = enemyQueue.Length;
+        UpdateRemainingEnemiesDisplay();
+    }
     
     private void GenerateEnemyQueue()
     {
@@ -91,12 +89,25 @@ public class EnemySpawner : MonoBehaviour
 
         Debug.Log("Readable Queue: " + readableQueue);
     }
+    
+    private AnimationCurve GetReversedAnimationCurve(AnimationCurve curve)
+    {
+        Keyframe[] keys = curve.keys;
+        
+        for (int i = 0; i < keys.Length; i++)
+        {
+            keys[i].value *= -1;
+            keys[i].value += 1f;
+        }
+        
+        return new AnimationCurve(keys);
+    }
 
     private void SetNewSpawnWave()
     {
         currentSpawnWaveProgress = 0f;
         int randomSpawnWaveIndex = GetRandomByWeight(EnemyWaveTypesWeightDictionary);
-        currentSpawnWave = EnemyWaveTypesWeightDictionary.Keys.ToArray()[randomSpawnWaveIndex];
+        currentSpawnWave = GetReversedAnimationCurve(EnemyWaveTypesWeightDictionary.Keys.ToArray()[randomSpawnWaveIndex].curve);
     }
     
     private int GetRandomByWeight<TKey>(Dictionary<TKey, float> dict)
@@ -120,4 +131,36 @@ public class EnemySpawner : MonoBehaviour
 
         return -1;
     }
+    #endregion
+
+    #region Spawning
+    private void UpdateRemainingEnemiesDisplay()
+    {
+        remainingEnemiesDisplay.text = originalRemainingEnemies - enemyQueueIndex + "/" + originalRemainingEnemies;
+    }
+
+    private void SpawnEnemy()
+    {
+        EnemySettings newEnemySettings = enemySettingsList[enemyQueue[enemyQueueIndex]]; 
+        enemyQueueIndex++;
+
+        Enemy newEnemy = Instantiate(enemyBasePrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
+        newEnemy.Init(newEnemySettings, EnemyReachEndEventListener, EnemyDeathEventListener, currentSpline);
+        
+        OnEnemySpawnEvent?.Invoke(newEnemy);
+        UpdateRemainingEnemiesDisplay();
+    }
+
+    private float GetNextSpawnDelay()
+    {
+        currentSpawnWaveProgress += 1f / enemyQueue.Length;
+        //return currentSpawnWave.Evaluate(currentSpawnWaveProgress);
+        return Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
+    }
+    #endregion
+    
+    #region Events
+    private void EnemyReachEndEventListener(Enemy enemy) => OnEnemyReachEndEvent?.Invoke(enemy);
+    private void EnemyDeathEventListener(Enemy enemy) => OnEnemyDeathEvent?.Invoke(enemy);
+    #endregion
 }
