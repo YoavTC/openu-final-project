@@ -9,12 +9,14 @@ public class AnimateOnSpline : MonoBehaviour
     [SerializeField] [ReadOnly] private Transform nextPoint;
     [SerializeField] [ReadOnly] private Spline currentSpline;
     private Action<Enemy> onReachSplineEndAction;
+    private Action removeEnemyOnReachEndAction;
     
-    public void Init(Spline currentSpline, float speed, Action<Enemy> enemyReachEndListener)
+    public void Init(Spline currentSpline, float speed, Action<Enemy> enemyReachEndListener, Action enemyReachEndAction)
     {
         this.currentSpline = currentSpline;
         this.speed = speed;
         onReachSplineEndAction += enemyReachEndListener;
+        removeEnemyOnReachEndAction += enemyReachEndAction;
         
         transform.position = currentSpline.GetFirstPoint().position;
     }
@@ -28,6 +30,7 @@ public class AnimateOnSpline : MonoBehaviour
         if (transform.position == currentSpline.GetLastPoint().position)
         {
             onReachSplineEndAction?.Invoke(transform.GetComponent<Enemy>());
+            removeEnemyOnReachEndAction?.Invoke();
             Destroy(this);
         }
     }

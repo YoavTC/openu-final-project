@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemySettings : ScriptableObject
 {
     [ShowAssetPreview] public Sprite sprite;
+    public int reward;
+    public int damage;
     public float speed;
     public float health;
 }

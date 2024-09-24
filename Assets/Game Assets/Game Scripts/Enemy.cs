@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         EnemyManager.Instance.AddEnemy(this);
         OnDeathAction += enemyDeathListener;
         
-        animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndListener);
+        animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndListener, RemoveEnemyListener);
 
         spriteRenderer.sprite = enemySettings.sprite;
         health = enemySettings.health;
@@ -67,6 +67,13 @@ public class Enemy : MonoBehaviour
     private void KillEnemy(Enemy enemy)
     {
         OnDeathAction?.Invoke(enemy);
+        StartCoroutine(DeathCoroutine());
+    }
+
+    //Used from the AnimateOnSpline script to remove an enemy once it reaches the end
+    private void RemoveEnemyListener()
+    {
+        Debug.Log("Enemy reached end of path!");
         StartCoroutine(DeathCoroutine());
     }
     

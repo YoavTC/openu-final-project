@@ -53,14 +53,18 @@ public class ElixirManager : Singleton<ElixirManager>
     }
     
     [Button]
-    public void IncreaseText()
+    public void IncreaseTest()
     {
         IncreaseElixir(10);
     }
+    
+    //Dynamic Unity events
+    public void DecreaseElixir(Enemy enemy) => DecreaseElixir(enemy.enemySettings.damage);
+    public void IncreaseElixir(Enemy enemy) => DecreaseElixir(enemy.enemySettings.reward);
 
-    public void IncreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir + amount, 0, 100);
-    public void DecreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir - amount, 0, 100);
-    public bool CanAffordOperation(int amount) => currentElixir - amount > 0;
+    private void IncreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir + amount, 0, 100);
+    private void DecreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir - amount, 0, 100);
+    private bool CanAffordOperation(int amount) => currentElixir - amount > 0;
 
     public bool TryAffordOperation(int amount)
     {
