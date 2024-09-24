@@ -5,20 +5,12 @@ using External_Packages;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ElixirManager : Singleton<ElixirManager>
 {
-    private int _currentElixir;
-    public int currentElixir 
-    {
-        set
-        {
-            UpdateElixirBarUI();
-            _currentElixir = value;
-        }
-        get => _currentElixir;
-    }
+    private int currentElixir;
 
     [Header("Components")] 
     [SerializeField] private Slider elixirBarSlider;
@@ -28,24 +20,11 @@ public class ElixirManager : Singleton<ElixirManager>
     [SerializeField] private int defaultIncreaseAmount;
     [SerializeField] private float increaseCooldown;
     [SerializeField] [ReadOnly] private float timeElapsed;
+
+    [Header("Events")] 
+    public UnityEvent<int> ElixirCountChangeEvent;
     
-    private void Update()
-    {
-        timeElapsed += Time.deltaTime;
-
-        if (timeElapsed >= increaseCooldown)
-        {
-            timeElapsed = 0f;
-            IncreaseElixir(defaultIncreaseAmount);
-        }
-    }
-
-    private void UpdateElixirBarUI()
-    {
-        elixirBarSlider.value = currentElixir;
-        elixirBarAmountDisplay.text = currentElixir.ToString();
-    }
-
+    #region Inspector Tools
     [Button]
     public void DecreaseTest()
     {
@@ -57,15 +36,28 @@ public class ElixirManager : Singleton<ElixirManager>
     {
         IncreaseElixir(10);
     }
+    #endregion
     
-    //Dynamic Unity events
+    private void Update()
+    {
+        timeElapsed += Time.deltaTime;
+
+        if (timeElapsed >= increaseCooldown)
+        {
+            timeElapsed = 0f;
+            IncreaseElixir(defaultIncreaseAmount);
+        }
+    }
+    
+    //Dynamic Unity event listeners
     public void DecreaseElixir(Enemy enemy) => DecreaseElixir(enemy.enemySettings.damage);
     public void IncreaseElixir(Enemy enemy) => DecreaseElixir(enemy.enemySettings.reward);
 
-    private void IncreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir + amount, 0, 100);
-    private void DecreaseElixir(int amount) => currentElixir = Mathf.Clamp(currentElixir - amount, 0, 100);
+    //Regular Unity event listeners
+    private void IncreaseElixir(int amount) => UpdateElixirCount(Mathf.Clamp(currentElixir + amount, 0, 100));
+    private void DecreaseElixir(int amount) => UpdateElixirCount(Mathf.Clamp(currentElixir - amount, 0, 100));
+    
     private bool CanAffordOperation(int amount) => currentElixir - amount > 0;
-
     public bool TryAffordOperation(int amount)
     {
         bool result = CanAffordOperation(amount);
@@ -76,5 +68,18 @@ public class ElixirManager : Singleton<ElixirManager>
         }
 
         return false;
+    }
+
+    private void UpdateElixirCount(int newCount)
+    {
+        currentElixir = newCount;
+        ElixirCountChangeEvent?.Invoke(currentElixir);
+        UpdateElixirBarUI();
+    }
+    
+    private void UpdateElixirBarUI()
+    {
+        elixirBarSlider.value = currentElixir;
+        elixirBarAmountDisplay.text = currentElixir.ToString();
     }
 }
