@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using External_Packages;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,58 +11,8 @@ using UnityEngine.UI;
 
 public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [Header("Drawer Components")]
-    [SerializeField] private RectTransform rectTransform;
-    [SerializeField] private RectTransform showHideButton;
-
-    [Header("Drawer Settings")]
-    [SerializeField] private float buttonCooldown;
-    [SerializeField] private Ease easeType;
-    [SerializeField] private float inTime;
-    [SerializeField] private float outTime;
-
-    [SerializeField] private float inY;
-    [SerializeField] private float outY;
-
-    private bool isIn;
-    private float elapsedTime;
-
-    private void Start()
-    {
-        isIn = true;
-        inY = rectTransform.anchoredPosition.y;
-
-        mainCamera = Camera.main;
-    }
-
-    private void Update()
-    {
-        elapsedTime += Time.deltaTime; 
-        
-        Debug.DrawLine(beginDragPoint, currentDragPoint, Color.green);
-    }
-
-    #region Inventory Drawer
-    public void OnShowHideButtonPress()
-    {
-        if (elapsedTime >= buttonCooldown)
-        {
-            elapsedTime = 0f;
-            
-            rectTransform.DOKill();
-            if (isIn) HideItems();
-            else ShowItems();
-
-            isIn = !isIn;
-            showHideButton.localScale *= -1;
-        }
-    }
-
-    private void ShowItems() => rectTransform.DOAnchorPosY(inY, inTime).SetEase(easeType);
-    private void HideItems() => rectTransform.DOAnchorPosY(outY, outTime).SetEase(easeType);
-    #endregion
-
-    [Header("Card Dragging Components")]
+    [Header("Card Dragging Components")] 
+    [SerializeField] private RectTransform cardsContainer;
     [SerializeField] private GameObject draggedCardPrefab;
     [SerializeField] private GameObject towerPrefab;
     private GameObject draggedCard;
@@ -72,7 +23,33 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private Camera mainCamera;
     private Vector3 beginDragPoint;
     private Vector3 currentDragPoint;
+
+    private InGameInventoryCard[] cards;
+    private bool isLooping;
     
+    private void Start()
+    {
+        isLooping = false;
+        mainCamera = Camera.main;
+        Debug.Log("cards: " + cards);
+        cards = new InGameInventoryCard[cardsContainer.childCount];
+        Debug.Log("cc cc: " + cardsContainer.childCount);
+        Debug.Log("cards length: " + cards.Length);
+        for (int i = 0; i < cardsContainer.childCount; i++)
+        {
+            if (cardsContainer.GetChild(i).TryGetComponent(out InGameInventoryCard card))
+            {
+                cards[i] = card;
+            }
+        }
+    }
+    
+    private void Update()
+    {
+        Debug.DrawLine(beginDragPoint, currentDragPoint, Color.green);
+    }
+
+    #region Card Dragging
     public void OnBeginDrag(PointerEventData eventData)
     {
         beginDragPoint = eventData.position;
@@ -89,7 +66,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         
         draggedCard = Instantiate(draggedCardPrefab, transform);
         draggedCard.GetComponent<Image>().sprite = card.GetComponent<InGameInventoryCard>().towerSettings.sprite;
-        //draggedCard.GetComponent<Image>().enabled = false;
         draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
 
         Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
@@ -129,14 +105,46 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         
         if (draggedCard != null) Destroy(draggedCard);
     }
+    #endregion
 
-    private bool IsValidPlacementPosition(Vector2 pos)
+    #region Elixir Affordability
+    //Dynamic Unity event listener
+    public void OnElixirCountChangeEventListener(int newCount)
     {
-        return true;
+        StartCoroutine(UpdateAffordabilitySlidersCoroutine(newCount));
     }
 
-    private Vector2 ScreenToWorldPoint(Vector2 point)
+    private IEnumerator UpdateAffordabilitySlidersCoroutine(int newCount)
     {
-        return mainCamera.ScreenToWorldPoint(point);
+        yield return new WaitUntil(() => !isLooping);
+        UpdateAffordabilitySliders(newCount);
     }
+
+    private void UpdateAffordabilitySliders(int newCount)
+    {
+        isLooping = true;
+        for (int i = 0; i < cards.Length; i++)
+        {
+            Slider cardAffordabilitySlider = cards[i].affordabilitySlider;
+            cardAffordabilitySlider.value = 1f - GetAffordability(newCount, cards[i].GetComponent<InGameInventoryCard>().towerSettings);
+        }
+        isLooping = false;
+    }
+    #endregion
+    
+    #region Utility
+    //TODO: Change after level generation algorithm is implemented
+    private bool IsValidPlacementPosition(Vector2 pos) => true;
+    
+    private Vector2 ScreenToWorldPoint(Vector2 point) => mainCamera.ScreenToWorldPoint(point);
+
+    //Returns the % of how much elixir there is out of the card's cost
+    //1 = can afford
+    //<1 can't afford
+    private float GetAffordability(int currentElixir, TowerSettings towerSettings)
+    {
+        return (float) currentElixir / towerSettings.cost;
+        return (float) Math.Round((decimal) ((float) currentElixir / towerSettings.cost), 1);
+    }
+    #endregion
 }

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class InGameInventoryCard : MonoBehaviour
 {
     public TowerSettings towerSettings;
+    public Slider affordabilitySlider;
     [SerializeField] private TMP_Text damageDisplay;
     [SerializeField] private TMP_Text costDisplay;
     [SerializeField] private Image image;
