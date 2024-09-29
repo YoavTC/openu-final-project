@@ -21,14 +21,13 @@ public class Enemy : HealthBase
     public void Init(EnemySettings enemySettings, Action<Enemy> enemyReachEndListener, Action<Enemy> enemyDeathListener,Spline currentSpline)
     {
         _enemySettings = enemySettings;
+        spriteRenderer.sprite = enemySettings.sprite;
+        SetHealth(enemySettings.health);
         
         EnemyManager.Instance.AddEnemy(this);
         OnDeathAction += enemyDeathListener;
         
         animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndListener, RemoveEnemyListener);
-
-        spriteRenderer.sprite = enemySettings.sprite;
-        health = enemySettings.health;
     }
 
     public override void TakeDamage(float amount)
@@ -40,7 +39,7 @@ public class Enemy : HealthBase
             10,
             Color.red,
             transform.position + new Vector3(0, 20),
-            2f);
+            0.5f);
         base.TakeDamage(amount);
     }
     
@@ -51,6 +50,19 @@ public class Enemy : HealthBase
         StartCoroutine(DeathCoroutine());
     }
 
+    //Used from the AnimateOnSpline script to remove an enemy once it reaches the end
+    private void RemoveEnemyListener() => StartCoroutine(DeathCoroutine());
+    
+    private IEnumerator DeathCoroutine()
+    {
+        //Wait for the Enemy manager to safely remove enemy from list
+        bool callback = false;
+        EnemyManager.Instance.RemoveEnemy(this, () => callback = true);
+        yield return new WaitUntil(() => callback);
+        
+        Destroy(gameObject);
+    }
+    
     private void PostDeathEffect()
     {
         PostDeathEffect postDeathEffect = enemySettings.postDeathEffect;
@@ -65,23 +77,7 @@ public class Enemy : HealthBase
         }
     }
 
-    //Used from the AnimateOnSpline script to remove an enemy once it reaches the end
-    private void RemoveEnemyListener()
-    {
-        Debug.Log("Enemy reached end of path!");
-        StartCoroutine(DeathCoroutine());
-    }
-    
-    private IEnumerator DeathCoroutine()
-    {
-        //Wait for the Enemy manager to safely remove enemy from list
-        bool callback = false;
-        EnemyManager.Instance.RemoveEnemy(this, () => callback = true);
-        yield return new WaitUntil(() => callback);
-        
-        Destroy(gameObject);
-    }
-
+    //Used to calculate if a tower should target a soon-to-be dead enemy
     public void CalculateDamage(float damage)
     {
         float futureHealth = health - damage;
