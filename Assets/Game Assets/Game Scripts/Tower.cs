@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : HealthBase
 {
     public bool isPlaced = false;
     
@@ -56,4 +56,9 @@ public class Tower : MonoBehaviour
     }
 
     public float GetTowerRange() => towerSettings.maxRange;
+
+    protected override void Die()
+    {
+        throw new System.NotImplementedException();
+    }
 }

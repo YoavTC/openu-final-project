@@ -4,25 +4,16 @@ using CodeMonkey.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Enemy : MonoBehaviour
+public class Enemy : HealthBase
 {
     [SerializeField] private EnemySettings _enemySettings;
-    private Action<Enemy> OnDeathAction;
-
     public EnemySettings enemySettings
     {
-        get
-        {
-            return _enemySettings;
-        }
-        private set
-        {
-            _enemySettings = value;
-        }
+        get => _enemySettings;
+        private set => _enemySettings = value;
     }
     
-    private float health;
-    public bool isDead;
+    private Action<Enemy> OnDeathAction;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AnimateOnSpline animateOnSpline;
@@ -40,34 +31,38 @@ public class Enemy : MonoBehaviour
         health = enemySettings.health;
     }
 
-    public void TakeDamage(float damage) => ApplyDamage(damage, Vector3.zero);
-    public void TakeDamage(float damage, Vector3 dir) => ApplyDamage(damage, dir);
-    
-    private void ApplyDamage(float damage, Vector3 dir)
+    public override void TakeDamage(float amount)
     {
         UtilsClass.CreateWorldTextPopup(
             null,
-            "-" + damage,
+            "-" + amount,
             transform.position,
             10,
             Color.red,
             transform.position + new Vector3(0, 20),
             2f);
-        
-        if (health - damage <= 0)
+        base.TakeDamage(amount);
+    }
+    
+    protected override void Die()
+    {
+        if (enemySettings.hasPostDeathEffect) PostDeathEffect();
+        OnDeathAction?.Invoke(this);
+        StartCoroutine(DeathCoroutine());
+    }
+
+    private void PostDeathEffect()
+    {
+        PostDeathEffect postDeathEffect = enemySettings.postDeathEffect;
+        Transform[] targets;
+        if (postDeathEffect.toFriendly)
         {
-            KillEnemy(this);
+            Enemy[] towersInRadius = Utility.GetObjectsInRadius<Enemy>(transform.position, postDeathEffect.radius);
         }
         else
         {
-            health -= damage;
-        } 
-    }
-
-    private void KillEnemy(Enemy enemy)
-    {
-        OnDeathAction?.Invoke(enemy);
-        StartCoroutine(DeathCoroutine());
+            Tower[] towersInRadius = Utility.GetObjectsInRadius<Tower>(transform.position, postDeathEffect.radius);
+        }
     }
 
     //Used from the AnimateOnSpline script to remove an enemy once it reaches the end
