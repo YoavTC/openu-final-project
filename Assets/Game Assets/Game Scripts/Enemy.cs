@@ -38,7 +38,7 @@ public class Enemy : HealthBase
             transform.position,
             10,
             Color.red,
-            transform.position + new Vector3(0, 20),
+            transform.position + new Vector3(0, 5),
             0.5f);
         base.TakeDamage(amount);
     }

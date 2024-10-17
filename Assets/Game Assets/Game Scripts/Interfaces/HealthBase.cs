@@ -8,9 +8,9 @@ public abstract class HealthBase: MonoBehaviour
     public float health { get; protected set; }
     public bool isDead { get; protected set; }
 
-    public UnityEvent OnHealEvent;
-    public UnityEvent OnDamageEvent;
-    public UnityEvent OnDieEvent;
+    public UnityEvent<float> OnHealEvent;
+    public UnityEvent<float> OnDamageEvent;
+    public UnityEvent<float> OnDieEvent;
 
     protected void SetHealth(float health)
     {
@@ -20,21 +20,20 @@ public abstract class HealthBase: MonoBehaviour
     
     public virtual void TakeDamage(float amount)
     {
-        OnDamageEvent?.Invoke();
-        
         health -= amount;
+        OnDamageEvent?.Invoke(health);
+        
         if (health <= 0)
         {
-            OnDieEvent?.Invoke();
+            OnDieEvent?.Invoke(health);
             Die();
         }
     }
 
     public virtual void Heal(float amount)
     {
-        OnHealEvent?.Invoke();
-        
         health = Mathf.Min(health + amount, maxHealth);
+        OnHealEvent?.Invoke(health);
     }
 
     protected abstract void Die();
