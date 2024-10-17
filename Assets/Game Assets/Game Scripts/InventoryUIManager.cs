@@ -93,7 +93,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
                 Destroy(draggedTower.gameObject);
                 Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
                 newTower.towerSettings = draggedCardTowerSettings;
-                newTower.isPlaced = true;
+                newTower.OnTowerPlacedEventListener();
                 newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
             }
         }
@@ -109,18 +109,18 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     #region Elixir Affordability
     //Dynamic Unity event listener
-    public void OnElixirCountChangeEventListener(int newCount)
+    public void OnElixirCountChangeEventListener(float newCount)
     {
         StartCoroutine(UpdateAffordabilitySlidersCoroutine(newCount));
     }
 
-    private IEnumerator UpdateAffordabilitySlidersCoroutine(int newCount)
+    private IEnumerator UpdateAffordabilitySlidersCoroutine(float newCount)
     {
         yield return new WaitUntil(() => !isLooping);
         UpdateAffordabilitySliders(newCount);
     }
 
-    private void UpdateAffordabilitySliders(int newCount)
+    private void UpdateAffordabilitySliders(float newCount)
     {
         isLooping = true;
         for (int i = 0; i < cards.Length; i++)
@@ -141,7 +141,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     //Returns the % of how much elixir there is out of the card's cost
     //1 = can afford
     //<1 can't afford
-    private float GetAffordability(int currentElixir, TowerSettings towerSettings)
+    private float GetAffordability(float currentElixir, TowerSettings towerSettings)
     {
         return (float) currentElixir / towerSettings.cost;
         return (float) Math.Round((decimal) ((float) currentElixir / towerSettings.cost), 1);

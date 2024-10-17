@@ -8,6 +8,7 @@ public class TowerSettings : ScriptableObject
     [Header("Base Settings")] 
     public float maxRange;
     public float damage;
+    public float health;
     public float attackCooldown;
     public float areaOfEffect;
     public int cost;

@@ -10,19 +10,17 @@ using UnityEngine.UI;
 
 public class ElixirManager : Singleton<ElixirManager>
 {
-    private int currentElixir;
+    private float currentElixir;
 
     [Header("Components")] 
     [SerializeField] private Slider elixirBarSlider;
     [SerializeField] private TMP_Text elixirBarAmountDisplay;
 
     [Header("Settings")]
-    [SerializeField] private int defaultIncreaseAmount;
-    [SerializeField] private float increaseCooldown;
-    [SerializeField] [ReadOnly] private float timeElapsed;
+    [SerializeField] private float defaultIncreaseAmount;
 
     [Header("Events")] 
-    public UnityEvent<int> ElixirCountChangeEvent;
+    public UnityEvent<float> ElixirCountChangeEvent;
     
     #region Inspector Tools
     [Button]
@@ -40,13 +38,7 @@ public class ElixirManager : Singleton<ElixirManager>
     
     private void Update()
     {
-        timeElapsed += Time.deltaTime;
-
-        if (timeElapsed >= increaseCooldown)
-        {
-            timeElapsed = 0f;
-            IncreaseElixir(defaultIncreaseAmount);
-        }
+        IncreaseElixir(defaultIncreaseAmount * Time.deltaTime);
     }
     
     //Dynamic Unity event listeners
@@ -54,8 +46,8 @@ public class ElixirManager : Singleton<ElixirManager>
     public void IncreaseElixir(Enemy enemy) => DecreaseElixir(enemy.enemySettings.reward);
 
     //Regular Unity event listeners
-    private void IncreaseElixir(int amount) => UpdateElixirCount(Mathf.Clamp(currentElixir + amount, 0, 100));
-    private void DecreaseElixir(int amount) => UpdateElixirCount(Mathf.Clamp(currentElixir - amount, 0, 100));
+    private void IncreaseElixir(float amount) => UpdateElixirCount(Mathf.Clamp(currentElixir + amount, 0f, 100f));
+    private void DecreaseElixir(float amount) => UpdateElixirCount(Mathf.Clamp(currentElixir - amount, 0f, 100f));
     
     private bool CanAffordOperation(int amount) => currentElixir - amount > 0;
     public bool TryAffordOperation(int amount)
@@ -70,7 +62,7 @@ public class ElixirManager : Singleton<ElixirManager>
         return false;
     }
 
-    private void UpdateElixirCount(int newCount)
+    private void UpdateElixirCount(float newCount)
     {
         currentElixir = newCount;
         ElixirCountChangeEvent?.Invoke(currentElixir);
@@ -80,6 +72,6 @@ public class ElixirManager : Singleton<ElixirManager>
     private void UpdateElixirBarUI()
     {
         elixirBarSlider.value = currentElixir;
-        elixirBarAmountDisplay.text = currentElixir.ToString();
+        elixirBarAmountDisplay.text = currentElixir.ToString("F0");
     }
 }
