@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRange: 17
   damage: 1
+  health: 10
   attackCooldown: 0.5
   areaOfEffect: 0
   cost: 15

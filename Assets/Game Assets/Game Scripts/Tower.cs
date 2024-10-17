@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tower : HealthBase
 {
-    public bool isPlaced = false;
+    private bool isPlaced = false;
     
     public TowerSettings towerSettings;
     private float elapsedTime;
@@ -18,7 +19,8 @@ public class Tower : HealthBase
     private void Start()
     {
         enemyManager = EnemyManager.Instance;
-        VisualizeRange();
+        InitializeHealth();
+        InitializeVisualRange();
     }
 
     void Update()
@@ -37,6 +39,12 @@ public class Tower : HealthBase
         }
     }
 
+    public void OnTowerPlacedEventListener()
+    {
+        isPlaced = true;
+        ToggleVisualRange(false);
+    }
+
     private void Shoot(Enemy target)
     {
         Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
@@ -44,7 +52,12 @@ public class Tower : HealthBase
         target.CalculateDamage(towerSettings.damage);
     }
 
-    private void VisualizeRange()
+    private void InitializeHealth()
+    {
+        SetHealth(towerSettings.health);
+    }
+
+    private void InitializeVisualRange()
     {
         float spriteDiameter = rangeRenderer.sprite.bounds.size.x;
 
@@ -53,6 +66,11 @@ public class Tower : HealthBase
 
         // Apply the scale to the GameObject
         rangeRenderer.transform.localScale = new Vector3(scale, scale, 1f);
+    }
+
+    private void ToggleVisualRange(bool show)
+    {
+        rangeRenderer.enabled = show;
     }
 
     public float GetTowerRange() => towerSettings.maxRange;
