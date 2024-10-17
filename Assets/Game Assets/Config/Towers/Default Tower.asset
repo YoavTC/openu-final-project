@@ -14,8 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRange: 15
   damage: 1
+  health: 0
   attackCooldown: 0.75
-  curveProjectile: 0
-  projectileCurveAngle: 0
-  projectileCurveTime: 0
-  projectileMovementSpeed: 50
+  areaOfEffect: 0
+  cost: 0
+  sprite: {fileID: 0}
+  projectileCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  easingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  projectileMaxHeight: 0
+  projectileMaxMoveSpeed: 0
+  selectableInformation: {fileID: 11400000, guid: 7ca6d7c42483d484686a6538048ae55e, type: 2}

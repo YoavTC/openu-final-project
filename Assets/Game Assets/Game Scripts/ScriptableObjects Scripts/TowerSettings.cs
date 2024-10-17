@@ -19,4 +19,7 @@ public class TowerSettings : ScriptableObject
     public AnimationCurve easingCurve; 
     public float projectileMaxHeight;
     public float projectileMaxMoveSpeed;
+
+    [Header("Misc")] 
+    public SelectableInformationObject selectableInformation;
 }

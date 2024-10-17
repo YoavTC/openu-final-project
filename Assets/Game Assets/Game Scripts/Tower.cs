@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Tower : HealthBase
+public class Tower : HealthBase, IPointerClickHandler
 {
     private bool isPlaced = false;
     
@@ -19,7 +19,7 @@ public class Tower : HealthBase
     private void Start()
     {
         enemyManager = EnemyManager.Instance;
-        InitializeHealth();
+        SetHealth(towerSettings.health);
         InitializeVisualRange();
     }
 
@@ -52,11 +52,11 @@ public class Tower : HealthBase
         target.CalculateDamage(towerSettings.damage);
     }
 
-    private void InitializeHealth()
+    protected override void Die()
     {
-        SetHealth(towerSettings.health);
+        throw new System.NotImplementedException();
     }
-
+    
     private void InitializeVisualRange()
     {
         float spriteDiameter = rangeRenderer.sprite.bounds.size.x;
@@ -68,15 +68,15 @@ public class Tower : HealthBase
         rangeRenderer.transform.localScale = new Vector3(scale, scale, 1f);
     }
 
-    private void ToggleVisualRange(bool show)
+    public void ToggleVisualRange(bool show)
     {
         rangeRenderer.enabled = show;
     }
 
     public float GetTowerRange() => towerSettings.maxRange;
-
-    protected override void Die()
+    
+    public void OnPointerClick(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        SelectionManager.Instance.OnSelectableItemClicked(this, towerSettings.selectableInformation);
     }
 }
