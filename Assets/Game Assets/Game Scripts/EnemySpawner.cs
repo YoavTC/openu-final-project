@@ -86,8 +86,6 @@ public class EnemySpawner : MonoBehaviour
             enemyQueue[i] = GetRandomByWeight(EnemyTypesWeightDictionary);
             readableQueue += enemyQueue[i].ToString();
         }
-
-        Debug.Log("Readable Queue: " + readableQueue);
     }
     
     private AnimationCurve GetReversedAnimationCurve(AnimationCurve curve)

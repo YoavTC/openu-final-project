@@ -31,10 +31,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         isLooping = false;
         mainCamera = Camera.main;
-        Debug.Log("cards: " + cards);
         cards = new InGameInventoryCard[cardsContainer.childCount];
-        Debug.Log("cc cc: " + cardsContainer.childCount);
-        Debug.Log("cards length: " + cards.Length);
         for (int i = 0; i < cardsContainer.childCount; i++)
         {
             if (cardsContainer.GetChild(i).TryGetComponent(out InGameInventoryCard card))
@@ -144,7 +141,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private float GetAffordability(float currentElixir, TowerSettings towerSettings)
     {
         return (float) currentElixir / towerSettings.cost;
-        return (float) Math.Round((decimal) ((float) currentElixir / towerSettings.cost), 1);
     }
     #endregion
 }
