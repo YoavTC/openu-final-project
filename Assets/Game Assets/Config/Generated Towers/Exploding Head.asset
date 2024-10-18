@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
+  m_Name: Exploding Head
+  m_EditorClassIdentifier: 
+  maxRange: 0
+  damage: 0
+  health: 0
+  attackCooldown: 0
+  areaOfEffect: 0
+  cost: 0
+  sprite: {fileID: 21300000, guid: 2d51a3adb7837ed4993463911d61df0a, type: 3}
+  projectileCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  easingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  projectileMaxHeight: 0
+  projectileMaxMoveSpeed: 0
+  selectableInformation: {fileID: 0}
