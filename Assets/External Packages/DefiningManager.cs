@@ -15,7 +15,7 @@ public class DefiningManager : MonoBehaviour
     [SerializeField] private int currentTowerSettingsItemIndex;
     [SerializeField] private List<TowerSettings> towerSettingsList;
 
-    private List<Transform> inputFields = new List<Transform>();
+    [SerializeField] private List<Transform> inputFields = new List<Transform>();
     
     void Start()
     {
@@ -35,6 +35,9 @@ public class DefiningManager : MonoBehaviour
         inputFields[2].GetComponent<TMP_InputField>().text = currentTower.attackCooldown.ToString();
         inputFields[3].GetComponent<TMP_InputField>().text = currentTower.areaOfEffect.ToString();
         inputFields[4].GetComponent<TMP_InputField>().text = currentTower.cost.ToString();
+
+        inputFields[5].GetComponent<TMP_InputField>().text = currentTower.towerName;
+        inputFields[6].GetComponent<TMP_InputField>().text = currentTower.description;
     }
 
     public void OnSaveButton()
@@ -45,14 +48,22 @@ public class DefiningManager : MonoBehaviour
         currentTower.attackCooldown = float.Parse(inputFields[2].GetComponent<TMP_InputField>().text);
         currentTower.areaOfEffect = float.Parse(inputFields[3].GetComponent<TMP_InputField>().text);
         currentTower.cost = int.Parse(inputFields[4].GetComponent<TMP_InputField>().text);
+        
+        
+        currentTower.towerName = inputFields[5].GetComponent<TMP_InputField>().text;
+        currentTower.description = inputFields[6].GetComponent<TMP_InputField>().text;
     }
     #endregion
+
+    private bool firstUse = false;
     
     public void OnSkipButton(int forward)
     {
         int futureIndex = currentTowerSettingsItemIndex + forward;
         if (futureIndex >= 0 && futureIndex < towerSettingsList.Count)
         {
+            if (firstUse) OnSaveButton();
+            else firstUse = true;
             currentTowerSettingsItemIndex = futureIndex;
             ChangeCurrentItem();
         }

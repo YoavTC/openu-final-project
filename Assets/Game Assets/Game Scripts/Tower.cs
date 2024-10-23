@@ -77,6 +77,6 @@ public class Tower : HealthBase, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        SelectionManager.Instance.OnSelectableItemClicked(this, towerSettings.selectableInformation);
+        SelectionManager.Instance.OnSelectableItemClicked(this);
     }
 }

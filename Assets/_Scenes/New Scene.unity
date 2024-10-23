@@ -3212,8 +3212,6 @@ MonoBehaviour:
       Value: 1
     - Key: {fileID: 11400000, guid: dd4df06fde78c024ab98f27d3f626276, type: 2}
       Value: 3
-    - Key: {fileID: 11400000, guid: 085e8ae6ca4914b46992d5d261a80a0b, type: 2}
-      Value: 2
   spawnCooldown: 0.5
   elapsedTime: 0
   currentSpawnWave:

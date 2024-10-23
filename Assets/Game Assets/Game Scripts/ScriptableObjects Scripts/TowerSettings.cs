@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/Tower Settings")]
 public class TowerSettings : ScriptableObject
 {
+    [Header("Information")] 
+    public string towerName;
+    public string description;
+    
     [Header("Base Settings")] 
     public float maxRange;
     public float damage;
@@ -20,6 +24,4 @@ public class TowerSettings : ScriptableObject
     public float projectileMaxHeight;
     public float projectileMaxMoveSpeed;
 
-    [Header("Misc")] 
-    public SelectableInformationObject selectableInformation;
 }

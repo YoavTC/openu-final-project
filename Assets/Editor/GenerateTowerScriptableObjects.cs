@@ -81,7 +81,7 @@ public class GenerateTowerScriptableObjectsWindow : EditorWindow
         EditorGUILayout.BeginHorizontal();
         GUI.enabled = false;
         string pathToDisplay = path;
-        if (pathToDisplay.Length > 65)
+        if (!String.IsNullOrEmpty(pathToDisplay) && pathToDisplay.Length > 65)
         {
             pathToDisplay = "..." + path.Substring(path.Length - 65);
         }
