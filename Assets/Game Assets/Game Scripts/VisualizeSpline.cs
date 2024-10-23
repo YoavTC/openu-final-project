@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,8 +10,11 @@ public class VisualizeSpline : MonoBehaviour
     private string pathEnd = "pathEnd";
     private string pathStart = "pathStart";
 
+    [SerializeField] private bool draw;
+
     private void OnDrawGizmos()
     {
+        if (!draw) return;
         points.Clear();
         for (int i = 0; i < transform.childCount; i++)
         {

@@ -296,8 +296,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 753133421
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -573,7 +573,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7976714890031304551}
   rangeRenderer: {fileID: 8961622952390712635}
   arrowPrefab: {fileID: 3887719785123558364, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
-  targetPrefab: {fileID: 6503770777685158468, guid: 991adcf5d7883584e953c41d3ac77ab8, type: 3}
 --- !u!114 &840105369428218391
 MonoBehaviour:
   m_ObjectHideFlags: 0

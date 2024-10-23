@@ -12,7 +12,6 @@ public class Tower : HealthBase, IPointerClickHandler
     [SerializeField] private SpriteRenderer rangeRenderer;
 
     [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private GameObject targetPrefab;
 
     private EnemyManager enemyManager;
 
