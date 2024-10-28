@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using CodeMonkey.Utils;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,7 @@ public class Enemy : HealthBase
     }
     
     private Action<Enemy> OnDeathAction;
-
+    
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AnimateOnSpline animateOnSpline;
 
@@ -60,6 +61,9 @@ public class Enemy : HealthBase
         EnemyManager.Instance.RemoveEnemy(this, () => callback = true);
         yield return new WaitUntil(() => callback);
         
+        // yield return new WaitForSeconds(.5f);
+        transform.DOKill();
+        transform.DOComplete();
         Destroy(gameObject);
     }
     

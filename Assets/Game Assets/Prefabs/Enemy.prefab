@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 2922923268545865027}
   - component: {fileID: 8716771926192060453}
   - component: {fileID: 8643864326200952946}
+  - component: {fileID: 6734569221289921464}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -626,19 +627,7 @@ MonoBehaviour:
         m_CallState: 2
   OnDieEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8643864326200952946}
-        m_TargetAssemblyTypeName: ScaleEffect, Assembly-CSharp
-        m_MethodName: KillEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _enemySettings: {fileID: 0}
   spriteRenderer: {fileID: 4632492171938343152}
   animateOnSpline: {fileID: 2922923268545865027}
@@ -659,3 +648,17 @@ MonoBehaviour:
   strength: 0.2
   vibrato: 0
   scaleFactor: 1
+--- !u!114 &6734569221289921464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7639445722337488393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa3aaeccb5b26142bf69194781f7fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4632492171938343152}
+  particles: {fileID: 8349880261417712910, guid: 991838b820eadf843b7a3bc32ac11fe1, type: 3}

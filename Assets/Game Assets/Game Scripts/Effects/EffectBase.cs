@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -8,15 +9,14 @@ public abstract class EffectBase : MonoBehaviour, IEffect
     public Tweener tweener { get; set; }
 
     public virtual void DoEffect() { }
-
+    
     public virtual void KillEffect()
     {
-        StartCoroutine(KillEffectRoutine());
+        tweener.Kill();
     }
 
-    public IEnumerator KillEffectRoutine()
+    private void OnDestroy()
     {
-        yield return new WaitUntil(tweener.IsActive);
         tweener.Kill();
     }
 }
