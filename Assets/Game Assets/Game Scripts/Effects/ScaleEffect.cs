@@ -4,7 +4,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ScaleEffect : MonoBehaviour
+public class ScaleEffect : EffectBase
 {
     [SerializeField] private ScaleEffectType scaleEffectType;
     
@@ -15,27 +15,16 @@ public class ScaleEffect : MonoBehaviour
     [EnableIf("scaleEffectType", ScaleEffectType.PUNCH)]
     [SerializeField] private float scaleFactor;
     
-    private Tweener shaker;
-    
-    public void DoEffect()
+    public Tweener tweener { get; set; }
+
+    public override void DoEffect()
     {
-        if (shaker == null || !shaker.IsActive())
+        if (tweener == null || !tweener.IsActive())
         { 
-            shaker = scaleEffectType == ScaleEffectType.PUNCH
+            tweener = scaleEffectType == ScaleEffectType.PUNCH
                 ? transform.DOPunchScale(transform.localScale * scaleFactor, duration, vibrato, strength)
                 : transform.DOShakeScale(duration, strength, vibrato);
         }
-    }
-
-    public void KillEffect()
-    {
-        StartCoroutine(KillEffectRoutine());
-    }
-
-    private IEnumerator KillEffectRoutine()
-    {
-        yield return new WaitUntil(shaker.IsActive);
-        shaker.Kill();
     }
 }
 
