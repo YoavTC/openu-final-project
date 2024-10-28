@@ -45,7 +45,7 @@ public class Enemy : HealthBase
     
     protected override void Die()
     {
-        if (enemySettings.hasPostDeathEffect) PostDeathEffect();
+        //if (enemySettings.hasPostDeathEffect) PostDeathEffect();
         OnDeathAction?.Invoke(this);
         StartCoroutine(DeathCoroutine());
     }
@@ -63,19 +63,19 @@ public class Enemy : HealthBase
         Destroy(gameObject);
     }
     
-    private void PostDeathEffect()
-    {
-        PostDeathEffect postDeathEffect = enemySettings.postDeathEffect;
-        Transform[] targets;
-        if (postDeathEffect.toFriendly)
-        {
-            Enemy[] towersInRadius = Utility.GetObjectsInRadius<Enemy>(transform.position, postDeathEffect.radius);
-        }
-        else
-        {
-            Tower[] towersInRadius = Utility.GetObjectsInRadius<Tower>(transform.position, postDeathEffect.radius);
-        }
-    }
+    // private void PostDeathEffect()
+    // {
+    //     PostDeathEffect postDeathEffect = enemySettings.postDeathEffect;
+    //     Transform[] targets;
+    //     if (postDeathEffect.toFriendly)
+    //     {
+    //         Enemy[] towersInRadius = Utility.GetObjectsInRadius<Enemy>(transform.position, postDeathEffect.radius);
+    //     }
+    //     else
+    //     {
+    //         Tower[] towersInRadius = Utility.GetObjectsInRadius<Tower>(transform.position, postDeathEffect.radius);
+    //     }
+    // }
 
     //Used to calculate if a tower should target a soon-to-be dead enemy
     public void CalculateDamage(float damage)

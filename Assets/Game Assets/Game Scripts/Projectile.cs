@@ -178,29 +178,4 @@ public class Projectile : MonoBehaviour
 
         //GetComponent<ProjectileVisual>().SetTarget(target);
     }
-
-
-    public Vector3 GetProjectileMoveDir() {
-        return projectileMoveDir;
-    }
-
-
-    public float GetNextYTrajectoryPosition() {
-        return nextYTrajectoryPosition;
-    }
-
-
-    public float GetNextPositionYCorrectionAbsolute() {
-        return nextPositionYCorrectionAbsolute;
-    }
-
-
-    public float GetNextXTrajectoryPosition() {
-        return nextXTrajectoryPosition;
-    }
-
-
-    public float GetNextPositionXCorrectionAbsolute() {
-        return nextPositionXCorrectionAbsolute;
-    }
 }
