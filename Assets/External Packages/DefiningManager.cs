@@ -20,6 +20,7 @@ public class DefiningManager : MonoBehaviour
     void Start()
     {
         OnSkipButton(0);
+        firstUse = false;
     }
 
     //UGLY CODE! DO NOT LOOK! (shut up this won't be a part of the build anyway, it's just a tool for me)
@@ -36,8 +37,11 @@ public class DefiningManager : MonoBehaviour
         inputFields[3].GetComponent<TMP_InputField>().text = currentTower.areaOfEffect.ToString();
         inputFields[4].GetComponent<TMP_InputField>().text = currentTower.cost.ToString();
 
-        inputFields[5].GetComponent<TMP_InputField>().text = currentTower.towerName;
-        inputFields[6].GetComponent<TMP_InputField>().text = currentTower.description;
+        inputFields[5].GetComponent<TMP_InputField>().text = currentTower.maxRange.ToString();
+        inputFields[6].GetComponent<TMP_InputField>().text = currentTower.projectileMaxMoveSpeed.ToString();
+
+        inputFields[7].GetComponent<TMP_InputField>().text = currentTower.towerName;
+        inputFields[8].GetComponent<TMP_InputField>().text = currentTower.description;
     }
 
     public void OnSaveButton()
@@ -49,13 +53,16 @@ public class DefiningManager : MonoBehaviour
         currentTower.areaOfEffect = float.Parse(inputFields[3].GetComponent<TMP_InputField>().text);
         currentTower.cost = int.Parse(inputFields[4].GetComponent<TMP_InputField>().text);
         
+        currentTower.maxRange = int.Parse(inputFields[5].GetComponent<TMP_InputField>().text);
+        currentTower.projectileMaxMoveSpeed = int.Parse(inputFields[6].GetComponent<TMP_InputField>().text);
         
-        currentTower.towerName = inputFields[5].GetComponent<TMP_InputField>().text;
-        currentTower.description = inputFields[6].GetComponent<TMP_InputField>().text;
+        
+        currentTower.towerName = inputFields[7].GetComponent<TMP_InputField>().text;
+        currentTower.description = inputFields[8].GetComponent<TMP_InputField>().text;
     }
     #endregion
 
-    private bool firstUse = false;
+    private bool firstUse;
     
     public void OnSkipButton(int forward)
     {

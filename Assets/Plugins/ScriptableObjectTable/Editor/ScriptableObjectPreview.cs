@@ -194,11 +194,11 @@ namespace EnlitGames.ScriptableObjectTable
                 value = null;
                 visualElement = new Label("null");
             }
-            if(value.GetType() == typeof(UnityEngine.Color) || value.GetType() == typeof(UnityEngine.Color32))
-            {
-                visualElement = new ColorField();
-                ((ColorField)visualElement).SetValueWithoutNotify(value);
-            }
+            //if(value.GetType() == typeof(UnityEngine.Color) || value.GetType() == typeof(UnityEngine.Color32))
+            //{
+            //    visualElement = new ColorField();
+            //    ((ColorField)visualElement).SetValueWithoutNotify(value);
+            //}
             if(value.GetType() == typeof(UnityEngine.Vector2))
             {
                 visualElement = new Vector2Field();
