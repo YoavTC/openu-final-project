@@ -1,4 +1,3 @@
-using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -10,10 +9,11 @@ public class TowerSettings : ScriptableObject
     public string description;
     
     [Header("Base Settings")] 
-    public float maxRange;
     public float damage;
-    public float health;
     public float attackCooldown;
+    public float maxRange;
+    public float dps;
+    public float health;
     public float areaOfEffect;
     public int cost;
     [ShowAssetPreview] public Sprite sprite;
@@ -24,4 +24,8 @@ public class TowerSettings : ScriptableObject
     public float projectileMaxHeight;
     public float projectileMaxMoveSpeed;
 
+    private void OnValidate()
+    {
+        dps = attackCooldown > 0 ? damage / attackCooldown : 0;
+    }
 }

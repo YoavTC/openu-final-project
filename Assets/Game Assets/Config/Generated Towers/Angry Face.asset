@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Angry Face
   description: Grrr!
-  maxRange: 20
   damage: 1
+  attackCooldown: 0.125
+  maxRange: 15
+  dps: 8
   health: 25
-  attackCooldown: 0.1
   areaOfEffect: 0
-  cost: 10
+  cost: 15
   sprite: {fileID: 21300000, guid: 3787efeedadf6604dbb9e943e2cff0bc, type: 3}
   projectileCurve:
     serializedVersion: 2
@@ -70,4 +71,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   projectileMaxHeight: 0.3
-  projectileMaxMoveSpeed: 40
+  projectileMaxMoveSpeed: 30

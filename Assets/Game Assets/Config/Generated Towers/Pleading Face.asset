@@ -12,25 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
   m_Name: Pleading Face
   m_EditorClassIdentifier: 
-  maxRange: 0
+  towerName: 
+  description: 
   damage: 0
-  health: 0
   attackCooldown: 0
+  maxRange: 0
+  dps: 0
+  health: 0
   areaOfEffect: 0
   cost: 0
   sprite: {fileID: 21300000, guid: dca1c2be4c5a8134d96d876de3cc07d4, type: 3}
   projectileCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   easingCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  projectileMaxHeight: 0
-  projectileMaxMoveSpeed: 0
-  selectableInformation: {fileID: 0}
+  projectileMaxHeight: 0.3
+  projectileMaxMoveSpeed: 40

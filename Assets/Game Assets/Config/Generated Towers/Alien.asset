@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Alien
   description: Zlop glorb!
-  maxRange: 15
   damage: 5
+  attackCooldown: 0.5
+  maxRange: 15
+  dps: 10
   health: 30
-  attackCooldown: 0.25
   areaOfEffect: 0
-  cost: 20
+  cost: 40
   sprite: {fileID: 21300000, guid: 4aa16b5864f3f4946ae4b931979d7181, type: 3}
   projectileCurve:
     serializedVersion: 2
