@@ -26,10 +26,13 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private InGameInventoryCard[] cards;
     private bool isLooping;
+    private bool invalidCardSelected;
     
     private void Start()
     {
         isLooping = false;
+        invalidCardSelected = false;
+        
         mainCamera = Camera.main;
         cards = new InGameInventoryCard[cardsContainer.childCount];
         for (int i = 0; i < cardsContainer.childCount; i++)
@@ -49,6 +52,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     #region Card Dragging
     public void OnBeginDrag(PointerEventData eventData)
     {
+        invalidCardSelected = false;
+        
         beginDragPoint = eventData.position;
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
@@ -58,20 +63,27 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             Debug.Log(VARIABLE.gameObject.name);
         }
 
-        GameObject card = results.First(a => a.gameObject.CompareTag("InventoryUICard")).gameObject;
-        Debug.Log("Found: " + card);
-        
-        draggedCard = Instantiate(draggedCardPrefab, transform);
-        draggedCard.GetComponent<Image>().sprite = card.GetComponent<InGameInventoryCard>().towerSettings.sprite;
-        draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
+        GameObject card = results.FirstOrDefault(a => a.gameObject.CompareTag("InventoryUICard")).gameObject;
 
-        Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-        draggedTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
-        draggedTower.towerSettings = draggedCardTowerSettings;
+        if (card != null)
+        {
+            draggedCard = Instantiate(draggedCardPrefab, transform);
+            draggedCard.GetComponent<Image>().sprite = card.GetComponent<InGameInventoryCard>().towerSettings.sprite;
+            draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
+
+            Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
+            draggedTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
+            draggedTower.towerSettings = draggedCardTowerSettings;
+           
+        } else {
+            invalidCardSelected = true;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (invalidCardSelected) return;
+        
         currentDragPoint = eventData.position;
         if (draggedCard != null)
         {
@@ -82,6 +94,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (invalidCardSelected) return;
         if (ElixirManager.Instance.TryAffordOperation(draggedCardTowerSettings.cost))
         {
             Vector2 placementPosition = ScreenToWorldPoint(eventData.position);

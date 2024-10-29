@@ -15,10 +15,13 @@ public class Healthbar : MonoBehaviour
         float maxHealth = transform.root.GetComponent<HealthBase>().maxHealth;
         healthBarSlider.maxValue = maxHealth;
         healthBarSlider.value = maxHealth;
+        
+        canvas.enabled = false;
     }
 
     public void OnHealthChangeEventListener(float newHealth)
     {
+        if (!canvas.enabled) canvas.enabled = true;
         healthBarSlider.value = newHealth;
     }
 }
