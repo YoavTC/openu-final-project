@@ -1,4 +1,5 @@
 ﻿using External_Packages;
+using UnityEngine;
 
 public class SelectionManager : Singleton<SelectionManager>
 {
@@ -11,5 +12,13 @@ public class SelectionManager : Singleton<SelectionManager>
         lastTowerClicked = tower;
         
         lastTowerClicked.ToggleVisualRange(true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            lastTowerClicked?.ToggleVisualRange(false);
+        }
     }
 }
