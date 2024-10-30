@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class HealthBase: MonoBehaviour
+public abstract class HealthBase: MonoBehaviour, IModifierAffectable
 {
     public float maxHealth { get; protected set; }
     public float health { get; protected set; }
@@ -18,10 +20,15 @@ public abstract class HealthBase: MonoBehaviour
         maxHealth = health;
     }
     
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount) => ModifyHealth(-amount);
+    public virtual void Heal(float amount) => ModifyHealth(+amount);
+    
+    private void ModifyHealth(float amount)
     {
-        health -= amount;
-        OnDamageEvent?.Invoke(health);
+        health += amount;
+        
+        if (amount > 0) OnHealEvent?.Invoke(health);
+        else if (amount < 0) OnDamageEvent?.Invoke(health);
         
         if (health <= 0)
         {
@@ -30,11 +37,32 @@ public abstract class HealthBase: MonoBehaviour
         }
     }
 
-    public virtual void Heal(float amount)
-    {
-        health = Mathf.Min(health + amount, maxHealth);
-        OnHealEvent?.Invoke(health);
-    }
-
     protected abstract void Die();
+
+    #region Modifier Effects
+    public ModifierEffect currentEffect { get; set; }
+    
+    public void StartEffect()
+    {
+        if (currentEffect.type == ModifierEffectType.HEALTH)
+        {
+            Debug.Log($"Started effect {currentEffect.type} on {gameObject.name} for {currentEffect.duration}!");
+            StartCoroutine(TickEffect());
+        }
+    }
+    
+    public IEnumerator TickEffect()
+    {
+        float durationProgress = 0f;
+        float tickRate = currentEffect.tickRate;
+        while (durationProgress <= currentEffect.duration)
+        {
+            ModifyHealth(currentEffect.strengthCurve.Evaluate(durationProgress));
+            
+            yield return new WaitForSeconds(tickRate);
+            durationProgress += tickRate;
+            Debug.Log($"{durationProgress}/{currentEffect.duration}");
+        }
+    }
+    #endregion
 }
