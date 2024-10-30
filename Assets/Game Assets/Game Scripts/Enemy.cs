@@ -32,15 +32,6 @@ public class Enemy : HealthBase
 
         animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndListener, RemoveEnemyListener);
     }
-    
-    public ModifierEffect modifierEffect;
-    
-    [Button]
-    public void TestEffect()
-    {
-        currentEffect = modifierEffect;
-        StartEffect();
-    }
 
     #region Damange & Health
     public override void TakeDamage(float amount)

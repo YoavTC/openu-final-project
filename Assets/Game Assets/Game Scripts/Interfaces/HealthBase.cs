@@ -42,8 +42,9 @@ public abstract class HealthBase: MonoBehaviour, IModifierAffectable
     #region Modifier Effects
     public ModifierEffect currentEffect { get; set; }
     
-    public void StartEffect()
+    public void StartEffect(ModifierEffect newModifierEffect)
     {
+        currentEffect = newModifierEffect;
         if (currentEffect.type == ModifierEffectType.HEALTH)
         {
             Debug.Log($"Started effect {currentEffect.type} on {gameObject.name} for {currentEffect.duration}!");

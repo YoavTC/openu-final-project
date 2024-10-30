@@ -42,27 +42,18 @@ public class AnimateOnSpline : MonoBehaviour, IModifierAffectable
     }
     
     #region Modifier Effects
-    
-    public ModifierEffect modifierEffect;
-    
-    [Button]
-    public void TestEffect()
-    {
-        currentEffect = modifierEffect;
-        StartEffect();
-    }
-    
     public ModifierEffect currentEffect { get; set; }
-    
-    public void StartEffect()
+
+    public void StartEffect(ModifierEffect newModifierEffect)
     {
+        currentEffect = newModifierEffect;
         if (currentEffect.type == ModifierEffectType.SPEED)
         {
             Debug.Log($"Started effect {currentEffect.type} on {gameObject.name} for {currentEffect.duration}!");
             StartCoroutine(TickEffect());
         }
     }
-    
+
     public IEnumerator TickEffect()
     {
         float durationProgress = 0f;
