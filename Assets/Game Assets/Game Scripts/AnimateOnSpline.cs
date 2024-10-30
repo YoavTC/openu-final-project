@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class AnimateOnSpline : MonoBehaviour, IModifierAffectable
+public class AnimateOnSpline : MonoBehaviour
 {
-    [SerializeField] [ReadOnly] private float speed;
+    [SerializeField] [ReadOnly] public float speed;
     [SerializeField] [ReadOnly] private Transform nextPoint;
     [SerializeField] [ReadOnly] private Spline currentSpline;
     private Action<Enemy> onReachSplineEndAction;
@@ -40,36 +40,4 @@ public class AnimateOnSpline : MonoBehaviour, IModifierAffectable
     {
         return currentSpline.GetNextPointFromPath(transform.position);
     }
-    
-    #region Modifier Effects
-    public ModifierEffect currentEffect { get; set; }
-
-    public void StartEffect(ModifierEffect newModifierEffect)
-    {
-        currentEffect = newModifierEffect;
-        if (currentEffect.type == ModifierEffectType.SPEED)
-        {
-            Debug.Log($"Started effect {currentEffect.type} on {gameObject.name} for {currentEffect.duration}!");
-            StartCoroutine(TickEffect());
-        }
-    }
-
-    public IEnumerator TickEffect()
-    {
-        float durationProgress = 0f;
-        float tickRate = currentEffect.tickRate;
-        float originalSpeed = speed;
-        
-        while (durationProgress <= currentEffect.duration)
-        {
-            speed = originalSpeed / Mathf.Max(1, currentEffect.strengthCurve.Evaluate(durationProgress));
-            
-            yield return new WaitForSeconds(tickRate);
-            durationProgress += tickRate;
-            Debug.Log($"{durationProgress}/{currentEffect.duration}");
-        }
-
-        speed = originalSpeed;
-    }
-    #endregion
 }

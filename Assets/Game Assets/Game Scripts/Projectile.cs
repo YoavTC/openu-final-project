@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     private float maxMoveSpeed;
     private float trajectoryMaxRelativeHeight;
     private float distanceToTargetToDestroyProjectile = 1f;
+    private Transform projectileOwner;
 
     private float damage;
     
@@ -25,12 +26,13 @@ public class Projectile : MonoBehaviour
     private float nextPositionYCorrectionAbsolute;
     private float nextPositionXCorrectionAbsolute;
     
-    public void Init(Transform target, TowerSettings towerSettings)
+    public void Init(Transform target, TowerSettings towerSettings, Transform projectileOwner)
     {
         this.target = target;
         maxMoveSpeed = towerSettings.projectileMaxMoveSpeed;
         trajectoryAnimationCurve = towerSettings.projectileCurve;
         projectileSpeedAnimationCurve = towerSettings.easingCurve;
+        this.projectileOwner = projectileOwner;
 
         damage = towerSettings.damage;
 
@@ -50,9 +52,9 @@ public class Projectile : MonoBehaviour
         else {
             UpdateProjectilePosition();
             
-            if (Vector3.Distance(transform.position, target.position) < distanceToTargetToDestroyProjectile) 
+            if (Vector3.Distance(transform.position, target.position) < distanceToTargetToDestroyProjectile)
             {
-                GetComponent<ProjetileModifierEffect>().ApplyEffectToTarget(target);
+                GetComponent<ProjetileModifierEffect>().ApplyEffectToTarget(target, projectileOwner);
                 target.GetComponent<Enemy>().TakeDamage(damage);
                 Destroy(gameObject);
             }

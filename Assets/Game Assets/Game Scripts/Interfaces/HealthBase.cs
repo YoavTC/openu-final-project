@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class HealthBase: MonoBehaviour, IModifierAffectable
+public abstract class HealthBase: MonoBehaviour
 {
     public float maxHealth { get; protected set; }
     public float health { get; protected set; }
@@ -37,33 +37,5 @@ public abstract class HealthBase: MonoBehaviour, IModifierAffectable
         }
     }
 
-    protected abstract void Die();
-
-    #region Modifier Effects
-    public ModifierEffect currentEffect { get; set; }
-    
-    public void StartEffect(ModifierEffect newModifierEffect)
-    {
-        currentEffect = newModifierEffect;
-        if (currentEffect.type == ModifierEffectType.HEALTH)
-        {
-            Debug.Log($"Started effect {currentEffect.type} on {gameObject.name} for {currentEffect.duration}!");
-            StartCoroutine(TickEffect());
-        }
-    }
-    
-    public IEnumerator TickEffect()
-    {
-        float durationProgress = 0f;
-        float tickRate = currentEffect.tickRate;
-        while (durationProgress <= currentEffect.duration)
-        {
-            ModifyHealth(currentEffect.strengthCurve.Evaluate(durationProgress));
-            
-            yield return new WaitForSeconds(tickRate);
-            durationProgress += tickRate;
-            Debug.Log($"{durationProgress}/{currentEffect.duration}");
-        }
-    }
-    #endregion
+    protected virtual void Die() { }
 }

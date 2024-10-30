@@ -5,7 +5,7 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class Enemy : HealthBase
+public class Enemy : ModifierAffectableBase
 {
     [Header("Settings & Components")]
     [SerializeField] private EnemySettings _enemySettings;
@@ -94,4 +94,25 @@ public class Enemy : HealthBase
     //         Tower[] towersInRadius = Utility.GetObjectsInRadius<Tower>(transform.position, postDeathEffect.radius);
     //     }
     // }
+    
+    protected override void ApplyEffect(ModifierEffectType type, float amount)
+    {
+        switch (type)
+        {
+            case ModifierEffectType.HEALTH:
+                TakeDamage(amount);
+                break;
+            case ModifierEffectType.SPEED:
+                animateOnSpline.speed = amount * enemySettings.speed;
+                break;
+            default:
+                return;
+        }
+    }
+
+    public override void FinishEffect()
+    {
+        animateOnSpline.speed = enemySettings.speed;
+        base.FinishEffect();
+    }
 }

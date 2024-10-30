@@ -47,13 +47,8 @@ public class Tower : HealthBase, IPointerClickHandler
     private void Shoot(Enemy target)
     {
         Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
-        newArrow.Init(target.transform, towerSettings);
+        newArrow.Init(target.transform, towerSettings, transform);
         target.CalculateDamage(towerSettings.damage);
-    }
-
-    protected override void Die()
-    {
-        throw new System.NotImplementedException();
     }
     
     private void InitializeVisualRange()
