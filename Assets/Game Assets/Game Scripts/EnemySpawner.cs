@@ -23,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     public UnityEvent<Enemy> OnEnemyReachEndEvent;
     public UnityEvent<Enemy> OnEnemySpawnEvent;
     public UnityEvent<Enemy> OnEnemyDeathEvent;
+    public UnityEvent OnSpawnerStopEvent;
     
     [Header("Dictionaries")]
     [SerializeField] private SerializedDictionary<EnemySettings, float> EnemyTypesWeightDictionary = new SerializedDictionary<EnemySettings, float>();
@@ -57,12 +58,18 @@ public class EnemySpawner : MonoBehaviour
             elapsedTime = 0f;
             SpawnEnemy();
         }
+
+        if (enemyQueueIndex >= enemyQueue.Length)
+        {
+            OnSpawnerStopEvent?.Invoke();
+            Destroy(this);
+        }
     }
     
     #region Initialization
     private void InitializeSpawner()
     {
-        nextSpawnDelay = 2f;
+        nextSpawnDelay = 5f;
         enemySettingsList = EnemyTypesWeightDictionary.Keys.ToList();
         
         GenerateEnemyQueue();

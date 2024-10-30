@@ -34,18 +34,18 @@ public class Enemy : ModifierAffectableBase
     }
 
     #region Damange & Health
-    public override void TakeDamage(float amount)
-    {
-        UtilsClass.CreateWorldTextPopup(
-            null,
-            "-" + amount,
-            transform.position,
-            10,
-            Color.red,
-            transform.position + new Vector3(0, 5),
-            0.5f);
-        base.TakeDamage(amount);
-    }
+    // public override void TakeDamage(float amount)
+    // {
+    //     UtilsClass.CreateWorldTextPopup(
+    //         null,
+    //         "-" + amount,
+    //         transform.position,
+    //         10,
+    //         Color.red,
+    //         transform.position + new Vector3(0, 5),
+    //         0.5f);
+    //     base.TakeDamage(amount);
+    // }
 
     protected override void Die()
     {

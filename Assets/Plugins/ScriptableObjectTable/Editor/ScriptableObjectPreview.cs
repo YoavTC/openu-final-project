@@ -187,23 +187,24 @@ namespace EnlitGames.ScriptableObjectTable
         VisualElement MakeVisualElementForValue(dynamic value)
         {
             VisualElement visualElement;
-            if ((object)value != null)
+            if (value != null)
                 visualElement = new Label(value.ToString());
             else 
             {
-                value = null;
                 visualElement = new Label("null");
+                return visualElement;
             }
-            //if(value.GetType() == typeof(UnityEngine.Color) || value.GetType() == typeof(UnityEngine.Color32))
-            //{
-            //    visualElement = new ColorField();
-            //    ((ColorField)visualElement).SetValueWithoutNotify(value);
-            //}
-            if(value.GetType() == typeof(UnityEngine.Vector2))
+            
+            if(value.GetType() == typeof(UnityEngine.Color) || value.GetType() == typeof(UnityEngine.Color32))
             {
-                visualElement = new Vector2Field();
-                ((Vector2Field)visualElement).SetValueWithoutNotify(value);
+                visualElement = new ColorField();
+                ((ColorField)visualElement).SetValueWithoutNotify(value);
             }
+             if(value.GetType() == typeof(UnityEngine.Vector2))
+             {
+                 visualElement = new Vector2Field();
+                 ((Vector2Field)visualElement).SetValueWithoutNotify(value);
+             }
             if(value.GetType() == typeof(UnityEngine.Vector3))
             {
                 visualElement = new Vector3Field();

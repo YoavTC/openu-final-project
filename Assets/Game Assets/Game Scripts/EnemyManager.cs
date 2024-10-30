@@ -20,6 +20,8 @@ public class EnemyManager : Singleton<EnemyManager>
         
         callback?.Invoke();
     }
+
+    public bool AllEnemiesDead() => enemyList.Count <= 0;
     
     public Enemy GetClosestEnemy(Vector3 position, float maxRange)
     {

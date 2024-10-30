@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf19ab87f2240c41ade6e3db4c11c8a, type: 3}
   m_Name: Exploding Head
   m_EditorClassIdentifier: 
-  towerName: 
-  description: 
-  damage: 0
-  attackCooldown: 0
-  maxRange: 0
-  dps: 0
-  health: 0
-  areaOfEffect: 0
-  cost: 0
+  towerName: Exploding Head
+  description: KABOOOM!
+  damage: 15
+  attackCooldown: 1.25
+  maxRange: 20
+  dps: 12
+  health: 20
+  areaOfEffect: 7
+  cost: 20
   sprite: {fileID: 21300000, guid: 2d51a3adb7837ed4993463911d61df0a, type: 3}
   projectileCurve:
     serializedVersion: 2
@@ -28,17 +28,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0
+      time: 0.5
+      value: 1
       inSlope: 0
       outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2
+      outSlope: -2
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -51,24 +60,26 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      value: 3
+      inSlope: 6.319963
+      outSlope: 6.319963
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.041433394
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  projectileMaxHeight: 0.3
-  projectileMaxMoveSpeed: 40
+  projectileMaxHeight: 0.5
+  projectileMaxMoveSpeed: 25
+  projectileModifierEffect: {fileID: 0}
+  modifierAreaOfEffect: 0

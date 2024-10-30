@@ -6,6 +6,7 @@ using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ElixirManager : Singleton<ElixirManager>
@@ -61,12 +62,18 @@ public class ElixirManager : Singleton<ElixirManager>
 
         return false;
     }
+    
 
     private void UpdateElixirCount(float newCount)
     {
         currentElixir = newCount;
         ElixirCountChangeEvent?.Invoke(currentElixir);
         UpdateElixirBarUI();
+        
+        if (newCount == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
     
     private void UpdateElixirBarUI()

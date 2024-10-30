@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -42,6 +43,7 @@ public class Tower : HealthBase, IPointerClickHandler
     {
         isPlaced = true;
         ToggleVisualRange(false);
+        transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
     }
 
     private void Shoot(Enemy target)
