@@ -50,7 +50,7 @@ public class Tower : HealthBase, IPointerClickHandler
         newArrow.Init(target.transform, towerSettings, transform);
         if (towerSettings.projectileModifierEffect)
         {
-            newArrow.GetComponent<ProjetileModifierEffect>().modifierEffect = towerSettings.projectileModifierEffect;
+            newArrow.GetComponent<ProjectileModifierEffect>().modifierEffect = towerSettings.projectileModifierEffect;
         }
         target.CalculateDamage(towerSettings.damage);
     }

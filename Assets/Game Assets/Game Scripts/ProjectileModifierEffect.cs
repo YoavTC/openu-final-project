@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjetileModifierEffect : MonoBehaviour
+public class ProjectileModifierEffect : MonoBehaviour
 {
     public ModifierEffect modifierEffect;
 

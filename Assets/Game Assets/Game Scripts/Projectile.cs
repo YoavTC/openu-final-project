@@ -1,5 +1,9 @@
 // Credit: UnPaws
 // Source: https://www.youtube.com/watch?v=OPDl2uVaN_Q
+
+using System.Collections.Generic;
+using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -25,16 +29,30 @@ public class Projectile : MonoBehaviour
     private float nextXTrajectoryPosition;
     private float nextPositionYCorrectionAbsolute;
     private float nextPositionXCorrectionAbsolute;
+
+    private float areaOfEffect;
+    private float modifierAreaOfEffect;
+
+    private bool reachedTarget;
+    
+    [SerializeField] private LayerMask layerMask;
+
+    [SerializeField] private ProjectileModifierEffect projectileModifierEffect;
     
     public void Init(Transform target, TowerSettings towerSettings, Transform projectileOwner)
     {
         this.target = target;
+        this.projectileOwner = projectileOwner;
+        
         maxMoveSpeed = towerSettings.projectileMaxMoveSpeed;
         trajectoryAnimationCurve = towerSettings.projectileCurve;
         projectileSpeedAnimationCurve = towerSettings.easingCurve;
-        this.projectileOwner = projectileOwner;
 
+        areaOfEffect = towerSettings.areaOfEffect;
+        modifierAreaOfEffect = towerSettings.modifierAreaOfEffect;
         damage = towerSettings.damage;
+
+        reachedTarget = false;
 
         float xDistanceToTarget = target.position.x - transform.position.x;
         trajectoryMaxRelativeHeight = Mathf.Abs(xDistanceToTarget) * towerSettings.projectileMaxHeight;
@@ -49,16 +67,42 @@ public class Projectile : MonoBehaviour
     private void Update() 
     { 
         if (target == null) Destroy(gameObject);
-        else {
+        else if (!reachedTarget) {
             UpdateProjectilePosition();
             
             if (Vector3.Distance(transform.position, target.position) < distanceToTargetToDestroyProjectile)
             {
-                GetComponent<ProjetileModifierEffect>().ApplyEffectToTarget(target, projectileOwner);
-                target.GetComponent<Enemy>().TakeDamage(damage);
-                Destroy(gameObject);
+                reachedTarget = true;
+                ReachedTarget();
             }
         }
+    }
+
+    private void ReachedTarget()
+    {
+        if (areaOfEffect > 0)
+        {
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(target.position, areaOfEffect, layerMask);
+            for (int i = 0; i < collider2Ds.Length; i++)
+            {
+                collider2Ds[i].GetComponent<Enemy>().TakeDamage(damage);
+            }
+        } else target.GetComponent<Enemy>().TakeDamage(damage);
+        
+        if (modifierAreaOfEffect > 0)
+        {
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(target.position, modifierAreaOfEffect, layerMask);
+            for (int i = 0; i < collider2Ds.Length; i++)
+            {
+                projectileModifierEffect.ApplyEffectToTarget(collider2Ds[i].transform, projectileOwner);
+            }
+        }
+        if ((areaOfEffect + modifierAreaOfEffect) > 0)
+        {
+            
+        } else projectileModifierEffect.ApplyEffectToTarget(target, projectileOwner);
+        
+        Destroy(gameObject);
     }
 
 

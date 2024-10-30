@@ -130,6 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90805cd24ba77f94fb686c5438eb3813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  projectileModifierEffect: {fileID: -3785220589868828492}
 --- !u!114 &-3785220589868828492
 MonoBehaviour:
   m_ObjectHideFlags: 0

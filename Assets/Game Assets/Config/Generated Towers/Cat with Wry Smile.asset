@@ -20,7 +20,7 @@ MonoBehaviour:
   dps: 8.333333
   health: 20
   areaOfEffect: 0
-  cost: 15
+  cost: 0
   sprite: {fileID: 21300000, guid: 490ecd6f8aabaa141be21f1f7d41e073, type: 3}
   projectileCurve:
     serializedVersion: 2
@@ -72,3 +72,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   projectileMaxHeight: 0.3
   projectileMaxMoveSpeed: 40
+  projectileModifierEffect: {fileID: 11400000, guid: 14ebd5144fe49a84694283d8c69c21b9, type: 2}
+  modifierAreaOfEffect: 5
