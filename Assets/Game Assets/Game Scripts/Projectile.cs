@@ -38,6 +38,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] private ProjectileModifierEffect projectileModifierEffect;
+
+    [SerializeField] private GameObject impactParticleSystem;
     
     public void Init(Transform target, TowerSettings towerSettings, Transform projectileOwner)
     {
@@ -80,6 +82,7 @@ public class Projectile : MonoBehaviour
 
     private void ReachedTarget()
     {
+        Instantiate(impactParticleSystem, transform.position, Quaternion.identity);
         if (areaOfEffect > 0)
         {
             Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(target.position, areaOfEffect, layerMask);
