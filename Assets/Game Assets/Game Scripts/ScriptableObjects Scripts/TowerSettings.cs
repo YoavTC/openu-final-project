@@ -23,9 +23,12 @@ public class TowerSettings : ScriptableObject
     public AnimationCurve easingCurve; 
     public float projectileMaxHeight;
     public float projectileMaxMoveSpeed;
+    public ModifierEffect projectileModifierEffect;
 
+    #if UNITY_EDITOR
     private void OnValidate()
     {
         dps = attackCooldown > 0 ? damage / attackCooldown : 0;
     }
+    #endif
 }

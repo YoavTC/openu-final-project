@@ -3369,7 +3369,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   currentSpawnWaveProgress: 0
   nextSpawnDelay: 0
-  enemyQueueLength: 1
+  enemyQueueLength: 300
   enemyQueue: 
   enemyQueueIndex: 0
 --- !u!224 &2008648152 stripped

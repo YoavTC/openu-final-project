@@ -72,3 +72,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   projectileMaxHeight: 0.3
   projectileMaxMoveSpeed: 15
+  projectileModifierEffect: {fileID: 11400000, guid: 5aca866f4bcf64640b63a2179d990692, type: 2}

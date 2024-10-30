@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjetileModifierEffect : MonoBehaviour
 {
-    [SerializeField] private ModifierEffect modifierEffect;
+    public ModifierEffect modifierEffect;
 
     public void ApplyEffectToTarget(Transform target, Transform projectileOwner)
     {

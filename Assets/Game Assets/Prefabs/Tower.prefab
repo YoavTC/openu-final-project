@@ -572,7 +572,7 @@ MonoBehaviour:
   towerSettings: {fileID: 11400000, guid: 4af3a3bf7b63b1f42b8defb748a603b6, type: 2}
   spriteRenderer: {fileID: 7976714890031304551}
   rangeRenderer: {fileID: 8961622952390712635}
-  arrowPrefab: {fileID: 3887719785123558364, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
+  arrowPrefab: {fileID: 2211875831723846528, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
 --- !u!114 &840105369428218391
 MonoBehaviour:
   m_ObjectHideFlags: 0

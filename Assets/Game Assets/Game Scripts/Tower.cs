@@ -11,7 +11,7 @@ public class Tower : HealthBase, IPointerClickHandler
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SpriteRenderer rangeRenderer;
 
-    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Projectile arrowPrefab;
 
     private EnemyManager enemyManager;
 
@@ -46,8 +46,12 @@ public class Tower : HealthBase, IPointerClickHandler
 
     private void Shoot(Enemy target)
     {
-        Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         newArrow.Init(target.transform, towerSettings, transform);
+        if (towerSettings.projectileModifierEffect)
+        {
+            newArrow.GetComponent<ProjetileModifierEffect>().modifierEffect = towerSettings.projectileModifierEffect;
+        }
         target.CalculateDamage(towerSettings.damage);
     }
     
