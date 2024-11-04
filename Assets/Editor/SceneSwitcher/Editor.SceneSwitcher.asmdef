@@ -1,0 +1,16 @@
+{
+    "name": "Editor.SceneSwitcher",
+    "rootNamespace": "",
+    "references": [
+        "GUID:74093aef42dff2046bc5dc3330907c09"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Lvl Select Scene.unity
-    guid: ccdb29a1405842c40ac484410c47d352
-  - enabled: 1
     path: Assets/_Scenes/2nd Playtesting Session Levels/LVL0.unity
     guid: 78ff26b1d4e75cf4e9c00715de16b4e9
   - enabled: 1
@@ -20,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/2nd Playtesting Session Levels/LVL3.unity
     guid: 9504eb2bbfdaf79438c22079133b42f7
+  - enabled: 1
+    path: Assets/_Scenes/New Scene.unity
+    guid: da6bf264a16325946abab6f9d4e7622d
   m_configObjects: {}
