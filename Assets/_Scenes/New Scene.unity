@@ -1976,7 +1976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 163.70001, y: -31.099976}
+  m_AnchoredPosition: {x: 163.70001, y: -31.099854}
   m_SizeDelta: {x: 259.24, y: 259.24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &1102769194
@@ -6556,6 +6556,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnEnemyDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSpawnerStopEvent:
     m_PersistentCalls:
       m_Calls: []
   EnemyTypesWeightDictionary:
