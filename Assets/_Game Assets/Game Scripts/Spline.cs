@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using External_Packages;
 using UnityEngine;
 
-[RequireComponent(typeof(VisualizeSpline))]
 public class Spline : MonoBehaviour
 {
     private List<Transform> splinePoints = new List<Transform>();
@@ -89,4 +88,42 @@ public class Spline : MonoBehaviour
         virtualPointOnPath += (moveDir * speed) * time * Time.deltaTime;
         return virtualPointOnPath;
     }
+
+    #region Spline Debug View
+    
+    private const string PATH_POINT = "pathPoint";
+    private const string PATH_END = "pathEnd";
+    private const string PATH_START = "pathStart";
+    
+    [SerializeField] private bool debugDrawSpline;
+    private List<Transform> points = new List<Transform>();
+    
+    private void OnDrawGizmos()
+    {
+        if (!debugDrawSpline) return;
+        points.Clear();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            points.Add(transform.GetChild(i));
+        }
+
+        if (points == null || points.Count < 2)
+            return;
+
+        Gizmos.color = Color.red;
+
+        for (int i = 0; i < points.Count - 1; i++)
+        {
+            if (points[i] != null && points[i + 1] != null)
+            {
+                Gizmos.DrawIcon(points[i].position, PATH_POINT, false);
+                Gizmos.DrawLine(points[i].position, points[i + 1].position);
+            }
+        }
+        
+        Gizmos.DrawIcon(points[points.Count - 1].position, PATH_END, false);
+        Gizmos.DrawIcon(points[0].position, PATH_START, false);
+    }
+
+    #endregion
 }
