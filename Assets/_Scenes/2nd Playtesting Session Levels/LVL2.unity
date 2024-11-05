@@ -3598,7 +3598,6 @@ GameObject:
   - component: {fileID: 1922981325}
   - component: {fileID: 1922981327}
   - component: {fileID: 1922981328}
-  - component: {fileID: 1922981329}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -3673,7 +3672,7 @@ MonoBehaviour:
   OnSpawnerStopEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922981329}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WinConditionChecker, Assembly-CSharp
         m_MethodName: SpawningStopped
         m_Mode: 1
@@ -3714,18 +3713,6 @@ MonoBehaviour:
   enemyQueueLength: 150
   enemyQueue: 
   enemyQueueIndex: 0
---- !u!114 &1922981329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922981323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08827ef6975dbba4389df03bd1a2db40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2008648152 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2417940604551860059, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}

@@ -15,9 +15,9 @@ public class ScaleEffect : EffectBase
 
     public override void DoEffect()
     {
-       
         if (transform != null)
-        { 
+        {
+            transform.DOKill(true);
             tweener = scaleEffectType == ScaleEffectType.PUNCH
                 ? transform.DOPunchScale(transform.localScale * scaleFactor, duration, vibrato, strength)
                 : transform.DOShakeScale(duration, strength, vibrato);
