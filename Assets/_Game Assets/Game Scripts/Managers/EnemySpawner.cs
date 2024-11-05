@@ -14,16 +14,12 @@ public class EnemySpawner : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameObject enemyBasePrefab;
     [SerializeField] private Spline currentSpline;
-
-    [Header("UI Components")]
     [SerializeField] private TMP_Text remainingEnemiesDisplay;
-    private int originalRemainingEnemies;
     
-    [Header("Events")]
-    public UnityEvent<Enemy> OnEnemyReachEndEvent;
-    public UnityEvent<Enemy> OnEnemySpawnEvent;
-    public UnityEvent<Enemy> OnEnemyDeathEvent;
-    public UnityEvent OnSpawnerStopEvent;
+    [Foldout("Events")] public UnityEvent<Enemy> OnEnemyReachEndEvent;
+    [Foldout("Events")] public UnityEvent<Enemy> OnEnemySpawnEvent;
+    [Foldout("Events")] public UnityEvent<Enemy> OnEnemyDeathEvent;
+    [Foldout("Events")] public UnityEvent OnSpawnerStopEvent;
     
     [Header("Dictionaries")]
     [SerializeField] private SerializedDictionary<EnemySettings, float> EnemyTypesWeightDictionary = new SerializedDictionary<EnemySettings, float>();
@@ -41,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int enemyQueueLength;
     [SerializeField] [ReadOnly] private int[] enemyQueue;
     [SerializeField] [ReadOnly] private int enemyQueueIndex;
+    private int originalRemainingEnemies;
     
     private void Start()
     {

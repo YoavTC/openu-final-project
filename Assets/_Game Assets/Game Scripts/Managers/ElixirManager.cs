@@ -24,17 +24,8 @@ public class ElixirManager : Singleton<ElixirManager>
     public UnityEvent<float> ElixirCountChangeEvent;
     
     #region Inspector Tools
-    [Button]
-    public void DecreaseTest()
-    {
-        DecreaseElixir(10);
-    }
-    
-    [Button]
-    public void IncreaseTest()
-    {
-        IncreaseElixir(10);
-    }
+    [Button] public void DecreaseElixir() => DecreaseElixir(10); [Button]
+    public void IncreaseElixir() => IncreaseElixir(10);
     #endregion
     
     private void Update()
