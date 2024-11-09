@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using CodeMonkey.Utils;
 using DG.Tweening;
-using NaughtyAttributes;
 using UnityEngine;
 
 public class Enemy : ModifierAffectableBase

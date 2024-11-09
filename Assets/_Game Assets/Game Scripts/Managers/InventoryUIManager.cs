@@ -27,11 +27,16 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private InGameInventoryCard[] cards;
     private bool isLooping;
     private bool invalidCardSelected;
+
+    private Image validationImage;
     
     private void Start()
     {
         isLooping = false;
         invalidCardSelected = false;
+
+        validationImage = GetComponent<Image>();
+        UpdatePlacementValidationUI(Color.clear);
         
         mainCamera = Camera.main;
         cards = new InGameInventoryCard[cardsContainer.childCount];
@@ -78,6 +83,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         } else {
             invalidCardSelected = true;
         }
+        
+        UpdatePlacementValidationUI(eventData.position);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -90,32 +97,48 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             draggedTower.transform.position = ScreenToWorldPoint(currentDragPoint);
             draggedCard.transform.position = currentDragPoint;
         }
+        
+        UpdatePlacementValidationUI(eventData.position);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (invalidCardSelected) return;
-        if (ElixirManager.Instance.TryAffordOperation(draggedCardTowerSettings.cost))
+        
+        bool isValidPosition = IsValidPlacementPosition(eventData.position);
+        
+        if (isValidPosition && ElixirManager.Instance.TryAffordOperation(draggedCardTowerSettings.cost))
         {
             Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-            if (IsValidPlacementPosition(placementPosition))
-            {
-                Destroy(draggedTower.gameObject);
-                Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
-                newTower.towerSettings = draggedCardTowerSettings;
-                newTower.OnTowerPlacedEventListener();
-                newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
-            }
+            
+            Destroy(draggedTower.gameObject);
+            Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
+            newTower.towerSettings = draggedCardTowerSettings;
+            newTower.OnTowerPlacedEventListener();
+            newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
         }
         else
         {
+            Debug.Log($"Afford: {draggedCardTowerSettings.cost}");
+            Debug.Log($"Pos: {isValidPosition}");
             Destroy(draggedTower.gameObject);
-            Debug.Log("Cant afford this tower!");
         }
         
         if (draggedCard != null) Destroy(draggedCard);
+        
+        UpdatePlacementValidationUI(Color.clear);
     }
     #endregion
+
+    private void UpdatePlacementValidationUI(Vector2 pos)
+    {
+        validationImage.color = IsValidPlacementPosition(pos) ? Color.clear : Color.red;
+    }
+    
+    private void UpdatePlacementValidationUI(Color color)
+    {
+        validationImage.color = color;
+    }
 
     #region Elixir Affordability
     //Dynamic Unity event listener
@@ -144,7 +167,10 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     #region Utility
     //TODO: Change after level generation algorithm is implemented
-    private bool IsValidPlacementPosition(Vector2 pos) => true;
+    private bool IsValidPlacementPosition(Vector2 pos)
+    {
+        return !GetComponent<RectTransform>().rect.Contains(pos);
+    }
     
     private Vector2 ScreenToWorldPoint(Vector2 point) => mainCamera.ScreenToWorldPoint(point);
 

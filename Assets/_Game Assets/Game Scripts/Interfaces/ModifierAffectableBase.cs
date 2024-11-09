@@ -14,7 +14,6 @@ public abstract class ModifierAffectableBase : HealthBase
         if (!currentEffectGivers.Contains(effectGiver))
         {
             currentEffectGivers.Add(effectGiver);
-            Debug.Log($"Started effect {currentEffect.type} on {gameObject.name} for {currentEffect.duration}!");
             StartCoroutine(TickEffect(newModifierEffect.type, effectGiver));
         }
     }
@@ -29,7 +28,6 @@ public abstract class ModifierAffectableBase : HealthBase
             
             yield return new WaitForSeconds(tickRate);
             durationProgress += tickRate;
-            Debug.Log($"{durationProgress}/{currentEffect.duration}");
         }
         
         FinishEffect();
