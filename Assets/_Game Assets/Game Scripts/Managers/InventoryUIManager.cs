@@ -34,6 +34,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     [SerializeField] private float colourTransitionDuration;
     private Image validationImage;
     private Color lastColour;
+    private RectTransform rectTransform;
     
     private void Start()
     {
@@ -42,6 +43,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         validationImage = GetComponent<Image>();
         UpdatePlacementValidationUI(validColour);
+
+        rectTransform = GetComponent<RectTransform>();
         
         mainCamera = Camera.main;
         cards = new InGameInventoryCard[cardsContainer.childCount];
@@ -178,7 +181,17 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     //TODO: Change after level generation algorithm is implemented
     private bool IsValidPlacementPosition(Vector2 pos)
     {
-        return !GetComponent<RectTransform>().rect.Contains(pos);
+        Vector2 localPoint;
+        
+        // Convert screen position to local point in the target RectTransform
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            rectTransform, 
+            pos, 
+            null, 
+            out localPoint
+        );
+        
+        return !rectTransform.rect.Contains(localPoint);
     }
     
     private Vector2 ScreenToWorldPoint(Vector2 point) => mainCamera.ScreenToWorldPoint(point);
