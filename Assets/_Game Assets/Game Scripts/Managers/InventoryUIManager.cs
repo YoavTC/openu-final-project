@@ -59,7 +59,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     private void Update()
     {
-        Debug.DrawLine(beginDragPoint, currentDragPoint, Color.green);
+        DebugPainter.DrawArrow(beginDragPoint, currentDragPoint, Color.green);
     }
 
     #region Card Dragging
