@@ -520,7 +520,6 @@ GameObject:
   - component: {fileID: 7417692322497838337}
   - component: {fileID: 2433211663795426644}
   - component: {fileID: 3653130638537850263}
-  - component: {fileID: 2258111031253112725}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -585,20 +584,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2258111031253112725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6499984906069945098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding: {x: 0, y: 0, z: 0, w: 0}
-  m_Softness: {x: 0, y: 0}
 --- !u!1 &6622831927910484406
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +806,7 @@ GameObject:
   - component: {fileID: 2596145983600910981}
   - component: {fileID: 3623842458020617409}
   - component: {fileID: 2215083485967271209}
+  - component: {fileID: 5428534638292689195}
   m_Layer: 5
   m_Name: In Game Card Prefab
   m_TagString: InventoryUICard
@@ -907,6 +893,19 @@ MonoBehaviour:
   damageDisplay: {fileID: 5635469468411436830}
   costDisplay: {fileID: 4330725587821864463}
   image: {fileID: 1365595187953776598}
+--- !u!114 &5428534638292689195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233002446802329454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &9093662703396508570
 GameObject:
   m_ObjectHideFlags: 0

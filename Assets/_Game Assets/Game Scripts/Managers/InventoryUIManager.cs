@@ -28,7 +28,12 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private bool isLooping;
     private bool invalidCardSelected;
 
+    [Header("Position Validator")] 
+    [SerializeField] private Color invalidColour;
+    [SerializeField] private Color validColour;
+    [SerializeField] private float colourTransitionDuration;
     private Image validationImage;
+    private Color lastColour;
     
     private void Start()
     {
@@ -36,7 +41,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         invalidCardSelected = false;
 
         validationImage = GetComponent<Image>();
-        UpdatePlacementValidationUI(Color.clear);
+        UpdatePlacementValidationUI(validColour);
         
         mainCamera = Camera.main;
         cards = new InGameInventoryCard[cardsContainer.childCount];
@@ -132,12 +137,16 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private void UpdatePlacementValidationUI(Vector2 pos)
     {
-        validationImage.color = IsValidPlacementPosition(pos) ? Color.clear : Color.red;
+        UpdatePlacementValidationUI(IsValidPlacementPosition(pos) ? validColour : invalidColour);
     }
     
-    private void UpdatePlacementValidationUI(Color color)
+    private void UpdatePlacementValidationUI(Color colour)
     {
-        validationImage.color = color;
+        if (lastColour == colour) return;
+        
+        lastColour = colour;
+        validationImage.DOKill(true);
+        validationImage.DOColor(colour, colourTransitionDuration);
     }
 
     #region Elixir Affordability
