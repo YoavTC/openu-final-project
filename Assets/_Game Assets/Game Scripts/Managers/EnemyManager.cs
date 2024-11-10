@@ -37,14 +37,15 @@ public class EnemyManager : Singleton<EnemyManager>
             if (enemyList[i].isDead) continue;
             Transform enemyTransform = enemyList[i].transform;
             float dist = (position - enemyTransform.position).sqrMagnitude;
+
             if (dist < closestDistance && dist <= sqrMaxRange)
             {
                 closestDistance = dist;
                 closestEnemy = enemyList[i];
             }
         }
-        isLooping = false;
         
+        isLooping = false;
         return closestEnemy;
     }
 }

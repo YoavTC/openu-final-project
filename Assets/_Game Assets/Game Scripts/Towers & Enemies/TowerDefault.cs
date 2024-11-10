@@ -13,7 +13,7 @@ public class TowerDefault : TowerBase
     protected override void FindNextTarget()
     {
         Enemy closestEnemy = enemyManager.GetClosestEnemy(transform.position, towerSettings.maxRange);
-        if (closestEnemy != null) target = closestEnemy.transform;
+        target = closestEnemy?.transform;
     }
 
     protected override void CooldownAction()
