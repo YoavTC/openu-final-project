@@ -16,7 +16,13 @@ public class InGameInventoryCard : MonoBehaviour
     void Start()
     {
         image.sprite = towerSettings.sprite;
-        damageDisplay.text = towerSettings.damage.ToString();
+        float dps = 0f;
+        if (towerSettings.damage > 0)
+        {
+            dps = towerSettings.damage / towerSettings.attackCooldown;
+        }
+        
+        damageDisplay.text = dps.ToString("0.##");
         costDisplay.text = towerSettings.cost.ToString();
     }
 }
