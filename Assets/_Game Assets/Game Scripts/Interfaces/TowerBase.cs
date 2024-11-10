@@ -29,7 +29,8 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
         if (elapsedTime >= towerSettings.attackCooldown)
         {
             elapsedTime = 0f;
-            Shoot();
+            FindNextTarget();
+            if (target != null) Shoot();
         }
     }
 
@@ -42,24 +43,14 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
 
     protected abstract void FindNextTarget();
     
-    private void Shoot()
+    protected virtual void Shoot()
     {
-        FindNextTarget();
-        if (target != null)
+        Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        newArrow.Init(target.transform, towerSettings, transform);
+        if (towerSettings.projectileModifierEffect)
         {
-            Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
-            newArrow.Init(target.transform, towerSettings, transform);
-            if (towerSettings.projectileModifierEffect)
-            {
-                newArrow.GetComponent<ProjectileModifierEffect>().modifierEffect = towerSettings.projectileModifierEffect;
-            }
-            PostShootAction();
+            newArrow.GetComponent<ProjectileModifierEffect>().modifierEffect = towerSettings.projectileModifierEffect;
         }
-    }
-
-    protected virtual void PostShootAction()
-    {
-        
     }
     
     private void InitializeVisualRange()

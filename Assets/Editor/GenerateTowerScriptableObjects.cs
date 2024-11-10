@@ -7,7 +7,7 @@ using Object = System.Object;
 
 public class GenerateTowerScriptableObjects : Editor
 {
-    [MenuItem("Automation/Generate Tower Items")]
+    [MenuItem("Automation/Generate TowerDefault Items")]
     static void GenerateItems()
     {
         GenerateTowerScriptableObjectsWindow.OpenWindow();
@@ -38,7 +38,7 @@ public class GenerateTowerScriptableObjectsWindow : EditorWindow
         GenerateTowerScriptableObjectsWindow window = GetWindowWithRect<GenerateTowerScriptableObjectsWindow>(
             windowRect,
             focusedWindow,
-            "Generate Tower Items Window",
+            "Generate TowerDefault Items Window",
             true);
 
         window.position = windowRect;

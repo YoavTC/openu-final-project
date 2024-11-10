@@ -1,4 +1,4 @@
-public class Tower : TowerBase
+public class TowerIdle : TowerBase
 {
     private EnemyManager enemyManager;
     
@@ -12,10 +12,5 @@ public class Tower : TowerBase
     {
         Enemy closestEnemy = enemyManager.GetClosestEnemy(transform.position, towerSettings.maxRange);
         if (closestEnemy != null) target = closestEnemy.transform;
-    }
-
-    protected override void PostShootAction()
-    {
-        target.GetComponent<Enemy>().CalculateDamage(towerSettings.damage);
     }
 }

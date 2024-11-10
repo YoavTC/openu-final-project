@@ -18,7 +18,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private GameObject draggedCard;
 
     private TowerSettings draggedCardTowerSettings;
-    private Tower draggedTower;
+    private TowerDefault draggedTowerDefault;
     
     private Camera mainCamera;
     private Vector3 beginDragPoint;
@@ -85,8 +85,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
 
             Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-            draggedTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
-            draggedTower.towerSettings = draggedCardTowerSettings;
+            draggedTowerDefault = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<TowerDefault>();
+            draggedTowerDefault.towerSettings = draggedCardTowerSettings;
            
         } else {
             invalidCardSelected = true;
@@ -102,7 +102,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         currentDragPoint = eventData.position;
         if (draggedCard != null)
         {
-            draggedTower.transform.position = ScreenToWorldPoint(currentDragPoint);
+            draggedTowerDefault.transform.position = ScreenToWorldPoint(currentDragPoint);
             draggedCard.transform.position = currentDragPoint;
         }
         
@@ -118,14 +118,14 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (isValidPosition && ElixirManager.Instance.TryAffordOperation(draggedCardTowerSettings.cost))
         {
             Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-            Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
+            TowerDefault newTowerDefault = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<TowerDefault>();
             
-            newTower.towerSettings = draggedCardTowerSettings;
-            newTower.OnTowerPlacedEventListener();
-            newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
+            newTowerDefault.towerSettings = draggedCardTowerSettings;
+            newTowerDefault.OnTowerPlacedEventListener();
+            newTowerDefault.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
         }
         
-        Destroy(draggedTower.gameObject);
+        Destroy(draggedTowerDefault.gameObject);
         
         if (draggedCard != null) Destroy(draggedCard);
         

@@ -89,7 +89,7 @@ public class Enemy : ModifierAffectableBase
     //     }
     //     else
     //     {
-    //         Tower[] towersInRadius = Utility.GetObjectsInRadius<Tower>(transform.position, postDeathEffect.radius);
+    //         TowerDefault[] towersInRadius = Utility.GetObjectsInRadius<TowerDefault>(transform.position, postDeathEffect.radius);
     //     }
     // }
     
