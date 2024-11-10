@@ -18,7 +18,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private GameObject draggedCard;
 
     private TowerSettings draggedCardTowerSettings;
-    private TowerDefault draggedTowerDefault;
+    private TowerBase draggedTowerDefault;
     
     private Camera mainCamera;
     private Vector3 beginDragPoint;
@@ -85,7 +85,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             draggedCardTowerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
 
             Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-            draggedTowerDefault = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<TowerDefault>();
+            draggedTowerDefault = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<TowerBase>();
             draggedTowerDefault.towerSettings = draggedCardTowerSettings;
            
         } else {
@@ -118,7 +118,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (isValidPosition && ElixirManager.Instance.TryAffordOperation(draggedCardTowerSettings.cost))
         {
             Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-            TowerDefault newTowerDefault = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<TowerDefault>();
+            TowerBase newTowerDefault = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<TowerBase>();
             
             newTowerDefault.towerSettings = draggedCardTowerSettings;
             newTowerDefault.OnTowerPlacedEventListener();

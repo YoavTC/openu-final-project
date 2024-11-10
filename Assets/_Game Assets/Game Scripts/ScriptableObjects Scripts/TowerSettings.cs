@@ -7,8 +7,9 @@ public class TowerSettings : ScriptableObject
     [Header("Information")] 
     public string towerName;
     public string description;
-    
+
     [Header("Base Settings")] 
+    public TowerBaseBehaviourType baseBehaviourType;
     public float damage;
     public float attackCooldown;
     public float maxRange;

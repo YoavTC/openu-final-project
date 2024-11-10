@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7032692552654824334}
   - component: {fileID: 2157115048044220172}
-  - component: {fileID: 4890592990759296144}
+  - component: {fileID: 2140198679388172263}
   - component: {fileID: 840105369428218391}
   m_Layer: 0
   m_Name: Tower
@@ -548,7 +548,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4
---- !u!114 &4890592990759296144
+--- !u!114 &2140198679388172263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6370213566684474273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 082cf4f1037485441a4e7e8311a531ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 80f99c4e72064d31b98d9392b1c63cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnHealEvent:
@@ -569,10 +569,10 @@ MonoBehaviour:
   OnDieEvent:
     m_PersistentCalls:
       m_Calls: []
-  towerSettings: {fileID: 11400000, guid: 4af3a3bf7b63b1f42b8defb748a603b6, type: 2}
+  towerSettings: {fileID: 0}
   spriteRenderer: {fileID: 7976714890031304551}
   rangeRenderer: {fileID: 8961622952390712635}
-  arrowPrefab: {fileID: 2211875831723846528, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
+  projectilePrefab: {fileID: 2211875831723846528, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
 --- !u!114 &840105369428218391
 MonoBehaviour:
   m_ObjectHideFlags: 0

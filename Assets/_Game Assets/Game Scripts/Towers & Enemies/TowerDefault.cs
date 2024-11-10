@@ -1,7 +1,9 @@
-public class TowerDefault : TowerBase, IPostShootHandler
+using UnityEngine;
+
+public class TowerDefault : TowerBase
 {
     private EnemyManager enemyManager;
-    
+
     protected override void Start()
     {
         enemyManager = EnemyManager.Instance;
@@ -14,14 +16,15 @@ public class TowerDefault : TowerBase, IPostShootHandler
         if (closestEnemy != null) target = closestEnemy.transform;
     }
 
+    protected override void CooldownAction()
+    {
+        FindNextTarget();
+        base.CooldownAction();
+    }
+
     protected override void Shoot()
     {
         base.Shoot();
-        PostShootAction();
-    }
-
-    public void PostShootAction()
-    {
         target.GetComponent<Enemy>().CalculateDamage(towerSettings.damage);
     }
 }

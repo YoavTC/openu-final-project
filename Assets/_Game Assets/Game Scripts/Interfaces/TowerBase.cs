@@ -3,18 +3,27 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[Serializable]
 public abstract class TowerBase : HealthBase, IPointerClickHandler
 {
-    private bool isPlaced = false;
-    
     public TowerSettings towerSettings;
-    private float elapsedTime;
+    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer rangeRenderer;
+    public Projectile projectilePrefab;
     
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private SpriteRenderer rangeRenderer;
-
-    [SerializeField] private Projectile arrowPrefab;
     protected Transform target;
+    private float elapsedTime;
+    private bool isPlaced = false;
+
+    public void InitializeComponents(TowerSettings towerSettings, SpriteRenderer spriteRenderer, SpriteRenderer rangeRenderer, Projectile projectilePrefab)
+    {
+        this.towerSettings = towerSettings;
+        this.spriteRenderer = spriteRenderer;
+        this.rangeRenderer = rangeRenderer;
+        this.projectilePrefab = projectilePrefab;
+
+        isPlaced = true;
+    }
 
     protected virtual void Start()
     {
@@ -29,23 +38,30 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
         if (elapsedTime >= towerSettings.attackCooldown)
         {
             elapsedTime = 0f;
-            FindNextTarget();
-            if (target != null) Shoot();
+            CooldownAction();
         }
     }
 
-    public void OnTowerPlacedEventListener()
+    public virtual void OnTowerPlacedEventListener()
     {
         isPlaced = true;
         ToggleVisualRange(false);
         transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
     }
 
-    protected abstract void FindNextTarget();
+    protected virtual void FindNextTarget()
+    {
+        
+    }
+
+    protected virtual void CooldownAction()
+    {
+        if (target != null) Shoot();
+    }
     
     protected virtual void Shoot()
     {
-        Projectile newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        Projectile newArrow = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         newArrow.Init(target.transform, towerSettings, transform);
         if (towerSettings.projectileModifierEffect)
         {

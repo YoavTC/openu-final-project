@@ -1,16 +1,9 @@
+using UnityEngine;
+
 public class TowerIdle : TowerBase
 {
-    private EnemyManager enemyManager;
-    
-    protected override void Start()
+    protected override void CooldownAction()
     {
-        enemyManager = EnemyManager.Instance;
-        base.Start();
-    }
-
-    protected override void FindNextTarget()
-    {
-        Enemy closestEnemy = enemyManager.GetClosestEnemy(transform.position, towerSettings.maxRange);
-        if (closestEnemy != null) target = closestEnemy.transform;
+        Debug.Log("Action!");
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Angel
   description: Heals the other emoji
+  baseBehaviourType: 1
   damage: 0
   attackCooldown: 1.5
   maxRange: 15
