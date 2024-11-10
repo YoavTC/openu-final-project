@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SelectionManager : Singleton<SelectionManager>
 {
-    private Tower lastTowerClicked;
+    private TowerBase lastTowerClicked;
     
-    public void OnSelectableItemClicked(Tower tower)
+    public void OnSelectableItemClicked(TowerBase tower)
     {
         lastTowerClicked?.ToggleVisualRange(false);
         lastTowerClicked = tower;
