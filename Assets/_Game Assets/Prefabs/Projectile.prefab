@@ -136,6 +136,7 @@ MonoBehaviour:
     m_Bits: 8
   projectileModifierEffect: {fileID: -3785220589868828492}
   impactParticleSystem: {fileID: 1052038735468272356, guid: 857fe8544c992fa41b36966a5ac5ca82, type: 3}
+  radiusImpactParticleSystem: {fileID: 1052038735468272356, guid: a0f43a6e000d4de428f97c48535ee243, type: 3}
 --- !u!114 &-3785220589868828492
 MonoBehaviour:
   m_ObjectHideFlags: 0

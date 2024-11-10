@@ -1,45 +1,43 @@
 // Credit: UnPaws
 // Source: https://www.youtube.com/watch?v=OPDl2uVaN_Q
 
-using System.Collections.Generic;
-using System.Linq;
-using NaughtyAttributes;
 using UnityEngine;
-
 public class Projectile : MonoBehaviour
 {
+    [Header("Components & Settings")]
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private ProjectileModifierEffect projectileModifierEffect;
+    [SerializeField] private GameObject impactParticleSystem;
+    [SerializeField] private GameObject radiusImpactParticleSystem;
+    
     private Transform target;
-    private float moveSpeed;
-    private float maxMoveSpeed;
-    private float trajectoryMaxRelativeHeight;
-    private float distanceToTargetToDestroyProjectile = 1f;
     private Transform projectileOwner;
 
-    private float damage;
-    
+    // Speed & Trajectory Settings
+    private float moveSpeed;
+    private float maxMoveSpeed;
     private AnimationCurve trajectoryAnimationCurve;
-    private AnimationCurve axisCorrectionAnimationCurve = AnimationCurve.Linear(0,0,1,1);
     private AnimationCurve projectileSpeedAnimationCurve;
-    
+    private AnimationCurve axisCorrectionAnimationCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
+    // Damage & Area of Effect
+    private float damage;
+    private float areaOfEffect;
+    private float modifierAreaOfEffect;
+    private Sprite splashRadiusSprite;
+
+    // Trajectory Calculations
+    private float trajectoryMaxRelativeHeight;
     private Vector3 trajectoryStartPoint;
-    private Vector3 projectileMoveDir;
     private Vector3 trajectoryRange;
-    
     private float nextYTrajectoryPosition;
     private float nextXTrajectoryPosition;
     private float nextPositionYCorrectionAbsolute;
     private float nextPositionXCorrectionAbsolute;
 
-    private float areaOfEffect;
-    private float modifierAreaOfEffect;
-
+    // Target Reached Status
     private bool reachedTarget;
-    
-    [SerializeField] private LayerMask layerMask;
-
-    [SerializeField] private ProjectileModifierEffect projectileModifierEffect;
-
-    [SerializeField] private GameObject impactParticleSystem;
+    private float distanceToTargetToDestroyProjectile = 1f;
     
     public void Init(Transform target, TowerSettings towerSettings, Transform projectileOwner)
     {
@@ -49,11 +47,12 @@ public class Projectile : MonoBehaviour
         maxMoveSpeed = towerSettings.projectileMaxMoveSpeed;
         trajectoryAnimationCurve = towerSettings.projectileCurve;
         projectileSpeedAnimationCurve = towerSettings.easingCurve;
-
+        
         areaOfEffect = towerSettings.areaOfEffect;
         modifierAreaOfEffect = towerSettings.modifierAreaOfEffect;
         damage = towerSettings.damage;
-
+        
+        splashRadiusSprite = towerSettings.splashRadiusSprite;
         reachedTarget = false;
 
         float xDistanceToTarget = target.position.x - transform.position.x;
@@ -65,132 +64,140 @@ public class Projectile : MonoBehaviour
         trajectoryStartPoint = transform.position;
     }
 
-
     private void Update() 
     { 
-        if (target == null) Destroy(gameObject);
-        else if (!reachedTarget) {
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        if (!reachedTarget)
+        {
             UpdateProjectilePosition();
             
             if (Vector3.Distance(transform.position, target.position) < distanceToTargetToDestroyProjectile)
             {
                 reachedTarget = true;
-                ReachedTarget();
+                HandleTargetReached();
             }
         }
     }
 
-    private void ReachedTarget()
+    private void HandleTargetReached()
     {
         Instantiate(impactParticleSystem, transform.position, Quaternion.identity);
-        if (areaOfEffect > 0)
-        {
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(target.position, areaOfEffect, layerMask);
-            for (int i = 0; i < collider2Ds.Length; i++)
-            {
-                collider2Ds[i].GetComponent<Enemy>().TakeDamage(damage);
-            }
-        } else target.GetComponent<Enemy>().TakeDamage(damage);
         
-        if (modifierAreaOfEffect > 0)
-        {
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(target.position, modifierAreaOfEffect, layerMask);
-            for (int i = 0; i < collider2Ds.Length; i++)
-            {
-                projectileModifierEffect.ApplyEffectToTarget(collider2Ds[i].transform, projectileOwner);
-            }
-        }
-        if ((areaOfEffect + modifierAreaOfEffect) > 0)
-        {
-            
-        } else projectileModifierEffect.ApplyEffectToTarget(target, projectileOwner);
+        ApplyDamage();
+        ApplyModifierEffect();
+        
+        if (areaOfEffect + modifierAreaOfEffect > 0) InstantiateSplashParticle();
+        else projectileModifierEffect.ApplyEffectToTarget(target, projectileOwner);
         
         Destroy(gameObject);
     }
 
-
-    private void UpdateProjectilePosition() 
+    private void ApplyDamage()
     {
-        if (target == null) Destroy(gameObject);
-        else {
-            trajectoryRange = target.position - trajectoryStartPoint;
-
-
-            if(Mathf.Abs(trajectoryRange.normalized.x) < Mathf.Abs(trajectoryRange.normalized.y)) 
+        if (areaOfEffect > 0)
+        {
+            Collider2D[] affectedEnemies = Physics2D.OverlapCircleAll(target.position, areaOfEffect, layerMask);
+            foreach (Collider2D enemy in affectedEnemies)
             {
-                // Projectile will be curved on the X axis
-                if (trajectoryRange.y < 0) {
-                    // Target is located under shooter
-                    moveSpeed = -moveSpeed;
-                }
-                UpdatePositionWithXCurve();
-                
-            } else {
-                // Projectile will be curved on the Y axis
-                
-                if (trajectoryRange.x < 0) {
-                    // Target is located behind shooter
-                    moveSpeed = -moveSpeed;
-                }
-                UpdatePositionWithYCurve();
+                enemy.GetComponent<Enemy>().TakeDamage(damage);
+            }
+        }
+        else target.GetComponent<Enemy>().TakeDamage(damage);
+    }
+
+    private void ApplyModifierEffect()
+    {
+        if (modifierAreaOfEffect > 0)
+        {
+            Collider2D[] affectedTargets = Physics2D.OverlapCircleAll(target.position, modifierAreaOfEffect, layerMask);
+            foreach (var affectedTarget in affectedTargets)
+            {
+                projectileModifierEffect.ApplyEffectToTarget(affectedTarget.transform, projectileOwner);
             }
         }
     }
 
+    private void InstantiateSplashParticle()
+    {
+        GameObject splashParticle = Instantiate(radiusImpactParticleSystem, target.position, Quaternion.identity);
+        splashParticle.GetComponent<SplashParticleInitializer>().Play(splashRadiusSprite, areaOfEffect + modifierAreaOfEffect);
+    }
+
+    #region Movement Calculation
+    private void UpdateProjectilePosition() 
+    {
+        if (target == null) 
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        trajectoryRange = target.position - trajectoryStartPoint;
+
+        if (Mathf.Abs(trajectoryRange.normalized.x) < Mathf.Abs(trajectoryRange.normalized.y))
+        {
+            if (trajectoryRange.y < 0) moveSpeed = -moveSpeed;
+            UpdatePositionWithXCurve();
+        }
+        else
+        {
+            if (trajectoryRange.x < 0) moveSpeed = -moveSpeed;
+            UpdatePositionWithYCurve();
+        }
+    }
 
     private void UpdatePositionWithXCurve() 
     {
         float nextPositionY = transform.position.y + moveSpeed * Time.deltaTime;
-        float nextPositionYNormalized = (nextPositionY - trajectoryStartPoint.y) / trajectoryRange.y;
-        
-        float nextPositionXNormalized = trajectoryAnimationCurve.Evaluate(nextPositionYNormalized);
-        nextXTrajectoryPosition = nextPositionXNormalized * trajectoryMaxRelativeHeight;
-        
-        float nextPositionXCorrectionNormalized = axisCorrectionAnimationCurve.Evaluate(nextPositionYNormalized);
-        nextPositionXCorrectionAbsolute = nextPositionXCorrectionNormalized * trajectoryRange.x;
+        float normalizedY = (nextPositionY - trajectoryStartPoint.y) / trajectoryRange.y;
 
+        nextXTrajectoryPosition = trajectoryAnimationCurve.Evaluate(normalizedY) * trajectoryMaxRelativeHeight;
+        nextPositionXCorrectionAbsolute = axisCorrectionAnimationCurve.Evaluate(normalizedY) * trajectoryRange.x;
 
-        if (trajectoryRange.x > 0 && trajectoryRange.y > 0) 
-        {
-            nextXTrajectoryPosition = -nextXTrajectoryPosition;
-        }
-        
-        if (trajectoryRange.x < 0 && trajectoryRange.y < 0) 
+        if (trajectoryRange.x > 0 && trajectoryRange.y > 0 ||
+            trajectoryRange.x < 0 && trajectoryRange.y < 0)
         {
             nextXTrajectoryPosition = -nextXTrajectoryPosition;
         }
 
-        float nextPositionX = trajectoryStartPoint.x + nextXTrajectoryPosition + nextPositionXCorrectionAbsolute;
-        Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
-        CalculateNextProjectileSpeed(nextPositionYNormalized);
-        
-        projectileMoveDir = newPosition - transform.position;
-        transform.position = newPosition;
+        Vector3 newPosition = new Vector3(
+            trajectoryStartPoint.x + nextXTrajectoryPosition + nextPositionXCorrectionAbsolute,
+            nextPositionY, 0
+        );
+
+        UpdateProjectileDirectionAndPosition(newPosition, normalizedY);
     }
-
 
     private void UpdatePositionWithYCurve() 
     {
         float nextPositionX = transform.position.x + moveSpeed * Time.deltaTime;
-        float nextPositionXNormalized = (nextPositionX - trajectoryStartPoint.x) / trajectoryRange.x;
-        
-        float nextPositionYNormalized = trajectoryAnimationCurve.Evaluate(nextPositionXNormalized);
-        nextYTrajectoryPosition = nextPositionYNormalized * trajectoryMaxRelativeHeight;
-        float nextPositionYCorrectionNormalized = axisCorrectionAnimationCurve.Evaluate(nextPositionXNormalized);
-        nextPositionYCorrectionAbsolute = nextPositionYCorrectionNormalized * trajectoryRange.y;
-        float nextPositionY = trajectoryStartPoint.y + nextYTrajectoryPosition + nextPositionYCorrectionAbsolute;
-        
-        Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
-        CalculateNextProjectileSpeed(nextPositionXNormalized);
-        
-        projectileMoveDir = newPosition - transform.position;
+        float normalizedX = (nextPositionX - trajectoryStartPoint.x) / trajectoryRange.x;
+
+        nextYTrajectoryPosition = trajectoryAnimationCurve.Evaluate(normalizedX) * trajectoryMaxRelativeHeight;
+        nextPositionYCorrectionAbsolute = axisCorrectionAnimationCurve.Evaluate(normalizedX) * trajectoryRange.y;
+
+        Vector3 newPosition = new Vector3(
+            nextPositionX,
+            trajectoryStartPoint.y + nextYTrajectoryPosition + nextPositionYCorrectionAbsolute, 0
+        );
+
+        UpdateProjectileDirectionAndPosition(newPosition, normalizedX);
+    }
+
+    private void UpdateProjectileDirectionAndPosition(Vector3 newPosition, float normalizedPosition)
+    {
+        CalculateNextProjectileSpeed(normalizedPosition);
         transform.position = newPosition;
     }
 
-
-    private void CalculateNextProjectileSpeed(float nextPositionXNormalized) 
+    private void CalculateNextProjectileSpeed(float normalizedPosition) 
     {
-        float nextMoveSpeedNormalized = projectileSpeedAnimationCurve.Evaluate(nextPositionXNormalized);
-        moveSpeed = nextMoveSpeedNormalized * maxMoveSpeed;
+        moveSpeed = projectileSpeedAnimationCurve.Evaluate(normalizedPosition) * maxMoveSpeed;
     }
+    #endregion
 }

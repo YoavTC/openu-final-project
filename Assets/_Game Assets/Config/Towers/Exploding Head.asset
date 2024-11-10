@@ -83,3 +83,4 @@ MonoBehaviour:
   projectileMaxMoveSpeed: 25
   projectileModifierEffect: {fileID: 0}
   modifierAreaOfEffect: 0
+  splashRadiusSprite: {fileID: 21300000, guid: 8061edafe888c23448d54f773166d8d1, type: 3}

@@ -118,19 +118,14 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (isValidPosition && ElixirManager.Instance.TryAffordOperation(draggedCardTowerSettings.cost))
         {
             Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-            
-            Destroy(draggedTower.gameObject);
             Tower newTower = Instantiate(towerPrefab, placementPosition, quaternion.identity).GetComponent<Tower>();
+            
             newTower.towerSettings = draggedCardTowerSettings;
             newTower.OnTowerPlacedEventListener();
             newTower.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
         }
-        else
-        {
-            Debug.Log($"Afford: {draggedCardTowerSettings.cost}");
-            Debug.Log($"Pos: {isValidPosition}");
-            Destroy(draggedTower.gameObject);
-        }
+        
+        Destroy(draggedTower.gameObject);
         
         if (draggedCard != null) Destroy(draggedCard);
         
@@ -148,8 +143,12 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (lastColour == colour) return;
         
         lastColour = colour;
-        validationImage.DOKill(true);
-        validationImage.DOColor(colour, colourTransitionDuration);
+        validationImage.color = colour;
+
+        if (draggedCard)
+        {
+            draggedCard.transform.GetChild(0).GetComponent<Image>().color = colour;
+        }
     }
 
     #region Elixir Affordability

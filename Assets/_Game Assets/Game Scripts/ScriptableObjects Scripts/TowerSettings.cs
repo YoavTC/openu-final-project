@@ -25,6 +25,7 @@ public class TowerSettings : ScriptableObject
     public float projectileMaxMoveSpeed;
     public ModifierEffect projectileModifierEffect;
     public float modifierAreaOfEffect;
+    public Sprite splashRadiusSprite;
 
     #if UNITY_EDITOR
     private void OnValidate()

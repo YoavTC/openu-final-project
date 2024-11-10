@@ -72,3 +72,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   projectileMaxHeight: 0.3
   projectileMaxMoveSpeed: 40
+  projectileModifierEffect: {fileID: 0}
+  modifierAreaOfEffect: 0
+  splashRadiusSprite: {fileID: 21300000, guid: 8061edafe888c23448d54f773166d8d1, type: 3}

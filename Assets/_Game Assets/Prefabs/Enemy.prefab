@@ -657,11 +657,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92143a4ac1d750646ae2b8162cbf21e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleEffectType: 1
   duration: 0.1
   strength: 0.2
   vibrato: 0
-  scaleFactor: 1
+  scaleFactor: 0.3
 --- !u!114 &6734569221289921464
 MonoBehaviour:
   m_ObjectHideFlags: 0
