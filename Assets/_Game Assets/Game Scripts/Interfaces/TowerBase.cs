@@ -23,6 +23,8 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
         this.projectilePrefab = projectilePrefab;
 
         isPlaced = true;
+        
+        TowerManager.Instance.AddEntity(this);
     }
 
     protected virtual void Start()

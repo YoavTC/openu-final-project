@@ -1,21 +1,21 @@
 using UnityEngine;
 
-public class EnemyManager : HealthBaseListManager
+public class TowerManager : HealthBaseListManager
 {
-    private static EnemyManager _instance;
+    private static TowerManager _instance;
 
-    public static EnemyManager Instance
+    public static TowerManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<EnemyManager>();
+                _instance = FindObjectOfType<TowerManager>();
 
                 if (_instance == null)
                 {
-                    GameObject singletonObject = new GameObject(typeof(EnemyManager).Name);
-                    _instance = singletonObject.AddComponent<EnemyManager>();
+                    GameObject singletonObject = new GameObject(typeof(TowerManager).Name);
+                    _instance = singletonObject.AddComponent<TowerManager>();
                 }
             }
 

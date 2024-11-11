@@ -25,7 +25,7 @@ public class Enemy : ModifierAffectableBase
         spriteRenderer.sprite = enemySettings.sprite;
         SetHealth(enemySettings.health);
 
-        EnemyManager.Instance.AddEnemy(this);
+        EnemyManager.Instance.AddEntity(this);
         OnDeathAction += enemyDeathListener;
 
         animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndListener, RemoveEnemyListener);
@@ -56,7 +56,7 @@ public class Enemy : ModifierAffectableBase
     {
         //Wait for the Enemy manager to safely remove enemy from list
         bool callback = false;
-        EnemyManager.Instance.RemoveEnemy(this, () => callback = true);
+        EnemyManager.Instance.RemoveEntity(this, () => callback = true);
         yield return new WaitUntil(() => callback);
 
         // yield return new WaitForSeconds(.5f);

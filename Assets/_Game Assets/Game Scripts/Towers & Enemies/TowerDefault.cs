@@ -1,16 +1,16 @@
 public class TowerDefault : TowerBase
 {
-    private EnemyManager enemyManager;
+    private HealthBaseListManager enemyManager;
 
     protected override void Start()
     {
-        enemyManager = EnemyManager.Instance;
+        enemyManager = EnemyManager.Instance;;
         base.Start();
     }
 
     protected override void FindNextTarget()
     {
-        Enemy closestEnemy = enemyManager.GetClosestEnemy(transform.position, towerSettings.maxRange);
+        Enemy closestEnemy = (Enemy) enemyManager.GetClosestEntity(transform.position, towerSettings.maxRange);
         target = closestEnemy?.transform;
     }
 
