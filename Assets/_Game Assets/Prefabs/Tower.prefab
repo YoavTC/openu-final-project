@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 2157115048044220172}
   - component: {fileID: 2140198679388172263}
   - component: {fileID: 840105369428218391}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,6 @@ MonoBehaviour:
   OnHealthInitializedEvent:
     m_PersistentCalls:
       m_Calls: []
-  healthBarSlider: {fileID: 2465194563372518923}
   towerSettings: {fileID: 0}
   spriteRenderer: {fileID: 7976714890031304551}
   rangeRenderer: {fileID: 8961622952390712635}

@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Snarky Cat
   description: Mewo!
+  baseBehaviourType: 0
+  targetedLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   damage: 5
   attackCooldown: 0.6
   maxRange: 15

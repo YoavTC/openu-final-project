@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Cold Face
   description: Ice in his veins, he's cold!
+  baseBehaviourType: 0
+  targetedLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   damage: 0
   attackCooldown: 1.75
   maxRange: 7

@@ -15,6 +15,9 @@ MonoBehaviour:
   towerName: Alien
   description: Zlop glorb!
   baseBehaviourType: 0
+  targetedLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   damage: 5
   attackCooldown: 0.5
   maxRange: 15

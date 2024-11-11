@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Disguised
   description: What a weirdo..
+  baseBehaviourType: 0
+  targetedLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   damage: 2
   attackCooldown: 0.3
   maxRange: 15

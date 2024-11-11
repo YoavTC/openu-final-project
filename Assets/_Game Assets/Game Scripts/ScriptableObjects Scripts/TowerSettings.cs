@@ -10,6 +10,7 @@ public class TowerSettings : ScriptableObject
 
     [Header("Base Settings")] 
     public TowerBaseBehaviourType baseBehaviourType;
+    public LayerMask targetedLayerMask;
     public float damage;
     public float attackCooldown;
     public float maxRange;

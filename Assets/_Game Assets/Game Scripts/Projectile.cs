@@ -5,13 +5,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Components & Settings")]
-    [SerializeField] private LayerMask layerMask;
     [SerializeField] private ProjectileModifierEffect projectileModifierEffect;
     [SerializeField] private GameObject impactParticleSystem;
     [SerializeField] private GameObject radiusImpactParticleSystem;
     
     private Transform target;
     private Transform projectileOwner;
+    private LayerMask targetedLayerMask;
 
     // Speed & Trajectory Settings
     private float moveSpeed;
@@ -39,10 +39,11 @@ public class Projectile : MonoBehaviour
     private bool reachedTarget;
     private float distanceToTargetToDestroyProjectile = 1f;
     
-    public void Init(Transform target, TowerSettings towerSettings, Transform projectileOwner)
+    public void Init(Transform target, LayerMask targetedLayerMask, TowerSettings towerSettings, Transform projectileOwner)
     {
         this.target = target;
         this.projectileOwner = projectileOwner;
+        this.targetedLayerMask = targetedLayerMask;
         
         maxMoveSpeed = towerSettings.projectileMaxMoveSpeed;
         trajectoryAnimationCurve = towerSettings.projectileCurve;
@@ -104,20 +105,20 @@ public class Projectile : MonoBehaviour
     {
         if (areaOfEffect > 0)
         {
-            Collider2D[] affectedEnemies = Physics2D.OverlapCircleAll(target.position, areaOfEffect, layerMask);
-            foreach (Collider2D enemy in affectedEnemies)
+            Collider2D[] affectedEnemies = Physics2D.OverlapCircleAll(target.position, areaOfEffect, targetedLayerMask);
+            foreach (Collider2D entity in affectedEnemies)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(damage);
+                entity.GetComponent<HealthBase>().TakeDamage(damage);
             }
         }
-        else target.GetComponent<Enemy>().TakeDamage(damage);
+        else target.GetComponent<HealthBase>().TakeDamage(damage);
     }
 
     private void ApplyModifierEffect()
     {
         if (modifierAreaOfEffect > 0)
         {
-            Collider2D[] affectedTargets = Physics2D.OverlapCircleAll(target.position, modifierAreaOfEffect, layerMask);
+            Collider2D[] affectedTargets = Physics2D.OverlapCircleAll(target.position, modifierAreaOfEffect, targetedLayerMask);
             foreach (var affectedTarget in affectedTargets)
             {
                 projectileModifierEffect.ApplyEffectToTarget(affectedTarget.transform, projectileOwner);

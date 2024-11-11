@@ -15,6 +15,9 @@ MonoBehaviour:
   towerName: Angel
   description: Heals the other emoji
   baseBehaviourType: 1
+  targetedLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   damage: -10
   attackCooldown: 1.5
   maxRange: 15

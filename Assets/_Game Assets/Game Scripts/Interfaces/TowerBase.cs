@@ -68,7 +68,7 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
             Quaternion.identity,
             InSceneParentProvider.GetParent(SceneParentProviderType.PROJECTILES));
         
-        newArrow.Init(target.transform, towerSettings, transform);
+        newArrow.Init(target.transform, towerSettings.targetedLayerMask, towerSettings, transform);
         if (towerSettings.projectileModifierEffect)
         {
             newArrow.GetComponent<ProjectileModifierEffect>().modifierEffect = towerSettings.projectileModifierEffect;
