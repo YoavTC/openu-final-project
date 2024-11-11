@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class TowerDefault : TowerBase
 {
     private EnemyManager enemyManager;
