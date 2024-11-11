@@ -149,7 +149,7 @@ public class EnemySpawner : MonoBehaviour
         Enemy newEnemy = Instantiate(enemyBasePrefab,
             transform.position,
             Quaternion.identity
-            ,SceneParentProvider.GetParent(SceneParentProviderType.ENEMIES))
+            ,InSceneParentProvider.GetParent(SceneParentProviderType.ENEMIES))
             .GetComponent<Enemy>();
         
         newEnemy.Init(newEnemySettings, EnemyReachEndListener, EnemyDeathListener, currentSpline);

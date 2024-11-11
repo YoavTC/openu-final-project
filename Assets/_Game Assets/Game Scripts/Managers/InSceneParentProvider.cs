@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class SceneParentProvider : MonoBehaviour
+public class InSceneParentProvider : MonoBehaviour
 {
     private static Transform enemiesParent { get; set; }
     private static Transform projectilesParent { get; set; }

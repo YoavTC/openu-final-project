@@ -89,7 +89,7 @@ public class Projectile : MonoBehaviour
         Instantiate(impactParticleSystem,
             transform.position,
             Quaternion.identity,
-            SceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
+            InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
         
         ApplyDamage();
         ApplyModifierEffect();
@@ -130,7 +130,7 @@ public class Projectile : MonoBehaviour
         GameObject splashParticle = Instantiate(radiusImpactParticleSystem,
             target.position,
             Quaternion.identity,
-            SceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
+            InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
         
         splashParticle.GetComponent<SplashParticleInitializer>().Play(splashRadiusSprite, areaOfEffect + modifierAreaOfEffect);
     }

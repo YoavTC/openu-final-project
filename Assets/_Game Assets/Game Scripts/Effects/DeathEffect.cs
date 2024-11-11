@@ -10,7 +10,7 @@ public class DeathEffect : EffectBase
         Instantiate(particles, 
                 transform.position, 
                 Quaternion.identity,
-                SceneParentProvider.GetParent(SceneParentProviderType.PARTICLES))
+                InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES))
             .Play(spriteRenderer);
     }
 }

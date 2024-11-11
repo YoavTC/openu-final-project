@@ -88,7 +88,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             draggedTowerDefault = Instantiate(towerPrefab,
                 placementPosition
                 , quaternion.identity,
-                SceneParentProvider.GetParent(SceneParentProviderType.TOWERS))
+                InSceneParentProvider.GetParent(SceneParentProviderType.TOWERS))
                 .GetComponent<TowerBase>();
             
             draggedTowerDefault.towerSettings = draggedCardTowerSettings;
@@ -126,7 +126,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             TowerBase newTowerDefault = Instantiate(towerPrefab,
                 placementPosition,
                 quaternion.identity,
-                SceneParentProvider.GetParent(SceneParentProviderType.TOWERS))
+                InSceneParentProvider.GetParent(SceneParentProviderType.TOWERS))
                 .GetComponent<TowerBase>();
             
             newTowerDefault.towerSettings = draggedCardTowerSettings;
