@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1932318147037054096}
   - component: {fileID: 8119090113969560244}
   - component: {fileID: 256582486880247628}
-  - component: {fileID: 2867035260444865922}
   m_Layer: 0
   m_Name: Healthbar Canvas
   m_TagString: Untagged
@@ -103,19 +102,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2867035260444865922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269355357418658039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68b3b9c4c5f116742a62abafecbf895c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBarSlider: {fileID: 2829927337553758425}
 --- !u!1 &279882947105436852
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,8 +573,8 @@ MonoBehaviour:
   OnHealEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2867035260444865922}
-        m_TargetAssemblyTypeName: Healthbar, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
         m_MethodName: OnHealthChangeEventListener
         m_Mode: 0
         m_Arguments:
@@ -602,7 +588,7 @@ MonoBehaviour:
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2867035260444865922}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Healthbar, Assembly-CSharp
         m_MethodName: OnHealthChangeEventListener
         m_Mode: 0
@@ -641,6 +627,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnHealthInitializedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  healthBarSlider: {fileID: 2829927337553758425}
   currentEffectGivers: []
   _enemySettings: {fileID: 0}
   spriteRenderer: {fileID: 4632492171938343152}

@@ -1,22 +1,29 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Healthbar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider healthBarSlider;
     private Canvas canvas;
+    private HealthBase healthBase;
 
     private void Start()
     {
         canvas = GetComponent<Canvas>();
-        canvas.worldCamera = Camera.current;
+        canvas.worldCamera = Camera.main;
+        
+        healthBase = GetComponentInParent<HealthBase>();
+        healthBase.OnHealthInitializedEvent.AddListener(InitializeHealthBar);
+    }
 
-        float maxHealth = GetComponentInParent<HealthBase>().maxHealth;
+    private void InitializeHealthBar()
+    {
+        float maxHealth = healthBase.maxHealth;
+        
         healthBarSlider.maxValue = maxHealth;
         healthBarSlider.value = maxHealth;
         
-        canvas.enabled = false;
+        // if (healthBase.GetComponent<Enemy>()) canvas.enabled = false;
     }
 
     public void OnHealthChangeEventListener(float newHealth)
