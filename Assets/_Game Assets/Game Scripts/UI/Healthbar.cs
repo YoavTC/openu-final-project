@@ -12,7 +12,7 @@ public class Healthbar : MonoBehaviour
         canvas = GetComponent<Canvas>();
         canvas.worldCamera = Camera.current;
 
-        float maxHealth = transform.root.GetComponent<HealthBase>().maxHealth;
+        float maxHealth = GetComponentInParent<HealthBase>().maxHealth;
         healthBarSlider.maxValue = maxHealth;
         healthBarSlider.value = maxHealth;
         

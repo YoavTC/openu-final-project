@@ -61,7 +61,11 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
     
     protected virtual void Shoot()
     {
-        Projectile newArrow = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Projectile newArrow = Instantiate(projectilePrefab,
+            transform.position,
+            Quaternion.identity,
+            SceneParentProvider.GetParent(SceneParentProviderType.PROJECTILES));
+        
         newArrow.Init(target.transform, towerSettings, transform);
         if (towerSettings.projectileModifierEffect)
         {

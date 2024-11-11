@@ -7,6 +7,10 @@ public class DeathEffect : EffectBase
 
     public override void DoEffect()
     {
-        Instantiate(particles, transform.position, Quaternion.identity).Play(spriteRenderer);
+        Instantiate(particles, 
+                transform.position, 
+                Quaternion.identity,
+                SceneParentProvider.GetParent(SceneParentProviderType.PARTICLES))
+            .Play(spriteRenderer);
     }
 }
