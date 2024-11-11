@@ -1,6 +1,5 @@
 // Credit: UnPaws
 // Source: https://www.youtube.com/watch?v=OPDl2uVaN_Q
-
 using UnityEngine;
 public class Projectile : MonoBehaviour
 {
