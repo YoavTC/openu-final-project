@@ -30,7 +30,7 @@ public abstract class HealthBaseListManager : MonoBehaviour
     public bool AllEntitiesDead() => entityList.Count <= 0;
 
     // Get the closest entity within the specified range
-    public virtual HealthBase GetClosestEntity(Vector3 position, float maxRange)
+    public virtual HealthBase GetClosestEntity(Transform invokerTransform, float maxRange)
     {
         if (entityList.Count <= 0) return null;
 
@@ -41,9 +41,9 @@ public abstract class HealthBaseListManager : MonoBehaviour
         isLooping = true;
         for (int i = 0; i < entityList.Count; i++)
         {
-            if (entityList[i].isDead) continue;
+            if (entityList[i].isDead || entityList[i].transform == invokerTransform) continue;
             Transform entityTransform = entityList[i].transform;
-            float dist = (position - entityTransform.position).sqrMagnitude;
+            float dist = (invokerTransform.position - entityTransform.position).sqrMagnitude;
 
             if (dist < closestDistance && dist <= sqrMaxRange)
             {
