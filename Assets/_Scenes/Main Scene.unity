@@ -6306,6 +6306,7 @@ MonoBehaviour:
       Value: 1
     - Key: {fileID: 11400000, guid: dd4df06fde78c024ab98f27d3f626276, type: 2}
       Value: 3
+  initialCooldown: 2
   spawnCooldown: 0.5
   elapsedTime: 0
   currentSpawnWave:
@@ -6316,7 +6317,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   currentSpawnWaveProgress: 0
   nextSpawnDelay: 0
-  enemyQueueLength: 300
+  enemyQueueLength: 1
   enemyQueue: 
   enemyQueueIndex: 0
 --- !u!224 &2008648152 stripped

@@ -25,8 +25,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private SerializedDictionary<EnemySettings, float> EnemyTypesWeightDictionary = new SerializedDictionary<EnemySettings, float>();
     [SerializeField] private SerializedDictionary<AnimationCurveObject, float> EnemyWaveTypesWeightDictionary = new SerializedDictionary<AnimationCurveObject, float>();
     private List<EnemySettings> enemySettingsList;
-    
+
     [Header("Spawner Settings")] 
+    [SerializeField] private float initialCooldown;
     [SerializeField] private float spawnCooldown;
     [SerializeField] [ReadOnly] private float elapsedTime;
     [SerializeField] [ReadOnly] private AnimationCurve currentSpawnWave;
@@ -66,7 +67,7 @@ public class EnemySpawner : MonoBehaviour
     #region Initialization
     private void InitializeSpawner()
     {
-        nextSpawnDelay = 5f;
+        nextSpawnDelay = initialCooldown;
         enemySettingsList = EnemyTypesWeightDictionary.Keys.ToList();
         
         GenerateEnemyQueue();
