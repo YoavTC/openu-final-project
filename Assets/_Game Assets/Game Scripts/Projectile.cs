@@ -1,5 +1,7 @@
 // Original Logic: UnPaws
 // Source: https://www.youtube.com/watch?v=OPDl2uVaN_Q
+
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -9,8 +11,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject splashEffectPrefab;
     
     // Initialized references
-    private Transform target;
-    private Transform projectileOwner;
+    [SerializeField] [ReadOnly] private Transform target;
+    [SerializeField] [ReadOnly] private Transform projectileOwner;
     private TowerSettings towerSettings;
 
     // Speed & Trajectory Settings
@@ -57,7 +59,8 @@ public class Projectile : MonoBehaviour
 
     private void HandleImpact()
     {
-        ApplyDamageAndModifierEffect();
+        ApplyDamage();
+        ApplyModifierEffect();
         
         SpawnSplashParticles();
         SpawnImpactParticles();
@@ -65,22 +68,28 @@ public class Projectile : MonoBehaviour
         target = null;
     }
 
-    private void ApplyDamageAndModifierEffect()
+    private void ApplyDamage()
     {
-        float maxRange = Mathf.Max(towerSettings.areaOfEffect, towerSettings.modifierAreaOfEffect);
-        Collider2D[] targetsInRange = Physics2D.OverlapCircleAll(target.position, maxRange, towerSettings.targetedLayerMask);
-
-        for (int i = 0; i < targetsInRange.Length; i++)
+        if (towerSettings.areaOfEffect > 0)
         {
-            EntityBase modifierComponent = targetsInRange[i].GetComponent<EntityBase>();
-            if (modifierComponent == null) continue;
+            Collider2D[] affectedEnemies = Physics2D.OverlapCircleAll(target.position, towerSettings.areaOfEffect, towerSettings.targetedLayerMask);
+            foreach (Collider2D entity in affectedEnemies)
+            {
+                entity.GetComponent<HealthBase>().TakeDamage(towerSettings.damage);
+            }
+        }
+        else target.GetComponent<HealthBase>().TakeDamage(towerSettings.damage);
+    }
 
-            float distanceToTarget = Vector2.Distance(modifierComponent.transform.position, target.position);
-            
-            if (distanceToTarget <= towerSettings.areaOfEffect) 
-                modifierComponent.TakeDamage(towerSettings.damage);
-            if (distanceToTarget <= towerSettings.modifierAreaOfEffect) 
-                modifierComponent.StartEffect(towerSettings.projectileModifierEffect, projectileOwner);
+    private void ApplyModifierEffect()
+    {
+        if (towerSettings.modifierAreaOfEffect > 0)
+        {
+            Collider2D[] affectedTargets = Physics2D.OverlapCircleAll(target.position, towerSettings.modifierAreaOfEffect, towerSettings.targetedLayerMask);
+            foreach (var affectedTarget in affectedTargets)
+            {
+                affectedTarget.GetComponent<EntityBase>().StartEffect(towerSettings.projectileModifierEffect, projectileOwner);
+            }
         }
     }
     
@@ -118,9 +127,9 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        rangeToTarget = (target.position - startPoint).normalized;
+        rangeToTarget = (target.position - startPoint);
         
-        if (Mathf.Abs(rangeToTarget.x) < Mathf.Abs(rangeToTarget.y))
+        if (Mathf.Abs(rangeToTarget.normalized.x) < Mathf.Abs(rangeToTarget.normalized.y))
         {
             if (rangeToTarget.y < 0) speed = -speed;
             CalculatePositionUsingXCurve();

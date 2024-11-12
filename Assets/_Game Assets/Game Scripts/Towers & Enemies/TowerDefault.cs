@@ -2,16 +2,16 @@ public class TowerDefault : TowerBase
 {
     private HealthBaseListManager enemyManager;
 
-    protected override void Start()
+    public override void TowerPlaced(TowerSettings towerSettings)
     {
-        enemyManager = EnemyManager.Instance;;
-        base.Start();
+        enemyManager = EnemyManager.Instance;
+        base.TowerPlaced(towerSettings);
     }
 
     protected override void FindNextTarget()
     {
         Enemy closestEnemy = (Enemy) enemyManager.GetClosestEntity(transform, towerSettings.maxRange);
-        target = closestEnemy?.transform;
+        currentTarget = closestEnemy?.transform;
     }
 
     protected override void CooldownAction()
@@ -23,6 +23,6 @@ public class TowerDefault : TowerBase
     protected override void Shoot()
     {
         base.Shoot();
-        target.GetComponent<Enemy>().CalculateDamage(towerSettings.damage);
+        currentTarget.GetComponent<Enemy>().CalculateDamage(towerSettings.damage);
     }
 }

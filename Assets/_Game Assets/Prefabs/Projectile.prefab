@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2757842920199410919}
   - component: {fileID: 2211875831723846528}
-  - component: {fileID: -3785220589868828492}
   - component: {fileID: 7734910355244848719}
   m_Layer: 0
   m_Name: Projectile
@@ -131,25 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90805cd24ba77f94fb686c5438eb3813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  projectileModifierEffect: {fileID: -3785220589868828492}
-  impactParticleSystem: {fileID: 1052038735468272356, guid: 857fe8544c992fa41b36966a5ac5ca82, type: 3}
-  radiusImpactParticleSystem: {fileID: 1052038735468272356, guid: a0f43a6e000d4de428f97c48535ee243, type: 3}
---- !u!114 &-3785220589868828492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3887719785123558364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b09bdb911959d54ea345b9a6909250b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modifierEffect: {fileID: 0}
+  impactEffectPrefab: {fileID: 1052038735468272356, guid: 857fe8544c992fa41b36966a5ac5ca82, type: 3}
+  splashEffectPrefab: {fileID: 1052038735468272356, guid: a0f43a6e000d4de428f97c48535ee243, type: 3}
 --- !u!96 &7734910355244848719
 TrailRenderer:
   serializedVersion: 3

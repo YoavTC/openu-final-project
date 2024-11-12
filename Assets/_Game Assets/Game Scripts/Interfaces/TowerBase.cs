@@ -7,35 +7,46 @@ using UnityEngine.EventSystems;
 public abstract class TowerBase : HealthBase, IPointerClickHandler
 {
     public TowerSettings towerSettings;
-    public SpriteRenderer spriteRenderer;
-    public SpriteRenderer rangeRenderer;
-    public Projectile projectilePrefab;
     
-    protected Transform target;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer rangeRenderer;
+    [SerializeField] protected Projectile projectilePrefab;
+    [SerializeField] protected Transform currentTarget;
+    
     private float elapsedTime;
     private bool isPlaced = false;
 
-    public void InitializeComponents(TowerSettings towerSettings, SpriteRenderer spriteRenderer, SpriteRenderer rangeRenderer, Projectile projectilePrefab)
-    {
-        this.towerSettings = towerSettings;
-        this.spriteRenderer = spriteRenderer;
-        this.rangeRenderer = rangeRenderer;
-        this.projectilePrefab = projectilePrefab;
-
-        isPlaced = true;
-        
-        TowerManager.Instance.AddEntity(this);
-    }
-
-    protected virtual void Start()
+    //Called before tower placed
+    private void Start()
     {
         SetHealth(towerSettings.health);
         InitializeVisualRange();
     }
+    
+    public virtual void TowerPlaced(TowerSettings towerSettings)
+    {
+        this.towerSettings = towerSettings;
+    }
+    
+    //Called after tower placed
+    public void InitializeComponents(SpriteRenderer spriteRenderer, SpriteRenderer rangeRenderer, Projectile projectilePrefab)
+    {
+        this.spriteRenderer = spriteRenderer;
+        this.rangeRenderer = rangeRenderer;
+        this.projectilePrefab = projectilePrefab;
 
+        TowerManager.Instance.AddEntity(this);
+        isPlaced = true;
+        
+        spriteRenderer.sprite = towerSettings.sprite;
+        transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
+        ToggleVisualRange(false);
+    }
+    
     protected virtual void Update()
     {
         if (!isPlaced) return;
+        
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= towerSettings.attackCooldown)
         {
@@ -43,28 +54,18 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
             CooldownAction();
         }
     }
-
-    public virtual void OnTowerPlacedEventListener()
-    {
-        isPlaced = true;
-        ToggleVisualRange(false);
-        transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
-    }
-
-    protected virtual void FindNextTarget()
-    {
-        
-    }
-
+    
     protected virtual void CooldownAction()
     {
-        if (target != null) Shoot();
+        if (currentTarget != null) Shoot();
     }
+
+    protected virtual void FindNextTarget() { }
     
     protected virtual void Shoot()
     {
         Instantiate(projectilePrefab, transform.position, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PROJECTILES))
-                    .InitializeProjectile(target, transform, towerSettings);
+                    .InitializeProjectile(currentTarget, transform, towerSettings);
     }
     
     private void InitializeVisualRange()
@@ -72,13 +73,11 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
         float scale = towerSettings.maxRange * 2 / rangeRenderer.sprite.bounds.size.x;
         rangeRenderer.transform.localScale = new Vector3(scale, scale, 1f);
     }
-
-    public void ToggleVisualRange(bool show)
+    
+    public void ToggleVisualRange(bool state)
     {
-        rangeRenderer.enabled = show;
+        rangeRenderer.enabled = state;
     }
-
-    public float GetTowerRange() => towerSettings.maxRange;
     
     public void OnPointerClick(PointerEventData eventData)
     {

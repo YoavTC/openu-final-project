@@ -1,7 +1,9 @@
 ﻿public class TowerEmpty : TowerBase
 {
-    public override void OnTowerPlacedEventListener()
+    public override void TowerPlaced(TowerSettings towerSettings)
     {
+        base.TowerPlaced(towerSettings);
+        
         TowerBase newTowerComponent = null;
         switch (towerSettings.baseBehaviourType)
         {
@@ -19,13 +21,12 @@
                 break;
         }
         
+        newTowerComponent.TowerPlaced(towerSettings);
         newTowerComponent.InitializeComponents(
-            towerSettings,
             spriteRenderer,
             rangeRenderer,
             projectilePrefab);
         
-        base.OnTowerPlacedEventListener();
         Destroy(this);
     }
 }

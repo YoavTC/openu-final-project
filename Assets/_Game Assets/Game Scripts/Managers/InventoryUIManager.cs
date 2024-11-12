@@ -126,9 +126,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
                 InSceneParentProvider.GetParent(SceneParentProviderType.TOWERS))
                 .GetComponent<TowerBase>();
             
-            newTowerDefault.towerSettings = draggedCardTowerSettings;
-            newTowerDefault.OnTowerPlacedEventListener();
-            newTowerDefault.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = draggedCardTowerSettings.sprite;
+            newTowerDefault.TowerPlaced(draggedCardTowerSettings);
         }
         
         Destroy(draggedTowerDefault.gameObject);

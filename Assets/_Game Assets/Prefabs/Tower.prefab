@@ -486,7 +486,6 @@ GameObject:
   - component: {fileID: 7032692552654824334}
   - component: {fileID: 2157115048044220172}
   - component: {fileID: 2140198679388172263}
-  - component: {fileID: 840105369428218391}
   m_Layer: 7
   m_Name: Tower
   m_TagString: Untagged
@@ -576,19 +575,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7976714890031304551}
   rangeRenderer: {fileID: 8961622952390712635}
   projectilePrefab: {fileID: 2211875831723846528, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
---- !u!114 &840105369428218391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6370213566684474273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7b28b00d111ed44b694ea63dfd5c9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alwaysDraw: 0
+  currentTarget: {fileID: 0}
 --- !u!1 &6777143057584435814
 GameObject:
   m_ObjectHideFlags: 0
