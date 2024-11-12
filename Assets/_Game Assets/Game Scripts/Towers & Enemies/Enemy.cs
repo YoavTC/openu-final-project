@@ -3,7 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class Enemy : ModifierAffectableBase
+public class Enemy : EntityBase
 {
     [Header("Settings & Components")]
     [SerializeField] private EnemySettings _enemySettings;

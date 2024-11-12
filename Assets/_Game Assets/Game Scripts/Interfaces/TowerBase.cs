@@ -63,26 +63,13 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
     
     protected virtual void Shoot()
     {
-        Projectile newArrow = Instantiate(projectilePrefab,
-            transform.position,
-            Quaternion.identity,
-            InSceneParentProvider.GetParent(SceneParentProviderType.PROJECTILES));
-        
-        newArrow.Init(target.transform, towerSettings.targetedLayerMask, towerSettings, transform);
-        if (towerSettings.projectileModifierEffect)
-        {
-            newArrow.GetComponent<ProjectileModifierEffect>().modifierEffect = towerSettings.projectileModifierEffect;
-        }
+        Instantiate(projectilePrefab, transform.position, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PROJECTILES))
+                    .InitializeProjectile(target, transform, towerSettings);
     }
     
     private void InitializeVisualRange()
     {
-        float spriteDiameter = rangeRenderer.sprite.bounds.size.x;
-
-        // Set the scale of the sprite to match the radius
-        float scale = towerSettings.maxRange * 2 / spriteDiameter;
-
-        // Apply the scale to the GameObject
+        float scale = towerSettings.maxRange * 2 / rangeRenderer.sprite.bounds.size.x;
         rangeRenderer.transform.localScale = new Vector3(scale, scale, 1f);
     }
 

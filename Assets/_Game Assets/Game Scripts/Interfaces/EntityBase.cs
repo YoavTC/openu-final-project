@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ModifierAffectableBase : HealthBase
+public abstract class EntityBase : HealthBase
 {
     private ModifierEffect currentEffect;
     [SerializeField] private List<Transform> currentEffectGivers = new List<Transform>();
