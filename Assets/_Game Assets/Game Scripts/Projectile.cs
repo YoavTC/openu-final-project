@@ -99,7 +99,7 @@ public class Projectile : MonoBehaviour
     {
         if (towerSettings.areaOfEffect + towerSettings.modifierAreaOfEffect > 0)
         {
-            ParticlesManager.Instance.PlayHitRadius(transform.position, towerSettings);
+            ParticlesManager.Instance.PlayHitRadius(target.position, towerSettings);
         }
     }
     #endregion
