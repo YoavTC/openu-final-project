@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -60,6 +61,25 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     protected virtual void CooldownAction()
     {
         if (currentTarget != null) Shoot();
+    }
+    
+    protected override void Die()
+    {
+        ParticlesManager.Instance.PlayTowerDeath(transform.position);
+        StartCoroutine(DeathCoroutine());
+    }
+    
+    private IEnumerator DeathCoroutine()
+    {
+        //Wait for the Enemy manager to safely remove enemy from list
+        bool callback = false;
+        TowerManager.Instance.RemoveEntity(this, () => callback = true);
+        yield return new WaitUntil(() => callback);
+
+        // yield return new WaitForSeconds(.5f);
+        transform.DOKill();
+        transform.DOComplete();
+        Destroy(gameObject);
     }
 
     #region Shooting

@@ -32,6 +32,11 @@ public class ParticlesManager : Singleton<ParticlesManager>
             .Play(spriteRenderer);
     }
 
+    public void PlayTowerDeath(Vector2 pos)
+    {
+        
+    }
+
     private Sprite GetHitRadiusSprite(Sprite sprite)
     {
         return sprite ?? defaultHitRadiusSprite;
