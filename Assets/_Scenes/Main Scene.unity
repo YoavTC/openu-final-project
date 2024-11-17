@@ -1852,6 +1852,7 @@ MonoBehaviour:
   projectileDestroy: {fileID: 1052038735468272356, guid: 857fe8544c992fa41b36966a5ac5ca82, type: 3}
   hitRadius: {fileID: 2592587036088057879, guid: a0f43a6e000d4de428f97c48535ee243, type: 3}
   enemyDeath: {fileID: 8349880261417712910, guid: 991838b820eadf843b7a3bc32ac11fe1, type: 3}
+  defaultHitRadiusSprite: {fileID: 21300000, guid: 8061edafe888c23448d54f773166d8d1, type: 3}
 --- !u!4 &1074885649
 Transform:
   m_ObjectHideFlags: 0
@@ -6340,9 +6341,9 @@ MonoBehaviour:
   EnemyTypesWeightDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: ee65eead749d15b4ab3ecede71f50c02, type: 2}
-      Value: 1
+      Value: 0
     - Key: {fileID: 11400000, guid: f7ea89fe0d2db3c43b82f6ab478b5204, type: 2}
-      Value: 1
+      Value: 0
     - Key: {fileID: 11400000, guid: 52d7b4296ba659a4087f7bba6c753e96, type: 2}
       Value: 1
   EnemyWaveTypesWeightDictionary:

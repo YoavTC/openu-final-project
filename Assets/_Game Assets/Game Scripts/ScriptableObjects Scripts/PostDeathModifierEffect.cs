@@ -7,4 +7,5 @@ public class PostDeathModifierEffect : ScriptableObject
     public bool toFriendly;
     public float amount;
     public float radius;
+    public Sprite splashRadiusSprite;
 }

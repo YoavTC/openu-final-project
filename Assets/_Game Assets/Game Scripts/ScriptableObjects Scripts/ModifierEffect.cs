@@ -7,7 +7,6 @@ public class ModifierEffect : ScriptableObject
 {
     public ModifierEffectType type;
     public AnimationCurve strengthCurve;
-    public Sprite splashRadiusSprite;
 
     public float tickRate;
     public float duration;

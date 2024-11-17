@@ -97,7 +97,7 @@ public class Projectile : MonoBehaviour
 
     private void SpawnSplashParticles()
     {
-        if ((towerSettings.areaOfEffect + towerSettings.modifierAreaOfEffect > 0) && towerSettings.projectileModifierEffect)
+        if (towerSettings.areaOfEffect + towerSettings.modifierAreaOfEffect > 0)
         {
             ParticlesManager.Instance.PlayHitRadius(transform.position, towerSettings);
         }
