@@ -6,6 +6,7 @@ public class ParticlesManager : Singleton<ParticlesManager>
     [SerializeField] private GameObject projectileDestroy;
     [SerializeField] private SplashParticleInitializer hitRadius;
     [SerializeField] private DeathParticleInitializer enemyDeath;
+    [SerializeField] private GameObject towerDeath;
 
     [SerializeField] private Sprite defaultHitRadiusSprite;
 
@@ -34,7 +35,7 @@ public class ParticlesManager : Singleton<ParticlesManager>
 
     public void PlayTowerDeath(Vector2 pos)
     {
-        
+        Instantiate(towerDeath, pos, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
     }
 
     private Sprite GetHitRadiusSprite(Sprite sprite)

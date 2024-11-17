@@ -1852,6 +1852,7 @@ MonoBehaviour:
   projectileDestroy: {fileID: 1052038735468272356, guid: 857fe8544c992fa41b36966a5ac5ca82, type: 3}
   hitRadius: {fileID: 2592587036088057879, guid: a0f43a6e000d4de428f97c48535ee243, type: 3}
   enemyDeath: {fileID: 8349880261417712910, guid: 991838b820eadf843b7a3bc32ac11fe1, type: 3}
+  towerDeath: {fileID: 1052038735468272356, guid: 1e350f7d187899840acc6579ead38b9e, type: 3}
   defaultHitRadiusSprite: {fileID: 21300000, guid: 8061edafe888c23448d54f773166d8d1, type: 3}
 --- !u!4 &1074885649
 Transform:
