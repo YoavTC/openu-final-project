@@ -132,4 +132,10 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
         SelectionManager.Instance.OnSelectableItemClicked(this);
     }
     #endregion
+
+    public override void TakeDamage(float amount)
+    {
+        if (!isPlaced) return;
+        base.TakeDamage(amount);
+    }
 }
