@@ -11,8 +11,9 @@ public class TowerHealing : TowerBase
     //Todo: Make this tower find other towers that need healing instead of enemies!!
     protected override void FindNextTarget()
     {
-        TowerBase closestEnemy = (TowerBase) towerManager.GetClosestEntity(transform, towerSettings.maxRange);
-        if (closestEnemy != null) currentTarget = closestEnemy.transform;
+        TowerBase closestEnemy = (TowerBase) towerManager.GetClosestHurtEntity(transform, towerSettings.maxRange);
+        //if (closestEnemy != null) currentTarget = closestEnemy.transform;
+        currentTarget = closestEnemy?.transform;
     }
     
     protected override void CooldownAction()

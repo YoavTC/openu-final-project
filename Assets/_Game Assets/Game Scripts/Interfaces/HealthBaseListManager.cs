@@ -42,8 +42,35 @@ public abstract class HealthBaseListManager : MonoBehaviour
         for (int i = 0; i < entityList.Count; i++)
         {
             if (entityList[i].isDead || entityList[i].transform == invokerTransform) continue;
-            Transform entityTransform = entityList[i].transform;
-            float dist = (invokerTransform.position - entityTransform.position).sqrMagnitude;
+            float dist = (invokerTransform.position - entityList[i].transform.position).sqrMagnitude;
+
+            if (dist < closestDistance && dist <= sqrMaxRange)
+            {
+                closestDistance = dist;
+                closestEntity = entityList[i];
+            }
+        }
+
+        isLooping = false;
+        return closestEntity;
+    }
+    
+    // Get the closest entity within the specified range
+    public virtual HealthBase GetClosestHurtEntity(Transform invokerTransform, float maxRange)
+    {
+        if (entityList.Count <= 0) return null;
+
+        HealthBase closestEntity = null;
+        float closestDistance = Mathf.Infinity;
+        float sqrMaxRange = maxRange * maxRange;
+
+        isLooping = true;
+        for (int i = 0; i < entityList.Count; i++)
+        {
+            if (entityList[i].transform == invokerTransform) continue;
+            if (entityList[i].isDead || entityList[i].health == entityList[i].maxHealth) continue;
+            
+            float dist = (invokerTransform.position - entityList[i].transform.position).sqrMagnitude;
 
             if (dist < closestDistance && dist <= sqrMaxRange)
             {
