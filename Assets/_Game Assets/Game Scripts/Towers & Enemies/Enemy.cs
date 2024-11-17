@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
@@ -47,7 +49,8 @@ public class Enemy : EntityBase
 
     protected override void Die()
     {
-        if (!enemySettings.postDeathEffect) PostDeathEffect();
+        ParticlesManager.Instance.PlayEnemyDeath(transform.position, spriteRenderer);
+        if (enemySettings.postDeathModifierEffect) PostDeathModifierEffect();
         OnDeathAction?.Invoke(this);
         StartCoroutine(DeathCoroutine());
     }
@@ -79,18 +82,26 @@ public class Enemy : EntityBase
     //Used from the AnimateOnSpline script to remove an enemy once it reaches the end
     private void RemoveEnemyListener() => StartCoroutine(DeathCoroutine());
     
-    private void PostDeathEffect()
+    private void PostDeathModifierEffect()
     {
-        PostDeathEffect postDeathEffect = enemySettings.postDeathEffect;
-        Transform[] targets;
-        if (postDeathEffect.toFriendly)
+        PostDeathModifierEffect postDeathModifierEffect = enemySettings.postDeathModifierEffect;
+        List<EntityBase> targets = new List<EntityBase>();
+        
+        if (postDeathModifierEffect.toFriendly)
         {
-            Enemy[] towersInRadius = Utility.GetObjectsInRadius<Enemy>(transform.position, postDeathEffect.radius);
+            targets.AddRange(Utility.GetObjectsInRadius<Enemy>(transform.position, postDeathModifierEffect.radius));
         }
         else
         {
-            TowerDefault[] towersInRadius = Utility.GetObjectsInRadius<TowerDefault>(transform.position, postDeathEffect.radius);
+            targets.AddRange(Utility.GetObjectsInRadius<TowerBase>(transform.position, postDeathModifierEffect.radius));
         }
+
+        for (int i = 0; i < targets.Count; i++)
+        {
+            targets[i].StartEffect(postDeathModifierEffect.type, transform);
+        }
+        
+        ParticlesManager.Instance.PlayHitRadius(transform.position, enemySettings);
     }
     
     protected override void ApplyEffect(ModifierEffectType type, float amount)

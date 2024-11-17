@@ -17,3 +17,4 @@ MonoBehaviour:
   damage: 15
   speed: 5
   health: 15
+  postDeathModifierEffect: {fileID: 11400000, guid: 072dcc636046c4249998945b6829c9c1, type: 2}

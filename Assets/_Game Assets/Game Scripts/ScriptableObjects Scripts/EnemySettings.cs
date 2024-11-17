@@ -10,5 +10,5 @@ public class EnemySettings : ScriptableObject
     public float speed;
     public float health;
     
-    [EnableIf("hasPostDeathEffect")] public PostDeathEffect postDeathEffect;
+    public PostDeathModifierEffect postDeathModifierEffect;
 }

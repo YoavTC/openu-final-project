@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [Header("Particles")]
-    [SerializeField] private GameObject impactEffectPrefab;
-    [SerializeField] private GameObject splashEffectPrefab;
-    
     // Initialized references
     [SerializeField] [ReadOnly] private Transform target;
     [SerializeField] [ReadOnly] private Transform projectileOwner;
@@ -96,18 +92,14 @@ public class Projectile : MonoBehaviour
     #region Particles
     private void SpawnImpactParticles()
     {
-        Instantiate(impactEffectPrefab,
-            transform.position,
-            Quaternion.identity,
-            InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
+        ParticlesManager.Instance.PlayProjectileDestroy(transform.position);
     }
 
     private void SpawnSplashParticles()
     {
-        if (towerSettings.areaOfEffect + towerSettings.modifierAreaOfEffect > 0)
+        if ((towerSettings.areaOfEffect + towerSettings.modifierAreaOfEffect > 0) && towerSettings.projectileModifierEffect)
         {
-            GameObject splashEffect = Instantiate(splashEffectPrefab, target.position, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
-            splashEffect.GetComponent<SplashParticleInitializer>().Play(towerSettings.splashRadiusSprite, towerSettings.areaOfEffect + towerSettings.modifierAreaOfEffect);
+            ParticlesManager.Instance.PlayHitRadius(transform.position, towerSettings);
         }
     }
     #endregion

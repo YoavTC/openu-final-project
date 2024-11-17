@@ -1820,6 +1820,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
+--- !u!1 &1074885647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1074885649}
+  - component: {fileID: 1074885648}
+  m_Layer: 0
+  m_Name: Effects Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1074885648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074885647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3fe6e792594828b6f783dd36ca8dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileDestroy: {fileID: 1052038735468272356, guid: 857fe8544c992fa41b36966a5ac5ca82, type: 3}
+  hitRadius: {fileID: 2592587036088057879, guid: a0f43a6e000d4de428f97c48535ee243, type: 3}
+  enemyDeath: {fileID: 8349880261417712910, guid: 991838b820eadf843b7a3bc32ac11fe1, type: 3}
+--- !u!4 &1074885649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074885647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099754950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,7 +1901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 163.70007, y: -31.099792}
+  m_AnchoredPosition: {x: 163.7002, y: -31.099854}
   m_SizeDelta: {x: 259.24, y: 259.24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &1102769194
@@ -6627,6 +6674,7 @@ SceneRoots:
   - {fileID: 1432050071}
   - {fileID: 693042292}
   - {fileID: 162606698}
+  - {fileID: 1074885649}
   - {fileID: 1204402328}
   - {fileID: 1243516213}
   - {fileID: 2064476834}
