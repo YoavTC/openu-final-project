@@ -47,7 +47,7 @@ public class Enemy : EntityBase
 
     protected override void Die()
     {
-        //if (enemySettings.hasPostDeathEffect) PostDeathEffect();
+        if (!enemySettings.postDeathEffect) PostDeathEffect();
         OnDeathAction?.Invoke(this);
         StartCoroutine(DeathCoroutine());
     }
@@ -79,19 +79,19 @@ public class Enemy : EntityBase
     //Used from the AnimateOnSpline script to remove an enemy once it reaches the end
     private void RemoveEnemyListener() => StartCoroutine(DeathCoroutine());
     
-    // private void PostDeathEffect()
-    // {
-    //     PostDeathEffect postDeathEffect = enemySettings.postDeathEffect;
-    //     Transform[] targets;
-    //     if (postDeathEffect.toFriendly)
-    //     {
-    //         Enemy[] towersInRadius = Utility.GetObjectsInRadius<Enemy>(transform.position, postDeathEffect.radius);
-    //     }
-    //     else
-    //     {
-    //         TowerDefault[] towersInRadius = Utility.GetObjectsInRadius<TowerDefault>(transform.position, postDeathEffect.radius);
-    //     }
-    // }
+    private void PostDeathEffect()
+    {
+        PostDeathEffect postDeathEffect = enemySettings.postDeathEffect;
+        Transform[] targets;
+        if (postDeathEffect.toFriendly)
+        {
+            Enemy[] towersInRadius = Utility.GetObjectsInRadius<Enemy>(transform.position, postDeathEffect.radius);
+        }
+        else
+        {
+            TowerDefault[] towersInRadius = Utility.GetObjectsInRadius<TowerDefault>(transform.position, postDeathEffect.radius);
+        }
+    }
     
     protected override void ApplyEffect(ModifierEffectType type, float amount)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [Serializable]
-public abstract class TowerBase : HealthBase, IPointerClickHandler
+public abstract class TowerBase : EntityBase, IPointerClickHandler
 {
     public TowerSettings towerSettings;
     
@@ -12,13 +12,15 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
     [SerializeField] protected SpriteRenderer rangeRenderer;
     [SerializeField] protected Projectile projectilePrefab;
     [SerializeField] protected Transform currentTarget;
-    
+
+    private float attackCooldown;
     private float elapsedTime;
     private bool isPlaced = false;
 
     //Called before tower placed
     private void Start()
     {
+        attackCooldown = towerSettings.attackCooldown;
         SetHealth(towerSettings.health);
         InitializeVisualRange();
     }
@@ -48,7 +50,7 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
         if (!isPlaced) return;
         
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= towerSettings.attackCooldown)
+        if (elapsedTime >= attackCooldown)
         {
             elapsedTime = 0f;
             CooldownAction();
@@ -60,6 +62,7 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
         if (currentTarget != null) Shoot();
     }
 
+    #region Shooting
     protected virtual void FindNextTarget() { }
     
     protected virtual void Shoot()
@@ -67,7 +70,32 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
         Instantiate(projectilePrefab, transform.position, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PROJECTILES))
                     .InitializeProjectile(currentTarget, transform, towerSettings);
     }
-    
+    #endregion
+
+    #region Effect Handling
+    protected override void ApplyEffect(ModifierEffectType type, float amount)
+    {
+        switch (type)
+        {
+            case ModifierEffectType.HEALTH:
+                TakeDamage(amount);
+                break;
+            case ModifierEffectType.SPEED:
+                attackCooldown = amount * towerSettings.attackCooldown;
+                break;
+            default:
+                return;
+        }
+    }
+
+    public override void FinishEffect()
+    {
+        attackCooldown = towerSettings.attackCooldown;
+        base.FinishEffect();
+    }
+    #endregion
+
+    #region Inspecting
     private void InitializeVisualRange()
     {
         float scale = towerSettings.maxRange * 2 / rangeRenderer.sprite.bounds.size.x;
@@ -83,4 +111,5 @@ public abstract class TowerBase : HealthBase, IPointerClickHandler
     {
         SelectionManager.Instance.OnSelectableItemClicked(this);
     }
+    #endregion
 }
