@@ -1853,6 +1853,7 @@ MonoBehaviour:
   hitRadius: {fileID: 2592587036088057879, guid: a0f43a6e000d4de428f97c48535ee243, type: 3}
   enemyDeath: {fileID: 8349880261417712910, guid: 991838b820eadf843b7a3bc32ac11fe1, type: 3}
   towerDeath: {fileID: 1052038735468272356, guid: 1e350f7d187899840acc6579ead38b9e, type: 3}
+  elixirReward: {fileID: 1406834964229114958, guid: 0f5d96df368b65143947ab60363cb18c, type: 3}
   defaultHitRadiusSprite: {fileID: 21300000, guid: 8061edafe888c23448d54f773166d8d1, type: 3}
 --- !u!4 &1074885649
 Transform:
@@ -1925,7 +1926,7 @@ PrefabInstance:
     - target: {fileID: 2215083485967271209, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
       propertyPath: towerSettings
       value: 
-      objectReference: {fileID: 11400000, guid: e2981b142dc6f9243b2291a51e5edb65, type: 2}
+      objectReference: {fileID: 11400000, guid: af74599ab3c9cfe469dde1b0c13cd0fd, type: 2}
     - target: {fileID: 2417940604551860059, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

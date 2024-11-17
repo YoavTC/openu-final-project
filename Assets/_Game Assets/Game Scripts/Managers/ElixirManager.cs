@@ -32,10 +32,10 @@ public class ElixirManager : Singleton<ElixirManager>
     
     //Dynamic Unity event listeners
     public void DecreaseElixir(Enemy enemy) => DecreaseElixir(enemy.enemySettings.damage);
-    public void IncreaseElixir(Enemy enemy) => DecreaseElixir(enemy.enemySettings.reward);
+    public void IncreaseElixir(Enemy enemy) => IncreaseElixir(enemy.enemySettings.reward);
 
     //Regular Unity event listeners
-    private void IncreaseElixir(float amount) => UpdateElixirCount(Mathf.Clamp(currentElixir + amount, 0f, 100f));
+    public void IncreaseElixir(float amount) => UpdateElixirCount(Mathf.Clamp(currentElixir + amount, 0f, 100f));
     private void DecreaseElixir(float amount) => UpdateElixirCount(Mathf.Clamp(currentElixir - amount, 0f, 100f));
     
     private bool CanAffordOperation(int amount) => currentElixir - amount > 0;

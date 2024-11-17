@@ -1,4 +1,6 @@
-﻿using External_Packages;
+﻿using DG.Tweening;
+using External_Packages;
+using TMPro;
 using UnityEngine;
 
 public class ParticlesManager : Singleton<ParticlesManager>
@@ -7,6 +9,7 @@ public class ParticlesManager : Singleton<ParticlesManager>
     [SerializeField] private SplashParticleInitializer hitRadius;
     [SerializeField] private DeathParticleInitializer enemyDeath;
     [SerializeField] private GameObject towerDeath;
+    [SerializeField] private TMP_Text elixirReward;
 
     [SerializeField] private Sprite defaultHitRadiusSprite;
 
@@ -36,6 +39,13 @@ public class ParticlesManager : Singleton<ParticlesManager>
     public void PlayTowerDeath(Vector2 pos)
     {
         Instantiate(towerDeath, pos, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
+    }
+
+    public void PlayElixirReward(Vector2 pos, int amount)
+    {
+        var a = Instantiate(elixirReward, pos, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PARTICLES));
+        a.text = "+" + amount;
+        a.transform.DOMoveY(a.transform.position.y + 5f, 1f).OnComplete(() => Destroy(a.gameObject));
     }
 
     private Sprite GetHitRadiusSprite(Sprite sprite)

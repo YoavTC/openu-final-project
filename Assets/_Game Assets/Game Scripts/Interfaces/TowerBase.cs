@@ -19,7 +19,7 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     private bool isPlaced = false;
 
     //Called before tower placed
-    private void Start()
+    protected virtual void Start()
     {
         attackCooldown = towerSettings.attackCooldown;
         SetHealth(towerSettings.health);
