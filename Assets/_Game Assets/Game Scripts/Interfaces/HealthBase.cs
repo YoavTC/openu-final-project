@@ -49,7 +49,7 @@ public abstract class HealthBase: MonoBehaviour
     
     private void ModifyHealth(float amount)
     {
-        health += amount;
+        health = Mathf.Clamp((health + amount), 0f, maxHealth);
         
         if (amount > 0) OnHealEvent?.Invoke(health);
         else if (amount < 0) OnDamageEvent?.Invoke(health);
