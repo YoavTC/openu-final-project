@@ -23,7 +23,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private InGameInventoryCard[] cards;
     private bool isLooping;
-    private bool invalidCardSelected;
+    // private bool invalidCardSelected;
 
     [Header("Position Validator")] 
     [SerializeField] private Color invalidColour;
@@ -36,7 +36,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private void Start()
     {
         isLooping = false;
-        invalidCardSelected = false;
 
         validationImage = GetComponent<Image>();
         UpdatePlacementValidationUI(validColour);
@@ -59,10 +58,13 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         DebugPainter.DrawArrow(beginDragPoint, currentDragPoint, Color.green);
     }
 
+    [SerializeField] private int currentDraggerID;
+
     #region Card Dragging
     public void OnBeginDrag(PointerEventData eventData)
     {
-        invalidCardSelected = false;
+        if (currentDraggerID == 0) currentDraggerID = eventData.pointerId;
+        if (currentDraggerID != eventData.pointerId) return;
         
         beginDragPoint = eventData.position;
         List<RaycastResult> results = new List<RaycastResult>();
@@ -90,8 +92,10 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             
             draggedTowerDefault.towerSettings = draggedCardTowerSettings;
            
-        } else {
-            invalidCardSelected = true;
+        } else
+        {
+            currentDraggerID = 0;
+            // invalidCardSelected = true;
         }
         
         UpdatePlacementValidationUI(eventData.position);
@@ -99,7 +103,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (invalidCardSelected) return;
+        if (currentDraggerID != eventData.pointerId) return;
         
         currentDragPoint = eventData.position;
         if (draggedCard != null)
@@ -113,7 +117,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (invalidCardSelected) return;
+        if (currentDraggerID != eventData.pointerId) return;
         
         bool isValidPosition = IsValidPlacementPosition(eventData.position);
         
@@ -134,6 +138,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (draggedCard != null) Destroy(draggedCard);
         
         UpdatePlacementValidationUI(Color.clear);
+        currentDraggerID = 0;
     }
     #endregion
 
