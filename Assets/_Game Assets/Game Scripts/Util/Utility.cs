@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public static class Utility
+public class Utility : MonoBehaviour
 {
+    private void Awake()
+    {
+        // Assign the serialized field to the static variable
+        projectilePrefab = _projectilePrefab;
+    }
+    
     public static T[] GetObjectsInRadius<T>(Vector2 center, float radius) where T : MonoBehaviour
     {
         List<T> objects = new List<T>();
@@ -18,5 +25,14 @@ public static class Utility
         }
 
         return objects.ToArray();
+    }
+
+    
+    [SerializeField] private Projectile _projectilePrefab;
+    private static Projectile projectilePrefab { get; set; }
+
+    public static Projectile GetProjectilePrefab()
+    {
+        return projectilePrefab;
     }
 }

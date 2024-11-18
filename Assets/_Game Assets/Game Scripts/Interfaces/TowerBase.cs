@@ -17,35 +17,28 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     private float attackCooldown;
     private float elapsedTime;
     private bool isPlaced = false;
-
-    //Called before tower placed
-    protected virtual void Start()
-    {
-        
-    }
-
-    public virtual void OnTowerPlaced()
-    {
-        TowerManager.Instance.AddEntity(this);
-        isPlaced = true;
-        
-        transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
-        ToggleVisualRange(false);
-    }
     
-    //Called after tower placed
     public virtual void InitializeComponents(TowerSettings towerSettings)
     {
         this.towerSettings = towerSettings;
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         rangeRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
-        projectilePrefab = projectilePrefab;
+        projectilePrefab = Utility.GetProjectilePrefab();
 
         spriteRenderer.sprite = towerSettings.sprite;
-        
         attackCooldown = towerSettings.attackCooldown;
+        
         SetHealth(towerSettings.health);
         InitializeVisualRange();
+    }
+    
+    public virtual void OnTowerPlaced()
+    {
+        isPlaced = true;
+        TowerManager.Instance.AddEntity(this);
+        
+        transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
+        ToggleVisualRange(false);
     }
     
     protected virtual void Update()
@@ -60,9 +53,11 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
         }
     }
     
-    protected virtual void CooldownAction()
+    #region Health
+    public override void TakeDamage(float amount)
     {
-        if (currentTarget != null) Shoot();
+        if (!isPlaced) return;
+        base.TakeDamage(amount);
     }
     
     protected override void Die()
@@ -77,15 +72,20 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
         bool callback = false;
         TowerManager.Instance.RemoveEntity(this, () => callback = true);
         yield return new WaitUntil(() => callback);
-
-        // yield return new WaitForSeconds(.5f);
+        
         transform.DOKill();
         transform.DOComplete();
         Destroy(gameObject);
     }
+    #endregion
 
     #region Shooting
-    protected virtual void FindNextTarget() { }
+    protected virtual void FindNextTarget() {}
+    
+    protected virtual void CooldownAction()
+    {
+        if (currentTarget != null) Shoot();
+    }
     
     protected virtual void Shoot()
     {
@@ -137,10 +137,4 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
         SelectionManager.Instance.OnSelectableItemClicked(this);
     }
     #endregion
-
-    public override void TakeDamage(float amount)
-    {
-        if (!isPlaced) return;
-        base.TakeDamage(amount);
-    }
 }

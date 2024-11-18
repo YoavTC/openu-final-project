@@ -1,11 +1,11 @@
 public class TowerIdle : TowerBase
 {
     private int damage;
-
-    protected override void Start()
+    
+    public override void InitializeComponents(TowerSettings towerSettings)
     {
-        base.Start();
         damage = (int) towerSettings.damage;
+        base.InitializeComponents(towerSettings);
     }
 
     protected override void CooldownAction()

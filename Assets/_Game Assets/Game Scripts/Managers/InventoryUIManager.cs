@@ -86,7 +86,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         } 
         else
         {
-            InstantiateDraggedTower(card.GetComponent<TowerSettings>(), eventData.position);
+            InstantiateDraggedTower(card.GetComponent<InGameInventoryCard>().towerSettings, eventData.position);
         }
     }
 
@@ -118,7 +118,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (currentDraggerID != eventData.pointerId) return;
         if (CanPlaceTower(eventData.position, draggedTower.towerSettings.cost))
         {
-            
             TowerBase newTower = Instantiate(towerPrefab, 
                 ScreenToWorldPoint(eventData.position),
                 quaternion.identity,
