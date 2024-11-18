@@ -124,7 +124,10 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     
     public void ToggleVisualRange(bool state)
     {
-        rangeRenderer.enabled = state;
+        if (rangeRenderer != null)
+        { 
+            rangeRenderer.enabled = state;
+        }
     }
     
     public void OnPointerClick(PointerEventData eventData)

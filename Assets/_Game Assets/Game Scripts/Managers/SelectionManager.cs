@@ -110,7 +110,8 @@ public class SelectionManager : Singleton<SelectionManager>
 
     private void UpdatePanelVisibility(bool visible)
     {
-        rectTransform.DOKill(true);
-        rectTransform.DOAnchorPosX(visible ? inOutPanelPositions.x : inOutPanelPositions.y, slideDuration);
+        rectTransform.anchoredPosition = new Vector2(visible ? inOutPanelPositions.x : inOutPanelPositions.y, rectTransform.anchoredPosition.y);
+        // rectTransform.DOKill(true);
+        // rectTransform.DOAnchorPosX(visible ? inOutPanelPositions.x : inOutPanelPositions.y, slideDuration);
     }
 }
