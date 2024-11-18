@@ -12,19 +12,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     [SerializeField] private RectTransform cardsContainer;
     [SerializeField] private GameObject draggedCardPrefab;
     [SerializeField] private GameObject towerPrefab;
-    // private GameObject draggedCard;
-
-    // private TowerSettings draggedCardTowerSettings;
-    private TowerBase draggedTower;
     
-    private Camera mainCamera;
-    private Vector3 beginDragPoint;
-    private Vector3 currentDragPoint;
-
-    private InGameInventoryCard[] cards;
-    private bool isLooping;
-    private int currentDraggerID;
-
     [Header("Position Validator")] 
     [SerializeField] private Color invalidColour;
     [SerializeField] private Color validColour;
@@ -33,16 +21,24 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     private Color lastColour;
     private RectTransform rectTransform;
     
+    private TowerBase draggedTower;
+    private int currentDraggerID;
+    
+    private Vector3 beginDragPoint;
+    private Vector3 currentDragPoint;
+    
+    private Camera mainCamera;
+    private InGameInventoryCard[] cards;
+    
     private void Start()
     {
-        isLooping = false;
+        InitializeComponents();
+        RetrieveCardsFromInventory();
+    }
 
-        validationImage = GetComponent<Image>();
-        UpdatePlacementValidationUI(validColour);
-
-        rectTransform = GetComponent<RectTransform>();
-        
-        mainCamera = Camera.main;
+    #region Initialization
+    private void RetrieveCardsFromInventory()
+    {
         cards = new InGameInventoryCard[cardsContainer.childCount];
         for (int i = 0; i < cardsContainer.childCount; i++)
         {
@@ -52,6 +48,18 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             }
         }
     }
+
+    private void InitializeComponents()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        mainCamera = Camera.main;
+
+        isLooping = false;
+
+        validationImage = GetComponent<Image>();
+        UpdatePlacementValidationUI(validColour);
+    }
+    #endregion
     
     private void Update()
     {
@@ -75,20 +83,23 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (card == null)
         {
             currentDraggerID = 0;
-            return;
+        } 
+        else
+        {
+            InstantiateDraggedTower(card.GetComponent<TowerSettings>(), eventData.position);
         }
-        
+    }
+
+    private void InstantiateDraggedTower(TowerSettings towerSettings, Vector2 pos)
+    {
         draggedTower = Instantiate(towerPrefab,
-                ScreenToWorldPoint(eventData.position),
+                ScreenToWorldPoint(pos),
                 quaternion.identity,
                 InSceneParentProvider.GetParent(SceneParentProviderType.TOWERS))
             .GetComponent<TowerBase>();
             
         
-        //draggedTower.towerSettings = card.GetComponent<InGameInventoryCard>().towerSettings;
-        draggedTower.InitializeComponents(card.GetComponent<InGameInventoryCard>().towerSettings);
-        
-        // UpdatePlacementValidationUI(eventData.position);
+        draggedTower.InitializeComponents(towerSettings);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -100,31 +111,38 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             draggedTower.transform.position = ScreenToWorldPoint(currentDragPoint);
         }
-        
-        // UpdatePlacementValidationUI(eventData.position);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (currentDraggerID != eventData.pointerId) return;
-        
-        if (IsValidPlacementPosition(eventData.position) && ElixirManager.Instance.TryAffordOperation(draggedTower.towerSettings.cost))
+        if (CanPlaceTower(eventData.position, draggedTower.towerSettings.cost))
         {
-            Vector2 placementPosition = ScreenToWorldPoint(eventData.position);
-            TowerBase newTower = Instantiate(towerPrefab,
-                placementPosition,
+            
+            TowerBase newTower = Instantiate(towerPrefab, 
+                ScreenToWorldPoint(eventData.position),
                 quaternion.identity,
                 InSceneParentProvider.GetParent(SceneParentProviderType.TOWERS))
-                .GetComponent<TowerBase>();
+            .GetComponent<TowerBase>();
             
             newTower.InitializeComponents(draggedTower.towerSettings);
             newTower.OnTowerPlaced();
         }
         
+        ClearDragCache();
+    }
+
+    private void ClearDragCache()
+    {
         Destroy(draggedTower.gameObject);
         
         UpdatePlacementValidationUI(Color.clear);
         currentDraggerID = 0;
+    }
+
+    private bool CanPlaceTower(Vector2 pos, int cost)
+    {
+        return IsValidPlacementPosition(pos) && ElixirManager.Instance.TryAffordOperation(cost);
     }
     #endregion
 
@@ -149,6 +167,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     #endregion
 
     #region Elixir Affordability
+    private bool isLooping;
+    
     //Dynamic Unity event listener
     public void OnElixirCountChangeEventListener(float newCount)
     {
