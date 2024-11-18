@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,9 +18,11 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     [SerializeField] private Color invalidColour;
     [SerializeField] private Color validColour;
     [SerializeField] private float colourTransitionDuration;
-    private Image validationImage;
     private Color lastColour;
     private RectTransform rectTransform;
+
+    [SerializeField] [Layer] int towersLayerMask; 
+    [SerializeField] private float placementValidationRadius;
     
     private TowerBase draggedTower;
     private int currentDraggerID;
@@ -55,8 +58,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         mainCamera = Camera.main;
 
         isLooping = false;
-
-        validationImage = GetComponent<Image>();
+        
         UpdatePlacementValidationUI(validColour);
     }
     #endregion
@@ -156,8 +158,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (lastColour == colour) return;
         
         lastColour = colour;
-        validationImage.color = colour;
-
         if (draggedTower)
         {
             draggedTower.transform.GetChild(2).GetComponent<SpriteRenderer>().color = colour;
@@ -205,6 +205,14 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             null, 
             out localPoint
         );
+
+        // var a = Physics2D.OverlapCircleAll(ScreenToWorldPoint(pos), placementValidationRadius, LayerMask.GetMask("Towers"));
+        var a = Physics2D.OverlapCircle(ScreenToWorldPoint(pos), placementValidationRadius, LayerMask.GetMask("Towers"));
+        // foreach (var VARIABLE in a)
+        // {
+        //     Debug.Log(VARIABLE);
+        // }
+        if (a) return false;
         
         return !rectTransform.rect.Contains(localPoint);
     }

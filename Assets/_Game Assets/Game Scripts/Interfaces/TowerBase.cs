@@ -34,6 +34,7 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     
     public virtual void OnTowerPlaced()
     {
+        GetComponent<Collider2D>().enabled = true;
         isPlaced = true;
         TowerManager.Instance.AddEntity(this);
         
