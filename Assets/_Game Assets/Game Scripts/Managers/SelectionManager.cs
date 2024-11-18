@@ -22,6 +22,14 @@ public class SelectionManager : Singleton<SelectionManager>
         RemoveSelectedInformation();
         SetSelectedInformation(lastTowerClicked.towerSettings);
     }
+
+    public void OnCardItemClicked(TowerSettings towerSettings)
+    {
+        UpdatePanelVisibility(true);
+        
+        RemoveSelectedInformation();
+        SetSelectedInformation(towerSettings);
+    }
     
     private void Update()
     {

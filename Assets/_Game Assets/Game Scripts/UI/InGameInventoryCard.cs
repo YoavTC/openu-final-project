@@ -1,9 +1,10 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //For MVP playtesting, delete later
-public class InGameInventoryCard : MonoBehaviour
+public class InGameInventoryCard : MonoBehaviour, IPointerClickHandler
 {
     public TowerSettings towerSettings;
     public Slider affordabilitySlider;
@@ -22,5 +23,11 @@ public class InGameInventoryCard : MonoBehaviour
         
         damageDisplay.text = dps.ToString("0.##");
         costDisplay.text = towerSettings.cost.ToString();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Click");
+        SelectionManager.Instance.OnCardItemClicked(towerSettings);
     }
 }

@@ -1770,6 +1770,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6857073309270097094, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233002446802329454, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
       propertyPath: m_Name
       value: In Game Card Prefab (1)
