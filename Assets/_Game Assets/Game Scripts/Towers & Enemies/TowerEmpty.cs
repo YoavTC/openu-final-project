@@ -1,11 +1,17 @@
 ﻿public class TowerEmpty : TowerBase
 {
-    public override void TowerPlaced(TowerSettings towerSettings)
+    private TowerSettings savedTowerSettings;
+    
+    public override void InitializeComponents(TowerSettings towerSettings)
     {
-        base.TowerPlaced(towerSettings);
-        
+        savedTowerSettings = towerSettings;
+        base.InitializeComponents(towerSettings);
+    }
+
+    public override void OnTowerPlaced()
+    {
         TowerBase newTowerComponent = null;
-        switch (towerSettings.baseBehaviourType)
+        switch (savedTowerSettings.baseBehaviourType)
         {
             case TowerBaseBehaviourType.DEFAULT:
                 newTowerComponent = gameObject.AddComponent<TowerDefault>();
@@ -21,11 +27,8 @@
                 break;
         }
         
-        newTowerComponent.TowerPlaced(towerSettings);
-        newTowerComponent.InitializeComponents(
-            spriteRenderer,
-            rangeRenderer,
-            projectilePrefab);
+        newTowerComponent.InitializeComponents(savedTowerSettings);
+        newTowerComponent.OnTowerPlaced();
         
         Destroy(this);
     }

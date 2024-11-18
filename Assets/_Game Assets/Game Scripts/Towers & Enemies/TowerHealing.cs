@@ -1,18 +1,18 @@
+using UnityEngine;
+
 public class TowerHealing : TowerBase
 {
     private HealthBaseListManager towerManager;
-
-    public override void TowerPlaced(TowerSettings towerSettings)
+    
+    public override void InitializeComponents(TowerSettings towerSettings)
     {
-        towerManager = TowerManager.Instance;;
-        base.TowerPlaced(towerSettings);
+        towerManager = TowerManager.Instance;
+        base.InitializeComponents(towerSettings);
     }
-
-    //Todo: Make this tower find other towers that need healing instead of enemies!!
+    
     protected override void FindNextTarget()
     {
         TowerBase closestEnemy = (TowerBase) towerManager.GetClosestHurtEntity(transform, towerSettings.maxRange);
-        //if (closestEnemy != null) currentTarget = closestEnemy.transform;
         currentTarget = closestEnemy?.transform;
     }
     

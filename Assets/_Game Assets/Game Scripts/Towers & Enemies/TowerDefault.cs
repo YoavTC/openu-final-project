@@ -1,11 +1,19 @@
+using UnityEngine;
+
 public class TowerDefault : TowerBase
 {
     private HealthBaseListManager enemyManager;
 
-    public override void TowerPlaced(TowerSettings towerSettings)
+    // public override void TowerPlaced(TowerSettings towerSettings)
+    // {
+    //     enemyManager = EnemyManager.Instance;
+    //     base.TowerPlaced(towerSettings);
+    // }
+
+    public override void InitializeComponents(TowerSettings towerSettings)
     {
         enemyManager = EnemyManager.Instance;
-        base.TowerPlaced(towerSettings);
+        base.InitializeComponents(towerSettings);
     }
 
     protected override void FindNextTarget()

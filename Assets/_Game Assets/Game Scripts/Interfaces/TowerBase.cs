@@ -21,29 +21,31 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     //Called before tower placed
     protected virtual void Start()
     {
-        attackCooldown = towerSettings.attackCooldown;
-        SetHealth(towerSettings.health);
-        InitializeVisualRange();
+        
     }
-    
-    public virtual void TowerPlaced(TowerSettings towerSettings)
-    {
-        this.towerSettings = towerSettings;
-    }
-    
-    //Called after tower placed
-    public void InitializeComponents(SpriteRenderer spriteRenderer, SpriteRenderer rangeRenderer, Projectile projectilePrefab)
-    {
-        this.spriteRenderer = spriteRenderer;
-        this.rangeRenderer = rangeRenderer;
-        this.projectilePrefab = projectilePrefab;
 
+    public virtual void OnTowerPlaced()
+    {
         TowerManager.Instance.AddEntity(this);
         isPlaced = true;
         
-        spriteRenderer.sprite = towerSettings.sprite;
         transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
         ToggleVisualRange(false);
+    }
+    
+    //Called after tower placed
+    public virtual void InitializeComponents(TowerSettings towerSettings)
+    {
+        this.towerSettings = towerSettings;
+        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        rangeRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        projectilePrefab = projectilePrefab;
+
+        spriteRenderer.sprite = towerSettings.sprite;
+        
+        attackCooldown = towerSettings.attackCooldown;
+        SetHealth(towerSettings.health);
+        InitializeVisualRange();
     }
     
     protected virtual void Update()
