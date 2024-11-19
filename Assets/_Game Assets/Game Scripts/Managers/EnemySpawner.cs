@@ -34,9 +34,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] [ReadOnly] private float nextSpawnDelay;
     
     [Header("Difficulty Settings")]
-    [SerializeField] [ReadOnly] private float towerPlacedDifficultyMultiplier;
-    [SerializeField] private int towersPlaced;
+    [SerializeField] private float towerPlacedDifficultyMultiplier;
     [SerializeField] private AnimationCurve towerPlacedDifficultyCurve;
+    [SerializeField] [ReadOnly] private int towersPlaced;
     
     [Header("Enemy Queue")]
     [SerializeField] private int enemyQueueLength;
@@ -168,12 +168,18 @@ public class EnemySpawner : MonoBehaviour
         currentSpawnWaveProgress += 1f / enemyQueue.Length;
         //return currentSpawnWave.Evaluate(currentSpawnWaveProgress);
         float newSpawnDelay = Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
-        newSpawnDelay -= towerPlacedDifficultyCurve.Evaluate(towersPlaced) * towerPlacedDifficultyMultiplier;
+        newSpawnDelay -= towerPlacedDifficultyCurve.Evaluate(towersPlaced * towerPlacedDifficultyMultiplier);
+        Debug.Log($"Spawn Delay: {newSpawnDelay}");
         return newSpawnDelay;
+    }
+    
+    public void OnTowerPlacedUnityEventListener()
+    {
+        towersPlaced++;
     }
     #endregion
     
-    #region Events
+    #region Event Handling
     private void EnemyReachEndListener(Enemy enemy) => OnEnemyReachEndEvent?.Invoke(enemy);
     private void EnemyDeathListener(Enemy enemy) => OnEnemyDeathEvent?.Invoke(enemy);
     #endregion
