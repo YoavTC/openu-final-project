@@ -2395,7 +2395,7 @@ MonoBehaviour:
   validColour: {r: 0, g: 0, b: 0, a: 0}
   colourTransitionDuration: 0.2
   towersLayerMask: 7
-  placementValidationRadius: 4
+  placementValidationRadius: 3
 --- !u!1 &1204402326
 GameObject:
   m_ObjectHideFlags: 0
