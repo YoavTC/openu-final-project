@@ -207,7 +207,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         );
 
         // var a = Physics2D.OverlapCircleAll(ScreenToWorldPoint(pos), placementValidationRadius, LayerMask.GetMask("Towers"));
-        var a = Physics2D.OverlapCircle(ScreenToWorldPoint(pos), placementValidationRadius, LayerMask.GetMask("Towers"));
+        var a = Physics2D.OverlapCircle(ScreenToWorldPoint(pos), placementValidationRadius, LayerMask.GetMask("Towers", "Spline"));
         // foreach (var VARIABLE in a)
         // {
         //     Debug.Log(VARIABLE);
