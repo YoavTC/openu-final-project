@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TowerManager : HealthBaseListManager
 {
+    #region Singleton
     private static TowerManager _instance;
 
     public static TowerManager Instance
@@ -33,4 +34,5 @@ public class TowerManager : HealthBaseListManager
         
         _instance = this;
     }
+    #endregion
 }

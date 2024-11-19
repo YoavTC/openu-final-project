@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
-using External_Packages;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -33,6 +32,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] [ReadOnly] private AnimationCurve currentSpawnWave;
     [SerializeField] [ReadOnly] private float currentSpawnWaveProgress;
     [SerializeField] [ReadOnly] private float nextSpawnDelay;
+    
+    [Header("Difficulty Settings")]
+    [SerializeField] [ReadOnly] private float towerPlacedDifficultyMultiplier;
+    [SerializeField] private int towersPlaced;
+    [SerializeField] private AnimationCurve towerPlacedDifficultyCurve;
     
     [Header("Enemy Queue")]
     [SerializeField] private int enemyQueueLength;
@@ -163,7 +167,9 @@ public class EnemySpawner : MonoBehaviour
     {
         currentSpawnWaveProgress += 1f / enemyQueue.Length;
         //return currentSpawnWave.Evaluate(currentSpawnWaveProgress);
-        return Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
+        float newSpawnDelay = Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
+        newSpawnDelay -= towerPlacedDifficultyCurve.Evaluate(towersPlaced) * towerPlacedDifficultyMultiplier;
+        return newSpawnDelay;
     }
     #endregion
     

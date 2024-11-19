@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyManager : HealthBaseListManager
 {
+    #region Singleton
     private static EnemyManager _instance;
 
     public static EnemyManager Instance
@@ -33,4 +34,5 @@ public class EnemyManager : HealthBaseListManager
         
         _instance = this;
     }
+    #endregion
 }

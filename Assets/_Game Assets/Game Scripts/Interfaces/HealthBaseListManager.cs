@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class HealthBaseListManager : MonoBehaviour
 {
@@ -18,10 +20,16 @@ public abstract class HealthBaseListManager : MonoBehaviour
     private IEnumerator ModifyEntityList(HealthBase entity, bool add, Action callback = null)
     {
         yield return new WaitUntil(() => !isLooping);
-        if (add) 
+        if (add)
+        {
             entityList.Add(entity);
-        else 
+            EntityAddedUnityEvent?.Invoke(entity);
+        }
+        else
+        {
             entityList.Remove(entity);
+            EntityRemovedUnityEvent?.Invoke(entity);
+        }
 
         callback?.Invoke();
     }
@@ -82,4 +90,8 @@ public abstract class HealthBaseListManager : MonoBehaviour
         isLooping = false;
         return closestEntity;
     }
+
+    
+    [Foldout("Events")] public UnityEvent<HealthBase> EntityAddedUnityEvent;
+    [Foldout("Events")] public UnityEvent<HealthBase> EntityRemovedUnityEvent;
 }
