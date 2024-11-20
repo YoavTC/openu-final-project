@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] [ReadOnly] private AnimationCurve currentSpawnWave;
     [SerializeField] [ReadOnly] private float currentSpawnWaveProgress;
     [SerializeField] [ReadOnly] private float nextSpawnDelay;
+    [SerializeField] private int spawnsPerSpawn;
     
     [Header("Difficulty Settings")]
     [SerializeField] private float towerPlacedDifficultyMultiplier;
@@ -43,6 +44,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] [ReadOnly] private int[] enemyQueue;
     [SerializeField] [ReadOnly] private int enemyQueueIndex;
     private int originalRemainingEnemies;
+
+    private bool spawnerActive = true;
     
     private void Start()
     {
@@ -52,19 +55,24 @@ public class EnemySpawner : MonoBehaviour
     
     private void Update()
     {
+        if (!spawnerActive) return;
         elapsedTime += Time.deltaTime;
         
         if (elapsedTime >= nextSpawnDelay && enemyQueue.Length > enemyQueueIndex)
         {
             nextSpawnDelay = GetNextSpawnDelay();
             elapsedTime = 0f;
-            SpawnEnemy();
+            for (int i = 0; i < spawnsPerSpawn; i++)
+            {
+                SpawnEnemy();
+            }
         }
 
         if (enemyQueueIndex >= enemyQueue.Length)
         {
             OnSpawnerStopEvent?.Invoke();
-            Destroy(this);
+            spawnerActive = false;
+            // Destroy(this);
         }
     }
     
@@ -99,6 +107,7 @@ public class EnemySpawner : MonoBehaviour
     
     private AnimationCurve GetReversedAnimationCurve(AnimationCurve curve)
     {
+        return curve;
         Keyframe[] keys = curve.keys;
         
         for (int i = 0; i < keys.Length; i++)
@@ -167,10 +176,10 @@ public class EnemySpawner : MonoBehaviour
     {
         currentSpawnWaveProgress += 1f / enemyQueue.Length;
         //return currentSpawnWave.Evaluate(currentSpawnWaveProgress);
-        float newSpawnDelay = Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
-        newSpawnDelay -= towerPlacedDifficultyCurve.Evaluate(towersPlaced * towerPlacedDifficultyMultiplier);
-        Debug.Log($"Spawn Delay: {newSpawnDelay}");
-        return newSpawnDelay;
+        float newSpawnDelay = currentSpawnWave.Evaluate(currentSpawnWaveProgress);//Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
+        //newSpawnDelay -= towerPlacedDifficultyCurve.Evaluate(towersPlaced * towerPlacedDifficultyMultiplier);
+        Debug.Log($"%{currentSpawnWaveProgress * 100} - {nextSpawnDelay}");
+        return newSpawnDelay / towerPlacedDifficultyCurve.Evaluate(towersPlaced);
     }
     
     public void OnTowerPlacedUnityEventListener()

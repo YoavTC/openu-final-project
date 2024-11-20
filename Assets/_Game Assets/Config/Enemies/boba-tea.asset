@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: c6786dd9a030af04493fcc541df2eaec, type: 3}
   reward: 0
-  damage: 10
+  damage: 100
   speed: 9
   health: 5
+  postDeathModifierEffect: {fileID: 0}

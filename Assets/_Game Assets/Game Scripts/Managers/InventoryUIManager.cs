@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using NaughtyAttributes;
 using Unity.Mathematics;
 using UnityEngine;
@@ -23,6 +24,10 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     [SerializeField] [Layer] int towersLayerMask; 
     [SerializeField] private float placementValidationRadius;
+
+    [Header("In Transition Settings")] 
+    [SerializeField] private Vector2 inOutPositions;
+    [SerializeField] private float transitionDuration;
     
     private TowerBase draggedTower;
     private int currentDraggerID;
@@ -37,9 +42,20 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         InitializeComponents();
         RetrieveCardsFromInventory();
+        TransitionOut();
     }
 
     #region Initialization
+    private void InitializeComponents()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        mainCamera = Camera.main;
+
+        isLooping = false;
+        
+        UpdatePlacementValidationUI(validColour);
+    }
+    
     private void RetrieveCardsFromInventory()
     {
         cards = new InGameInventoryCard[cardsContainer.childCount];
@@ -50,16 +66,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
                 cards[i] = card;
             }
         }
-    }
-
-    private void InitializeComponents()
-    {
-        rectTransform = GetComponent<RectTransform>();
-        mainCamera = Camera.main;
-
-        isLooping = false;
-        
-        UpdatePlacementValidationUI(validColour);
     }
     #endregion
     
@@ -227,5 +233,19 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         return (float) currentElixir / towerSettings.cost;
     }
+    #endregion
+
+    #region Transition
+
+    public void TransitionIn()
+    {
+        rectTransform.DOAnchorPosY(inOutPositions.x, transitionDuration).SetUpdate(true);
+    }
+
+    private void TransitionOut()
+    {
+        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, inOutPositions.y);
+    }
+
     #endregion
 }

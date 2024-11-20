@@ -18,13 +18,13 @@ MonoBehaviour:
   targetedLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  damage: 7
+  damage: 6.5
   attackCooldown: 1
   maxRange: 15
-  dps: 7
+  dps: 6.5
   health: 20
   areaOfEffect: 0
-  cost: 30
+  cost: 10
   sprite: {fileID: 21300000, guid: a486bcea2469b2f4eafd29926b2537d9, type: 3}
   projectileCurve:
     serializedVersion: 2

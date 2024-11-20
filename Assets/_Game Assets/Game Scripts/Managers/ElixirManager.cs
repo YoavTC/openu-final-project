@@ -16,6 +16,7 @@ public class ElixirManager : Singleton<ElixirManager>
 
     [Header("Settings")]
     [SerializeField] private float defaultIncreaseAmount;
+    [SerializeField] private bool isActive = true;
 
     [Header("Events")] 
     public UnityEvent<float> ElixirCountChangeEvent;
@@ -27,7 +28,7 @@ public class ElixirManager : Singleton<ElixirManager>
     
     private void Update()
     {
-        IncreaseElixir(defaultIncreaseAmount * Time.deltaTime);
+        if (isActive) IncreaseElixir(defaultIncreaseAmount * Time.deltaTime);
     }
     
     //Dynamic Unity event listeners
@@ -60,13 +61,21 @@ public class ElixirManager : Singleton<ElixirManager>
         
         if (newCount == 0)
         {
-            SceneManager.LoadScene(0);
+            // SceneManager.LoadScene(0);
+            ded?.Invoke();
         }
     }
+
+    public UnityEvent ded;
     
     private void UpdateElixirBarUI()
     {
         elixirBarSlider.value = currentElixir;
         elixirBarAmountDisplay.text = currentElixir.ToString("F0");
+    }
+
+    public void SetActiveState(bool state)
+    {
+        isActive = state;
     }
 }

@@ -83,7 +83,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  projectileMaxHeight: 0.5
+  projectileMaxHeight: 0.3
   projectileMaxMoveSpeed: 25
   projectileModifierEffect: {fileID: 0}
   modifierAreaOfEffect: 0

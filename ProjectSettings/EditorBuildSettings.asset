@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Main Scene.unity
+    path: Assets/_Scenes/Level Selection Scene.unity
+    guid: cdd3b611386cca347a7ec6d76f3dab83
+  - enabled: 1
+    path: Assets/_Scenes/PTS3/LVL_0.unity
     guid: da6bf264a16325946abab6f9d4e7622d
+  - enabled: 1
+    path: Assets/_Scenes/PTS3/LVL_1.unity
+    guid: cf3957aa160c1be45a272fc79c29f60c
+  - enabled: 1
+    path: Assets/_Scenes/PTS3/LVL_2.unity
+    guid: aba27969a18fc2e4a831725931a0f23d
+  - enabled: 1
+    path: Assets/_Scenes/PTS3/LVL_3.unity
+    guid: 4e08aa7abc1331b49b7a5659e6ea01d5
+  - enabled: 1
+    path: Assets/_Scenes/PTS3/LVL_4.unity
+    guid: 3c473449124d740428145787b98cb03b
   m_configObjects: {}

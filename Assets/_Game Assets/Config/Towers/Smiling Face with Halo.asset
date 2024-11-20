@@ -24,7 +24,7 @@ MonoBehaviour:
   dps: -6.6666665
   health: 1
   areaOfEffect: 15
-  cost: 1
+  cost: 7
   sprite: {fileID: 21300000, guid: dead5e82454c0b8489c0261d7ee10d51, type: 3}
   projectileCurve:
     serializedVersion: 2
