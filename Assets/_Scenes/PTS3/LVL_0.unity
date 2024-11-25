@@ -2006,7 +2006,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsContainer: {fileID: 820437024}
-  draggedCardPrefab: {fileID: 942815268228053748, guid: 557a1d3a709820847a80851be80b3860, type: 3}
   towerPrefab: {fileID: 6370213566684474273, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
   invalidColour: {r: 1, g: 0, b: 0, a: 0.9019608}
   validColour: {r: 0, g: 0, b: 0, a: 0}
@@ -5719,6 +5718,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2032453059}
+        m_TargetAssemblyTypeName: TutorialPopup, Assembly-CSharp
+        m_MethodName: Stop
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1729228306}
         m_TargetAssemblyTypeName: TutorialPopup, Assembly-CSharp
         m_MethodName: Stop
         m_Mode: 4
