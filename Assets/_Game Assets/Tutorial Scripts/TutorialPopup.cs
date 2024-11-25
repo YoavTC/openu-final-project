@@ -62,7 +62,7 @@ public class TutorialPopup : MonoBehaviour
 
     public void Stop(float stopDelay = 0)
     {
-        StartCoroutine(StopCoroutine(stopDelay));
+        if (hasPlayed) StartCoroutine(StopCoroutine(stopDelay));
     }
 
     private IEnumerator StopCoroutine(float stopDelay)
