@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -7,7 +8,20 @@ public abstract class HealthBase: MonoBehaviour
 {
     public float maxHealth { get; protected set; }
     public float health { get; protected set; }
-    public bool isDead { get; protected set; }
+
+    public bool isDead
+    {
+        get => _isDead;
+        protected set
+        {
+             ensureDeathCoroutine = StartCoroutine(EnsureDeathCoroutine());
+            _isDead = value;
+        }
+    }
+
+    private bool _isDead;
+
+    private Coroutine ensureDeathCoroutine;
 
     public UnityEvent<float> OnHealEvent;
     public UnityEvent<float> OnDamageEvent;
@@ -63,5 +77,14 @@ public abstract class HealthBase: MonoBehaviour
         }
     }
 
-    protected virtual void Die() { }
+    private IEnumerator EnsureDeathCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Die();
+    }
+
+    protected virtual void Die()
+    {
+        StopCoroutine(ensureDeathCoroutine);
+    }
 }
