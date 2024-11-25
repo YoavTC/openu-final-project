@@ -1526,7 +1526,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1618321109}
         m_TargetAssemblyTypeName: GameOverDetector, Assembly-CSharp
-        m_MethodName: LoseAlready
+        m_MethodName: OnDieUnityEventListener
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7671,7 +7671,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1618321109}
         m_TargetAssemblyTypeName: GameOverDetector, Assembly-CSharp
-        m_MethodName: OnEnemyKilled
+        m_MethodName: OnEnemyKilledUnityEventListener
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7722,7 +7722,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1618321109}
         m_TargetAssemblyTypeName: GameOverDetector, Assembly-CSharp
-        m_MethodName: OnSpawnerStopped
+        m_MethodName: OnSpawnerStoppedUnityEventListener
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
