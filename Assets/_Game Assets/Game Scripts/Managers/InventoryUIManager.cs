@@ -12,7 +12,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     [Header("Card Dragging Components")] 
     [SerializeField] private RectTransform cardsContainer;
-    [SerializeField] private GameObject draggedCardPrefab;
     [SerializeField] private GameObject towerPrefab;
     
     [Header("Position Validator")] 
@@ -83,6 +82,8 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         
         beginDragPoint = eventData.position;
         
+        TransitionOut();
+        
         // Raycast to find selected card
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
@@ -124,6 +125,9 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         if (currentDraggerID != eventData.pointerId) return;
+        
+        TransitionIn();
+        
         if (CanPlaceTower(eventData.position, draggedTower.towerSettings.cost))
         {
             TowerBase newTower = Instantiate(towerPrefab, 

@@ -2046,7 +2046,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsContainer: {fileID: 820437024}
-  draggedCardPrefab: {fileID: 942815268228053748, guid: 557a1d3a709820847a80851be80b3860, type: 3}
   towerPrefab: {fileID: 6370213566684474273, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
   invalidColour: {r: 1, g: 0, b: 0, a: 0.9019608}
   validColour: {r: 0, g: 0, b: 0, a: 0}
