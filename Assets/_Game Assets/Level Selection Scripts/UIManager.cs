@@ -7,9 +7,13 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Header("Components")]
     [SerializeField] private Button playLevelButton;
     [SerializeField] private Button lastIslandButton;
     [SerializeField] private Button nextIslandButton;
+
+    [Header("Settings")]
+    [SerializeField] private float fadeTransitionDuration;
 
     private CameraManager cameraManager;
 
@@ -58,10 +62,8 @@ public class UIManager : Singleton<UIManager>
         
         foreach (Graphic graphic in graphics)
         {
-            
             float alpha = button.interactable ? 1f : 0.2f;
-            //graphic.color = alpha;
-            graphic.DOFade(alpha, 1.5f).SetEase(Ease.Unset);
+            graphic.DOFade(alpha, fadeTransitionDuration).SetEase(Ease.Unset);
         }
     }
     #endregion
