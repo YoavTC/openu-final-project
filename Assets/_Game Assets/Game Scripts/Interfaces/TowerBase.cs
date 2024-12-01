@@ -62,6 +62,8 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
         
         transform.DOPunchScale(transform.localScale * 0.5f, 0.5f);
         ToggleVisualRange(false);
+        
+        OnTowerPlacedEvent?.Invoke();
     }
     
     protected virtual void Update()
@@ -114,6 +116,8 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     {
         Instantiate(projectilePrefab, transform.position, Quaternion.identity, InSceneParentProvider.GetParent(SceneParentProviderType.PROJECTILES))
                     .InitializeProjectile(currentTarget, transform, towerSettings);
+        
+        OnProjectileFiredEvent?.Invoke();
     }
     #endregion
 
