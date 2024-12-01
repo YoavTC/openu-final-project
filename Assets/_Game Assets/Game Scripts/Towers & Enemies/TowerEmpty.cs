@@ -31,6 +31,14 @@
         }
         
         newTowerComponent.InitializeComponents(savedTowerSettings);
+        newTowerComponent.InitializeUnityEventListeners(
+            OnTowerPlacedEvent,
+            OnProjectileFiredEvent,
+            OnHealEvent,
+            OnDamageEvent,
+            OnDieEvent,
+            OnHealthInitializedEvent);
+        
         newTowerComponent.OnTowerPlaced();
         
         Destroy(this);
