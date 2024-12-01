@@ -6819,6 +6819,8 @@ MonoBehaviour:
       Value: 0
     - Key: {fileID: 11400000, guid: 52d7b4296ba659a4087f7bba6c753e96, type: 2}
       Value: 0
+    - Key: {fileID: 11400000, guid: af549c43dc72d224e8b1fa777271939b, type: 2}
+      Value: 1
     - Key: {fileID: 11400000, guid: 1cb4fdbe7c03612408267fe0fbf62b31, type: 2}
       Value: 1
   EnemyWaveTypesWeightDictionary:
