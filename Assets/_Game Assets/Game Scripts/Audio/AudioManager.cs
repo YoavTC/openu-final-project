@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using External_Packages;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,7 +17,7 @@ public class AudioManager : Singleton<AudioManager>
     
     public void PlayAudioClip(AudioClip audioClip, AudioClipSettingsStruct audioClipSettings)
     {
-        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        AudioSource audioSource = GetEmptyAudioSource();
 
         audioSource.clip = audioClip;
         audioSource.volume = audioClipSettings.volume;
@@ -27,15 +28,29 @@ public class AudioManager : Singleton<AudioManager>
 
         if (!audioClipSettings.loop)
         {
-            StartCoroutine(DestroyAudioSource(audioSource));
+            StartCoroutine(ProcessAudioSource(audioSource));
         }
     }
 
-    IEnumerator DestroyAudioSource(AudioSource audioSource)
+    IEnumerator ProcessAudioSource(AudioSource audioSource)
     {
         float audioClipLength = audioSource.clip.length;
         yield return new WaitForSeconds(audioClipLength + destroyAudioSourceDelay);
-        Destroy(audioSource);
+        // Destroy(audioSource);
+        emptyAudioSourceQueue.Enqueue(audioSource);
+    }
+
+    private Queue<AudioSource> emptyAudioSourceQueue = new Queue<AudioSource>();
+
+    private AudioSource GetEmptyAudioSource()
+    {
+        if (emptyAudioSourceQueue.TryDequeue(out AudioSource audioSource))
+        {
+            if (emptyAudioSourceQueue.Count > 15) emptyAudioSourceQueue.Clear();
+            return audioSource;
+        }
+
+        return gameObject.AddComponent<AudioSource>();
     }
 }
 
