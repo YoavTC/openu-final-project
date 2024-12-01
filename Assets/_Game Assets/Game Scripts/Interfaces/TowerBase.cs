@@ -98,7 +98,6 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     #region Effect Handling
     protected override void ApplyEffect(ModifierEffectType type, float amount)
     {
-        Debug.Log($"Was Affected by {amount}");
         switch (type)
         {
             case ModifierEffectType.HEALTH:
