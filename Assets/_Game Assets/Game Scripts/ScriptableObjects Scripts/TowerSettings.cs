@@ -29,6 +29,8 @@ public class TowerSettings : ScriptableObject
     public float modifierAreaOfEffect;
     public Sprite splashRadiusSprite;
 
+    public int boostingCount;
+
     #if UNITY_EDITOR
     private void OnValidate()
     {

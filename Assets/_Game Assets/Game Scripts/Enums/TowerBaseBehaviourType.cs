@@ -2,5 +2,6 @@
 {
     DEFAULT,
     HEALING,
-    IDLE
+    IDLE,
+    BOOSTING
 }

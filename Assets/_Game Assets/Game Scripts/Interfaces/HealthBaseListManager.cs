@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
@@ -61,6 +62,38 @@ public abstract class HealthBaseListManager : MonoBehaviour
 
         isLooping = false;
         return closestEntity;
+    }
+
+    public virtual HealthBase[] GetClosestEntities(Transform invokerTransform, float maxRange, int count)
+    {
+        if (entityList.Count <= 0 || count <= 0) return null;
+
+        float sqrMaxRange = maxRange * maxRange;
+        List<HealthBase> candidates = new List<HealthBase>();
+
+        isLooping = true;
+        for (int i = 0; i < entityList.Count; i++)
+        {
+            if (entityList[i].isDead || entityList[i].transform == invokerTransform) continue;
+
+            float dist = (invokerTransform.position - entityList[i].transform.position).sqrMagnitude;
+            if (dist <= sqrMaxRange)
+            {
+                candidates.Add(entityList[i]);
+            }
+        }
+        isLooping = false;
+
+        // Sort the candidates by distance
+        candidates.Sort((a, b) =>
+        {
+            float distA = (invokerTransform.position - a.transform.position).sqrMagnitude;
+            float distB = (invokerTransform.position - b.transform.position).sqrMagnitude;
+            return distA.CompareTo(distB);
+        });
+
+        // Return the closest 'count' entities
+        return candidates.Take(count).ToArray();
     }
     
     // Get the closest entity within the specified range

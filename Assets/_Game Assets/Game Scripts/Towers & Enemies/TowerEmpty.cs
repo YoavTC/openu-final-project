@@ -22,6 +22,9 @@
             case TowerBaseBehaviourType.IDLE:
                 newTowerComponent = gameObject.AddComponent<TowerIdle>();
                 break;
+            case TowerBaseBehaviourType.BOOSTING:
+                newTowerComponent = gameObject.AddComponent<TowerBoosting>();
+                break;
             default:
                 newTowerComponent = gameObject.AddComponent<TowerDefault>();
                 break;

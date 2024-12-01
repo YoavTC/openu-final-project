@@ -9,6 +9,7 @@ public class Utility : MonoBehaviour
     {
         // Assign the serialized field to the static variable
         projectilePrefab = _projectilePrefab;
+        boostBeamPrefab = _boostBeamPrefab;
     }
     
     public static T[] GetObjectsInRadius<T>(Vector2 center, float radius) where T : MonoBehaviour
@@ -34,5 +35,13 @@ public class Utility : MonoBehaviour
     public static Projectile GetProjectilePrefab()
     {
         return projectilePrefab;
+    }
+    
+    [SerializeField] private LineRenderer _boostBeamPrefab;
+    private static LineRenderer boostBeamPrefab { get; set; }
+
+    public static LineRenderer GetBoostBeamPrefab()
+    {
+        return boostBeamPrefab;
     }
 }

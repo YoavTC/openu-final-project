@@ -978,6 +978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 2211875831723846528, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
+  _boostBeamPrefab: {fileID: 8955109127949211032, guid: 7bf2d84cf7936764d8957b92cfcc2d67, type: 3}
 --- !u!4 &665409428
 Transform:
   m_ObjectHideFlags: 0
@@ -6845,7 +6846,7 @@ MonoBehaviour:
   currentSpawnWaveProgress: 0
   nextSpawnDelay: 0
   spawnsPerSpawn: 1
-  enemyQueueLength: 300
+  enemyQueueLength: 0
   enemyQueue: 
   enemyQueueIndex: 0
 --- !u!1 &1988098452
@@ -7278,7 +7279,7 @@ PrefabInstance:
     - target: {fileID: 2215083485967271209, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
       propertyPath: towerSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 81be6c6ec92c2f74f82460b91b1c713c, type: 2}
+      objectReference: {fileID: 11400000, guid: d057a43cb6d3fad4d8c1e7e42e69ff25, type: 2}
     - target: {fileID: 2417940604551860059, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
