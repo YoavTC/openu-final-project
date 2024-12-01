@@ -2,7 +2,6 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 [Serializable]
@@ -14,9 +13,6 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     [SerializeField] protected SpriteRenderer rangeRenderer;
     [SerializeField] protected Projectile projectilePrefab;
     [SerializeField] protected Transform currentTarget;
-
-    public UnityEvent OnTowerPlacedEvent;
-    public UnityEvent OnProjectileFiredEvent;
 
     protected float attackCooldown;
     private float elapsedTime;
@@ -34,24 +30,6 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
         
         SetHealth(towerSettings.health);
         InitializeVisualRange();
-    }
-
-    public void InitializeUnityEventListeners(
-        UnityEvent OnTowerPlacedEvent,
-        UnityEvent OnProjectileFiredEvent,
-        UnityEvent<float> OnHealEvent,
-        UnityEvent<float> OnDamageEvent,
-        UnityEvent<float> OnDieEvent,
-        UnityEvent OnHealthInitializedEvent
-        )
-    {
-        this.OnTowerPlacedEvent = OnTowerPlacedEvent;
-        this.OnProjectileFiredEvent = OnProjectileFiredEvent;
-
-        this.OnHealEvent = OnHealEvent;
-        this.OnDamageEvent = OnDamageEvent;
-        this.OnDieEvent = OnDieEvent;
-        this.OnHealthInitializedEvent = OnHealthInitializedEvent;
     }
     
     public virtual void OnTowerPlaced()

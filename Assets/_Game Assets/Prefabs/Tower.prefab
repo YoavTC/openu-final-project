@@ -570,8 +570,6 @@ GameObject:
   - component: {fileID: 7032692552654824334}
   - component: {fileID: 2157115048044220172}
   - component: {fileID: 2140198679388172263}
-  - component: {fileID: 5004363801077797685}
-  - component: {fileID: 2323535977291862857}
   m_Layer: 7
   m_Name: Tower
   m_TagString: Untagged
@@ -664,68 +662,6 @@ MonoBehaviour:
   rangeRenderer: {fileID: 8961622952390712635}
   projectilePrefab: {fileID: 2211875831723846528, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
   currentTarget: {fileID: 0}
-  OnTowerPlacedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5004363801077797685}
-        m_TargetAssemblyTypeName: PlayAudioTrigger, Assembly-CSharp
-        m_MethodName: PlayAudio
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnProjectileFiredEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2323535977291862857}
-        m_TargetAssemblyTypeName: PlayAudioTrigger, Assembly-CSharp
-        m_MethodName: PlayAudio
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5004363801077797685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6370213566684474273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad11fac811f8a64b9e554e64a42b320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClipSettings:
-    volume: 1
-    loop: 0
-    randomPitch: 0
---- !u!114 &2323535977291862857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6370213566684474273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad11fac811f8a64b9e554e64a42b320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClipSettings:
-    volume: 1
-    loop: 0
-    randomPitch: 1
 --- !u!1 &6777143057584435814
 GameObject:
   m_ObjectHideFlags: 0
