@@ -34,11 +34,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] [ReadOnly] private float nextSpawnDelay;
     [SerializeField] private int spawnsPerSpawn;
     
-    [Header("Difficulty Settings")]
-    [SerializeField] private float towerPlacedDifficultyMultiplier;
-    [SerializeField] private AnimationCurve towerPlacedDifficultyCurve;
-    [SerializeField] [ReadOnly] private int towersPlaced;
-    
     [Header("Enemy Queue")]
     [SerializeField] private int enemyQueueLength;
     [SerializeField] [ReadOnly] private int[] enemyQueue;
@@ -72,7 +67,6 @@ public class EnemySpawner : MonoBehaviour
         {
             OnSpawnerStopEvent?.Invoke();
             spawnerActive = false;
-            // Destroy(this);
         }
     }
     
@@ -104,26 +98,12 @@ public class EnemySpawner : MonoBehaviour
             readableQueue += enemyQueue[i].ToString();
         }
     }
-    
-    private AnimationCurve GetReversedAnimationCurve(AnimationCurve curve)
-    {
-        return curve;
-        Keyframe[] keys = curve.keys;
-        
-        for (int i = 0; i < keys.Length; i++)
-        {
-            keys[i].value *= -1;
-            keys[i].value += 1f;
-        }
-        
-        return new AnimationCurve(keys);
-    }
 
     private void SetNewSpawnWave()
     {
         currentSpawnWaveProgress = 0f;
         int randomSpawnWaveIndex = GetRandomByWeight(EnemyWaveTypesWeightDictionary);
-        currentSpawnWave = GetReversedAnimationCurve(EnemyWaveTypesWeightDictionary.Keys.ToArray()[randomSpawnWaveIndex].curve);
+        currentSpawnWave = EnemyWaveTypesWeightDictionary.Keys.ToArray()[randomSpawnWaveIndex].curve;
     }
     
     private int GetRandomByWeight<TKey>(Dictionary<TKey, float> dict)
@@ -176,11 +156,6 @@ public class EnemySpawner : MonoBehaviour
     {
         currentSpawnWaveProgress += 1f / enemyQueue.Length;
         return currentSpawnWave.Evaluate(currentSpawnWaveProgress);//Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
-    }
-    
-    public void OnTowerPlacedUnityEventListener()
-    {
-        towersPlaced++;
     }
     #endregion
     
