@@ -20,12 +20,10 @@ public class EnemyShooter : TowerBase
     {
         TowerBase closestEntity = (TowerBase) towersManager.GetClosestEntity(transform, towerSettings.maxRange);
         currentTarget = closestEntity?.transform;
-        Debug.Log($"Found next target {currentTarget}");
     }
 
     protected override void CooldownAction()
     {
-        Debug.Log("Cooldown action");
         FindNextTarget();
         base.CooldownAction();
     }

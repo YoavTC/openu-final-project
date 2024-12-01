@@ -45,7 +45,7 @@ public class TowerBoosting : TowerBase
         if (LineRenderersOrClosestTowersInvalid()) return;
         for (int i = 0; i < closestTowers.Length; i++)
         {
-            lineRenderers[i].SetPosition(1, closestTowers[i].transform.position);
+            closestTowers[i].GetComponent<TowerBase>().StartEffect(towerSettings.projectileModifierEffect, transform);
         }
     }
 
@@ -70,10 +70,14 @@ public class TowerBoosting : TowerBase
 
     private void SetupLineRenderers()
     {
-        if (LineRenderersOrClosestTowersInvalid()) return;
-        for (int i = 0; i < closestTowers.Length; i++)
+        // if (LineRenderersOrClosestTowersInvalid()) return;
+        if ((lineRenderers == null) || (closestTowers == null)) return;
+        for (int i = 0; i < towerSettings.boostingCount; i++)
         {
-            lineRenderers[i].SetPosition(1, closestTowers[i].transform.position);
+            if (closestTowers.Length > i)
+            {
+                lineRenderers[i].SetPosition(1, closestTowers[i].transform.position);
+            } else lineRenderers[i].SetPosition(1, transform.position);
         }
     }
 

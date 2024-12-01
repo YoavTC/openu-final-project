@@ -6846,7 +6846,7 @@ MonoBehaviour:
   currentSpawnWaveProgress: 0
   nextSpawnDelay: 0
   spawnsPerSpawn: 1
-  enemyQueueLength: 0
+  enemyQueueLength: 300
   enemyQueue: 
   enemyQueueIndex: 0
 --- !u!1 &1988098452
