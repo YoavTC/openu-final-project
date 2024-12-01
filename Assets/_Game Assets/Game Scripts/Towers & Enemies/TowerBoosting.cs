@@ -74,7 +74,7 @@ public class TowerBoosting : TowerBase
         if ((lineRenderers == null) || (closestTowers == null)) return;
         for (int i = 0; i < towerSettings.boostingCount; i++)
         {
-            if (closestTowers.Length > i)
+            if (closestTowers.Length - 1 >= i)
             {
                 lineRenderers[i].SetPosition(1, closestTowers[i].transform.position);
             } else lineRenderers[i].SetPosition(1, transform.position);
