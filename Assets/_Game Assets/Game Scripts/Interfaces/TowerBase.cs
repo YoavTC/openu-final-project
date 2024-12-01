@@ -14,9 +14,9 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     [SerializeField] protected Projectile projectilePrefab;
     [SerializeField] protected Transform currentTarget;
 
-    private float attackCooldown;
+    protected float attackCooldown;
     private float elapsedTime;
-    private bool isPlaced = false;
+    protected bool isPlaced = false;
     
     public virtual void InitializeComponents(TowerSettings towerSettings)
     {
@@ -120,6 +120,8 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     #endregion
 
     #region Inspecting
+    protected bool interactable = true;
+    
     private void InitializeVisualRange()
     {
         float scale = towerSettings.maxRange * 2 / rangeRenderer.sprite.bounds.size.x;
@@ -136,7 +138,7 @@ public abstract class TowerBase : EntityBase, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        SelectionManager.Instance.OnSelectableItemClicked(this);
+        if (interactable) SelectionManager.Instance.OnSelectableItemClicked(this);
     }
     #endregion
 }

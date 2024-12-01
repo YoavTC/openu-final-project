@@ -31,6 +31,12 @@ public class Enemy : EntityBase
         OnDeathAction += enemyDeathListener;
 
         animateOnSpline.Init(currentSpline, enemySettings.speed, enemyReachEndListener, RemoveEnemyListener);
+
+        if (enemySettings.towerSettings)
+        {
+            gameObject.AddComponent<EnemyShooter>()
+                .InitializeComponents(enemySettings.towerSettings);
+        }
     }
 
     #region Damange & Health
@@ -66,16 +72,6 @@ public class Enemy : EntityBase
         transform.DOKill();
         transform.DOComplete();
         Destroy(gameObject);
-    }
-
-    //Used to calculate if a tower should target a soon-to-be dead enemy
-    public void CalculateDamage(float damage)
-    {
-        float futureHealth = health - damage;
-        if (futureHealth <= 0)
-        {
-            isDead = true;
-        }
     }
     #endregion
     

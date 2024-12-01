@@ -87,4 +87,13 @@ public abstract class HealthBase: MonoBehaviour
     {
         StopCoroutine(ensureDeathCoroutine);
     }
+    
+    public void CalculateDamage(float damage)
+    {
+        float futureHealth = health - damage;
+        if (futureHealth <= 0)
+        {
+            isDead = true;
+        }
+    }
 }

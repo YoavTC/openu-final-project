@@ -11,4 +11,6 @@ public class EnemySettings : ScriptableObject
     public float health;
     
     public PostDeathModifierEffect postDeathModifierEffect;
+
+    public TowerSettings towerSettings;
 }
