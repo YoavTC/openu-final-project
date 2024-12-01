@@ -6814,11 +6814,11 @@ MonoBehaviour:
   EnemyTypesWeightDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: ee65eead749d15b4ab3ecede71f50c02, type: 2}
-      Value: 0
-    - Key: {fileID: 11400000, guid: f7ea89fe0d2db3c43b82f6ab478b5204, type: 2}
-      Value: 0
-    - Key: {fileID: 11400000, guid: 52d7b4296ba659a4087f7bba6c753e96, type: 2}
       Value: 1
+    - Key: {fileID: 11400000, guid: f7ea89fe0d2db3c43b82f6ab478b5204, type: 2}
+      Value: 1
+    - Key: {fileID: 11400000, guid: 52d7b4296ba659a4087f7bba6c753e96, type: 2}
+      Value: 2
   EnemyWaveTypesWeightDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: 90a5ec8db5611e14ab71b7be4973f1cc, type: 2}
@@ -6838,14 +6838,14 @@ MonoBehaviour:
     m_RotationOrder: 4
   currentSpawnWaveProgress: 0
   nextSpawnDelay: 0
-  spawnsPerSpawn: 0
+  spawnsPerSpawn: 1
   towerPlacedDifficultyMultiplier: 0.005
   towerPlacedDifficultyCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -6854,7 +6854,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 0.1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

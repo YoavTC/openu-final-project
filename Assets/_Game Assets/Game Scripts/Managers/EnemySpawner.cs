@@ -175,11 +175,7 @@ public class EnemySpawner : MonoBehaviour
     private float GetNextSpawnDelay()
     {
         currentSpawnWaveProgress += 1f / enemyQueue.Length;
-        //return currentSpawnWave.Evaluate(currentSpawnWaveProgress);
-        float newSpawnDelay = currentSpawnWave.Evaluate(currentSpawnWaveProgress);//Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
-        //newSpawnDelay -= towerPlacedDifficultyCurve.Evaluate(towersPlaced * towerPlacedDifficultyMultiplier);
-        Debug.Log($"%{currentSpawnWaveProgress * 100} - {nextSpawnDelay}");
-        return newSpawnDelay / towerPlacedDifficultyCurve.Evaluate(towersPlaced);
+        return currentSpawnWave.Evaluate(currentSpawnWaveProgress);//Mathf.Clamp(currentSpawnWave.Evaluate(currentSpawnWaveProgress), 0.1f, 2f);
     }
     
     public void OnTowerPlacedUnityEventListener()
