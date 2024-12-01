@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee7e1b982b34f1593dce5d1c59597da, type: 3}
   m_Name: Slowness
   m_EditorClassIdentifier: 
-  type: {fileID: 11400000, guid: 5aca866f4bcf64640b63a2179d990692, type: 2}
+  type: {fileID: 11400000, guid: 14c55c51d3335784a99640fd2ead24a4, type: 2}
   toFriendly: 0
-  amount: 5
+  amount: 100
   radius: 5
   splashRadiusSprite: {fileID: 21300000, guid: 6146f3c945eb8804e8acfce5e11c8e69, type: 3}
