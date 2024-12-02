@@ -24,6 +24,7 @@ public class IslandsManager : MonoBehaviour
         if (currentLevel.Item1 == 1)
         {
             LevelManager.LevelUp();
+            currentLevel.Item2 = true;
         }
         
         InitializeIslandPinsArray();
