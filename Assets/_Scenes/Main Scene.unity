@@ -6248,6 +6248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f593fc39111f8fc41a26c74092a7adf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioTypeVolumeMixer:
+    _serializedList:
+    - Key: 0
+      Value: 0.5
+    - Key: 1
+      Value: 1
+    - Key: 2
+      Value: 1
   destroyAudioSourceDelay: 0
   randomPitchRange: {x: 0.8, y: 1.2}
 --- !u!1 &1626000765
@@ -7056,9 +7064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e7d65ef444a4341bd129123e7759c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: b6891bf38a3df44b29d9271a7acfea03, type: 3}
+  music: {fileID: 8300000, guid: c312687cc4c5ca940b1c9c736a5d4d46, type: 3}
   playOnAwake: 1
   audioClipSettings:
+    type: 1
     volume: 1
     loop: 1
     randomPitch: 0
