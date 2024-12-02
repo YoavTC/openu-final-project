@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4285164438087116913}
   - component: {fileID: 5216332977414828538}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
