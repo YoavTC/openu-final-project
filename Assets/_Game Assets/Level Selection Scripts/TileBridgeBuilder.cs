@@ -20,22 +20,12 @@ public class TileBridgeBuilder : MonoBehaviour
         tilemap.enabled = false;
     }
 
-    private void HideTiles(int bridgeIndex)
-    {
-        // if (bridgeIndex >= bridgesTiles.Keys.Count) return;
-        if (bridgeIndex > bridgesTiles.Keys.Count - 1) return;
-        Debug.Log($"HideTiles {bridgeIndex}");
-        foreach (var bridgeTile in bridgesTiles[bridgeIndex])
-        {
-            bridgeTile.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        
-        HideTiles(bridgeIndex + 1);
-    }
-
+    [Header("Building Animation Settings")]
     [SerializeField] private float animationDuration;
     [SerializeField] private Ease animationEase;
     [SerializeField] private float animationYOffset = 1f;
+    [SerializeField] private float animationScaleDuration;
+    [SerializeField] private float animationScaleMultiplier = 1f;
     private float totalDelay;
 
     public void RevealBridge(int bridgeIndex, float delay, Action<int, bool> LastBridgeTileBuiltCallback = null)
@@ -44,7 +34,8 @@ public class TileBridgeBuilder : MonoBehaviour
         
         if (delay == 0f)
         {
-            InstantlyRevealBridge(bridgeIndex + 1, LastBridgeTileBuiltCallback);
+            Debug.Log(bridgeIndex);
+            InstantlyRevealBridge(bridgeIndex, LastBridgeTileBuiltCallback);
             HideTiles(bridgeIndex + 1);
         }
         else
@@ -53,10 +44,20 @@ public class TileBridgeBuilder : MonoBehaviour
             StartCoroutine(IterativelyRevealBridge(bridgeIndex, delay, LastBridgeTileBuiltCallback));
         }
     }
+    
+    private void HideTiles(int bridgeIndex)
+    {
+        if (bridgeIndex > bridgesTiles.Keys.Count - 1) return;
+        foreach (var bridgeTile in bridgesTiles[bridgeIndex])
+        {
+            bridgeTile.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        
+        HideTiles(bridgeIndex + 1);
+    }
 
     private IEnumerator IterativelyRevealBridge(int bridgeIndex, float delay, Action<int, bool> LastBridgeTileBuiltCallback)
     {
-        Debug.Log("IterativelyRevealBridge");
         yield return new WaitForSeconds(delay);
         foreach (Transform bridgeTile in bridgesTiles[bridgeIndex])
         {
@@ -81,7 +82,6 @@ public class TileBridgeBuilder : MonoBehaviour
     
     private void InstantlyRevealBridge(int bridgeIndex, Action<int, bool> LastBridgeTileBuiltCallback)
     {
-        Debug.Log("InstantlyRevealBridge");
         foreach (Transform bridgeTile in bridgesTiles[bridgeIndex])
         {
             SpriteRenderer bridgeTileRenderer = bridgeTile.GetComponent<SpriteRenderer>();
@@ -100,11 +100,14 @@ public class TileBridgeBuilder : MonoBehaviour
 
     private void TileBuilt(Transform tileTransform, int bridgeIndex, Action<int, bool> LastBridgeTileBuiltCallback)
     {
+        // VFX
+        Instantiate(placeParticle, tileTransform.position, Quaternion.identity, tilemapParent);
+        tileTransform.DOPunchScale(tileTransform.localScale * animationScaleMultiplier, animationScaleDuration);
+        
+        // SFX
         audioSource.Stop();
         audioSource.pitch += pitchOffset;
         audioSource.Play();
-
-        Instantiate(placeParticle, tileTransform.position, Quaternion.identity, tilemapParent);
 
         if (tileTransform == bridgesTiles[bridgeIndex][bridgesTiles[bridgeIndex].Count - 1])
         {

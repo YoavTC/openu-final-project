@@ -3,6 +3,7 @@ using System.Linq;
 using External_Packages;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class IslandsManager : MonoBehaviour
@@ -39,13 +40,6 @@ public class IslandsManager : MonoBehaviour
             locksParent.GetChild(i).gameObject.SetActive(i + 2 > currentLevel.Item1);
         }
         
-        // Build old bridges instantly
-        // for (int i = 0; i < currentLevel.Item1; i++)
-        // {
-        //     Debug.Log("0HEYA " + i);
-        //     tileBridgeBuilder.RevealBridge(i, 0f);
-        // }
-
         if (currentLevel.Item2)
         {
             // Build new bridge

@@ -6376,6 +6376,8 @@ MonoBehaviour:
   animationDuration: 0.2
   animationEase: 23
   animationYOffset: 1
+  animationScaleDuration: 1
+  animationScaleMultiplier: 0.7
   pitchOffset: 0.1
   audioSource: {fileID: 2069331655}
   placeParticle: {fileID: 2833498017399147177, guid: 875a3a507f429ed4b8aad8feb5b02265, type: 3}

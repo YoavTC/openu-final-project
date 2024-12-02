@@ -23,7 +23,6 @@ public class CameraManager : Singleton<CameraManager>
         islandsList = (HelperFunctions.GetChildren(islandsParent)).Select(a => a.GetComponent<LevelIsland>()).ToList();
 
         currentIslandIndex = LevelManager.GetLevel().Item1 - 1;
-        Debug.Log(currentIslandIndex);
         currentIsland = islandsList[currentIslandIndex];
         
         UpdateButtonStates();
