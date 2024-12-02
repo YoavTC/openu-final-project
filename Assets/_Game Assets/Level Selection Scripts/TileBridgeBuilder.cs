@@ -33,20 +33,14 @@ public class TileBridgeBuilder : MonoBehaviour
         }
     }
 
-    [Button]
-    private void Show1()
-    {
-        Debug.Log("A");
-        RevealBridge(0);
-    }
-
     [SerializeField] private float animationDuration;
     [SerializeField] private Ease animationEase;
     [SerializeField] private float animationYOffset = 1f;
     private float totalDelay;
 
-    private void RevealBridge(int bridgeIndex)
+    public IEnumerator RevealBridge(int bridgeIndex, float delay)
     {
+        yield return new WaitForSeconds(delay);
         foreach (Transform bridgeTile in bridgesTiles[bridgeIndex])
         {
             totalDelay += animationDuration;
@@ -82,6 +76,8 @@ public class TileBridgeBuilder : MonoBehaviour
         if (tileTransform == bridgesTiles[bridgeIndex][bridgesTiles[bridgeIndex].Count - 1])
         {
             locks[bridgeIndex].Play();
+            LevelManager.ResetLevelUp();
+            CameraManager.Instance.UpdateButtonStates();
         }
     }
 

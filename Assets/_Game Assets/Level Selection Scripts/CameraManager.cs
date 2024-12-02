@@ -6,7 +6,7 @@ using External_Packages;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : Singleton<CameraManager>
 {
     [SerializeField] private Transform islandsParent;
     private List<LevelIsland> islandsList = new List<LevelIsland>();
@@ -70,10 +70,10 @@ public class CameraManager : MonoBehaviour
         transform.DOMove(camNextPos, Vector2.Distance(transform.position, camNextPos) / cameraMoveSpeed);
     }
 
-    private void UpdateButtonStates()
+    public void UpdateButtonStates()
     {
         bool canPlay = LevelManager.GetLevel().Item1 > currentIslandIndex;
-        UIManager.Instance.UpdateButtonsStates(canPlay, currentIslandIndex > 0, currentIslandIndex < islandsList.Count - 1);
+        UIManager.Instance.UpdateButtonsStates(canPlay, currentIslandIndex > 0, LevelManager.GetLevel().Item1 > currentIslandIndex + 1);
     }
 
     private IEnumerator MovePlayerSequence(bool forward)
