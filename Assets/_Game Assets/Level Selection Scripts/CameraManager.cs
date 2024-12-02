@@ -18,14 +18,18 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float playerMoveSpeed;
     [SerializeField] private float cameraMoveSpeed;
 
-    private void Start()
+    private IEnumerator Start()
     {
         islandsList = (HelperFunctions.GetChildren(islandsParent)).Select(a => a.GetComponent<LevelIsland>()).ToList();
 
-        currentIsland = islandsList[0];
-        currentIslandIndex = 0;
+        currentIslandIndex = LevelManager.GetLevel().Item1 - 1;
+        currentIsland = islandsList[currentIslandIndex];
         
         UpdateButtonStates();
+
+        yield return new WaitForSeconds(0.1f);
+        
+        MoveToIslandInstant();
     }
 
     [Button]
@@ -40,6 +44,20 @@ public class CameraManager : MonoBehaviour
         MoveToIsland(false);
     }
 
+    private void MoveToIslandInstant()
+    {
+        Vector3 nextIslandPos = currentIsland.centerPos;
+        
+        // Move player
+        player.position = nextIslandPos;
+        
+        // Move camera
+        nextIslandPos.z = transform.position.z;
+        transform.position = nextIslandPos;
+        
+        UpdateButtonStates();
+    }
+
     private void MoveToIsland(bool forward)
     {
         StartCoroutine(MovePlayerSequence(forward));
@@ -50,21 +68,19 @@ public class CameraManager : MonoBehaviour
         Vector3 camNextPos = currentIsland.centerPos;
         camNextPos.z = transform.position.z;
         transform.DOMove(camNextPos, Vector2.Distance(transform.position, camNextPos) / cameraMoveSpeed);
-     
-        //UpdateButtonStates();
     }
 
     private void UpdateButtonStates()
     {
-        // TODO: Unlock logic
-        UIManager.Instance.UpdateButtonsStates(true, currentIslandIndex > 0, currentIslandIndex < islandsList.Count - 1);
+        bool canPlay = LevelManager.GetLevel().Item1 > currentIslandIndex;
+        UIManager.Instance.UpdateButtonsStates(canPlay, currentIslandIndex > 0, currentIslandIndex < islandsList.Count - 1);
     }
 
     private IEnumerator MovePlayerSequence(bool forward)
     {
         UIManager.Instance.UpdateButtonsStates(false, false, false);
         
-        // A helper method to move the player and wait for completion
+        // Move the player and wait for completion
         yield return MovePlayerTo(forward ? currentIsland.exitPos : currentIsland.entryPos);
         yield return MovePlayerTo(forward ? currentIsland.entryPos : currentIsland.exitPos);
         yield return MovePlayerTo(currentIsland.centerPos);
