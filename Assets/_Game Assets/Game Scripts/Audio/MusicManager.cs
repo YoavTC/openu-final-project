@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private AudioClip music;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Settings")] 
+    [SerializeField] private bool playOnAwake;
+    [SerializeField] private AudioClipSettingsStruct audioClipSettings;
+
+    private void Start()
     {
-        
+        if (playOnAwake)
+        {
+            AudioManager.Instance.PlayAudioClip(music, audioClipSettings);
+        }
     }
 }

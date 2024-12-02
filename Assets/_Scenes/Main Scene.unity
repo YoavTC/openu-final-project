@@ -2213,6 +2213,58 @@ MonoBehaviour:
   placementValidationRadius: 4
   inOutPositions: {x: 100, y: 100}
   transitionDuration: 0
+--- !u!1 &1194924666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194924668}
+  - component: {fileID: 1194924667}
+  m_Layer: 0
+  m_Name: UI & Canvases
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1194924667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194924666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ebc41a57a824e4ea8c1f1aa483fa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headerSettings:
+    headerText: UI & Canvases
+    headerColor: {r: 0.52662677, g: 0.039215695, b: 0.5294118, a: 1}
+    textAlignmentOptions: 0
+    fontStyleOptions: 0
+    fontSize: 12
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    dropShadow: 1
+--- !u!4 &1194924668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194924666}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204402326
 GameObject:
   m_ObjectHideFlags: 0
@@ -6721,7 +6773,7 @@ GameObject:
   - component: {fileID: 1888799520}
   - component: {fileID: 1888799521}
   m_Layer: 0
-  m_Name: Cameras & UI
+  m_Name: Cameras & Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6755,8 +6807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headerSettings:
-    headerText: Cameras & UI
-    headerColor: {r: 0.037379846, g: 0.47795093, b: 0.5283019, a: 1}
+    headerText: Cameras & Audio
+    headerColor: {r: 0.039215695, g: 0.5294118, b: 0.44694853, a: 1}
     textAlignmentOptions: 0
     fontStyleOptions: 0
     fontSize: 12
@@ -6975,6 +7027,56 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2417940604551860059, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
   m_PrefabInstance: {fileID: 1102769194}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2011477041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011477043}
+  - component: {fileID: 2011477042}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2011477042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011477041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e7d65ef444a4341bd129123e7759c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: b6891bf38a3df44b29d9271a7acfea03, type: 3}
+  playOnAwake: 1
+  audioClipSettings:
+    volume: 1
+    loop: 1
+    randomPitch: 0
+--- !u!4 &2011477043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011477041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2017293745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7437,18 +7539,20 @@ SceneRoots:
   m_Roots:
   - {fileID: 1888799520}
   - {fileID: 705157111}
+  - {fileID: 1459534276}
+  - {fileID: 2011477043}
+  - {fileID: 1194924668}
+  - {fileID: 541884338}
   - {fileID: 886407366}
   - {fileID: 1638351721}
   - {fileID: 1327226995}
   - {fileID: 148598132}
-  - {fileID: 1459534276}
   - {fileID: 665409428}
+  - {fileID: 162606698}
   - {fileID: 1922981325}
   - {fileID: 1432050071}
   - {fileID: 693042292}
-  - {fileID: 162606698}
   - {fileID: 1074885649}
-  - {fileID: 541884338}
   - {fileID: 1204402328}
   - {fileID: 1243516213}
   - {fileID: 2064476834}
