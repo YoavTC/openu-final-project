@@ -6251,7 +6251,7 @@ MonoBehaviour:
   audioTypeVolumeMixer:
     _serializedList:
     - Key: 0
-      Value: 0.5
+      Value: 0.2
     - Key: 1
       Value: 1
     - Key: 2
