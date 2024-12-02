@@ -744,7 +744,7 @@ MonoBehaviour:
         m_MethodName: PlayAudio
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: ab17b511be95f3c4399d02f711e564ea, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 5da43451815b0e041b20347ead7bbaa0, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3096,8 +3096,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0045166016, y: 229.11499}
-  m_SizeDelta: {x: 379.905, y: 172.19}
+  m_AnchoredPosition: {x: 7.8533936, y: 230}
+  m_SizeDelta: {x: 608.022, y: 172.19}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1798731662
 MonoBehaviour:
@@ -3117,7 +3117,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: -50
+  m_Spacing: 21.6
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -3437,7 +3437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 12.851395}
+  m_AnchoredPosition: {x: 5.0000153, y: 12.851395}
   m_SizeDelta: {x: 175.58, y: 175.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1933276501
