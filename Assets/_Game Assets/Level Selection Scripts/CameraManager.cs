@@ -15,8 +15,8 @@ public class CameraManager : MonoBehaviour
     private int currentIslandIndex;
 
     [SerializeField] private Transform player;
-    [SerializeField] private float playerMoveDuration;
-    [SerializeField] private float cameraMoveDuration;
+    [SerializeField] private float playerMoveSpeed;
+    [SerializeField] private float cameraMoveSpeed;
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public class CameraManager : MonoBehaviour
 
         Vector3 camNextPos = currentIsland.centerPos;
         camNextPos.z = transform.position.z;
-        transform.DOMove(camNextPos, Vector2.Distance(transform.position, camNextPos) / cameraMoveDuration);
+        transform.DOMove(camNextPos, Vector2.Distance(transform.position, camNextPos) / cameraMoveSpeed);
      
         //UpdateButtonStates();
     }
@@ -74,7 +74,7 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator MovePlayerTo(Vector3 targetPos)
     {
-        float duration = Vector2.Distance(player.position, targetPos) / playerMoveDuration;
+        float duration = Vector2.Distance(player.position, targetPos) / playerMoveSpeed;
         var currentTween = player.DOMove(targetPos, duration).SetEase(Ease.Linear);
         yield return currentTween.WaitForCompletion();
     }
