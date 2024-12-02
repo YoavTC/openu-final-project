@@ -12,6 +12,7 @@ public class IslandsManager : MonoBehaviour
     [Header("Components")]
     [SerializeField] private TileBridgeBuilder tileBridgeBuilder;
     [SerializeField] private Transform locksParent;
+    [SerializeField] private Animation[] locks;
 
     [Header("New Level Settings")] 
     [SerializeField] private float buildBridgeDelay;
@@ -19,23 +20,47 @@ public class IslandsManager : MonoBehaviour
     private void Start()
     {
         currentLevel =  LevelManager.GetLevel();
+
+        if (currentLevel.Item1 == 1)
+        {
+            LevelManager.LevelUp();
+        }
         
         InitializeIslandPinsArray();
         StartCoroutine(PopIslandPins());
+
+        locks = new Animation[locksParent.childCount];
         
         // Remove old locks
         for (int i = 0; i < locksParent.childCount; i++)
         {
-            bool doodoo = i + 2 > currentLevel.Item1;
-            Debug.Log($"i: {i} is bigger than {currentLevel.Item1}? {doodoo}");
-            locksParent.GetChild(i).gameObject.SetActive(doodoo);
+            locks[i] = locksParent.GetChild(i).GetComponent<Animation>();
+            locksParent.GetChild(i).gameObject.SetActive(i + 2 > currentLevel.Item1);
         }
+        
+        // Build old bridges instantly
+        // for (int i = 0; i < currentLevel.Item1; i++)
+        // {
+        //     Debug.Log("0HEYA " + i);
+        //     tileBridgeBuilder.RevealBridge(i, 0f);
+        // }
 
         if (currentLevel.Item2)
         {
-            // Build bridge
-            StartCoroutine(tileBridgeBuilder.RevealBridge(currentLevel.Item1 - 1, buildBridgeDelay));
+            // Build new bridge
+            tileBridgeBuilder.RevealBridge(currentLevel.Item1 - 1, buildBridgeDelay, UnlockNewIsland);
+        } else tileBridgeBuilder.RevealBridge(currentLevel.Item1 - 2, 0f, UnlockNewIsland);
+    }
+
+    // Called from TileBridgeBuilder class when last bridge tile has been placed
+    private void UnlockNewIsland(int bridgeIndex, bool levelUp)
+    {
+        if (levelUp)
+        {
+            locks[bridgeIndex].Play();
+            LevelManager.ResetLevelUp();
         }
+        CameraManager.Instance.UpdateButtonStates();
     }
     
     #region Island Pins

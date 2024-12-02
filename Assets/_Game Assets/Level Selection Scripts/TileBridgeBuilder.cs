@@ -17,20 +17,20 @@ public class TileBridgeBuilder : MonoBehaviour
 
     private void Start()
     {
-        HideTiles();
+        tilemap.enabled = false;
     }
 
-    private void HideTiles()
+    private void HideTiles(int bridgeIndex)
     {
-        tilemap.enabled = false;
-        
-        foreach (var bridgeTileSet in bridgesTiles)
+        // if (bridgeIndex >= bridgesTiles.Keys.Count) return;
+        if (bridgeIndex > bridgesTiles.Keys.Count - 1) return;
+        Debug.Log($"HideTiles {bridgeIndex}");
+        foreach (var bridgeTile in bridgesTiles[bridgeIndex])
         {
-            foreach (Transform bridgeTile in bridgeTileSet.Value)
-            {
-                bridgeTile.GetComponent<SpriteRenderer>().enabled = false;
-            }
+            bridgeTile.GetComponent<SpriteRenderer>().enabled = false;
         }
+        
+        HideTiles(bridgeIndex + 1);
     }
 
     [SerializeField] private float animationDuration;
@@ -38,8 +38,25 @@ public class TileBridgeBuilder : MonoBehaviour
     [SerializeField] private float animationYOffset = 1f;
     private float totalDelay;
 
-    public IEnumerator RevealBridge(int bridgeIndex, float delay)
+    public void RevealBridge(int bridgeIndex, float delay, Action<int, bool> LastBridgeTileBuiltCallback = null)
     {
+        if (bridgeIndex > bridgesTiles.Keys.Count - 1) return;
+        
+        if (delay == 0f)
+        {
+            InstantlyRevealBridge(bridgeIndex + 1, LastBridgeTileBuiltCallback);
+            HideTiles(bridgeIndex + 1);
+        }
+        else
+        {
+            HideTiles(bridgeIndex);
+            StartCoroutine(IterativelyRevealBridge(bridgeIndex, delay, LastBridgeTileBuiltCallback));
+        }
+    }
+
+    private IEnumerator IterativelyRevealBridge(int bridgeIndex, float delay, Action<int, bool> LastBridgeTileBuiltCallback)
+    {
+        Debug.Log("IterativelyRevealBridge");
         yield return new WaitForSeconds(delay);
         foreach (Transform bridgeTile in bridgesTiles[bridgeIndex])
         {
@@ -52,9 +69,28 @@ public class TileBridgeBuilder : MonoBehaviour
             bridgeTileRenderer.color = new Color(1, 1, 1, 0);
             bridgeTileRenderer.enabled = true;
             
-            bridgeTile.DOMoveY(yPosition, animationDuration).SetDelay(totalDelay).SetEase(animationEase);
-            bridgeTileRenderer.DOColor(Color.white, animationDuration).SetDelay(totalDelay).OnComplete(() => TileBuilt(bridgeTile, bridgeIndex));
+            bridgeTile.DOMoveY(yPosition, animationDuration)
+                .SetDelay(totalDelay)
+                .SetEase(animationEase);
+            
+            bridgeTileRenderer.DOColor(Color.white, animationDuration)
+                .SetDelay(totalDelay)
+                .OnComplete(() => TileBuilt(bridgeTile, bridgeIndex, LastBridgeTileBuiltCallback));
         }
+    }
+    
+    private void InstantlyRevealBridge(int bridgeIndex, Action<int, bool> LastBridgeTileBuiltCallback)
+    {
+        Debug.Log("InstantlyRevealBridge");
+        foreach (Transform bridgeTile in bridgesTiles[bridgeIndex])
+        {
+            SpriteRenderer bridgeTileRenderer = bridgeTile.GetComponent<SpriteRenderer>();
+            bridgeTileRenderer.color = new Color(1, 1, 1, 1f);
+            bridgeTileRenderer.enabled = true;
+        }
+        
+        // Last bridge tile callback for IslandManager class
+        LastBridgeTileBuiltCallback?.Invoke(bridgeIndex, false);
     }
     
     [Header("Effects")]
@@ -62,10 +98,7 @@ public class TileBridgeBuilder : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject placeParticle;
 
-    [Header("Locks")] 
-    [SerializeField] private Animation[] locks;
-
-    private void TileBuilt(Transform tileTransform, int bridgeIndex)
+    private void TileBuilt(Transform tileTransform, int bridgeIndex, Action<int, bool> LastBridgeTileBuiltCallback)
     {
         audioSource.Stop();
         audioSource.pitch += pitchOffset;
@@ -75,9 +108,8 @@ public class TileBridgeBuilder : MonoBehaviour
 
         if (tileTransform == bridgesTiles[bridgeIndex][bridgesTiles[bridgeIndex].Count - 1])
         {
-            locks[bridgeIndex].Play();
-            LevelManager.ResetLevelUp();
-            CameraManager.Instance.UpdateButtonStates();
+            // Last bridge tile callback for IslandManager class
+            LastBridgeTileBuiltCallback?.Invoke(bridgeIndex, true);
         }
     }
 
