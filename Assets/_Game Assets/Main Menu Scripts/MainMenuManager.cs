@@ -46,12 +46,14 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(levelSelectionScene);
+            SceneTransitionManager.Instance.LoadScene(levelSelectionScene);
+            // SceneManager.LoadScene(levelSelectionScene);
         }
     }
 
     public void OnPressPlayTutorialButton()
     {
-        SceneManager.LoadScene(tutorialScene);
+        // SceneManager.LoadScene(tutorialScene);
+        SceneTransitionManager.Instance.LoadScene(tutorialScene);
     }
 }
