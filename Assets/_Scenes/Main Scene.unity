@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61131e28bd300844c93d31ae17c26611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseSceneIndex: 1
+  pauseSceneIndex: 2
   pauseKey: 27
   pauseCooldown: 0.35
 --- !u!4 &541884338
