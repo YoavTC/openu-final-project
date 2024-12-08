@@ -1731,6 +1731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5247098167735407213, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1274
+      objectReference: {fileID: 0}
     - target: {fileID: 5684338429097334837, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
