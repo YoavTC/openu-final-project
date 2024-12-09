@@ -47,6 +47,10 @@ public class MainMenuManager : MonoBehaviour
         {
             SkipIntro();
         }
+
+        var mousePos = Input.mousePosition;
+        // mousePos = Camera.main.ScreenToViewportPoint(mousePos);
+        DebugPainter.DrawCircle(mousePos, 2f, Color.red);
     }
 
     private bool UserSkippingIntro()
