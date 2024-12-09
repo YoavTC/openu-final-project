@@ -8,9 +8,10 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Tutorial")]
+    [Header("popups")]
     [SerializeField] private GameObject tutorialPopup;
     private bool showTutorialPopup;
+    [SerializeField] private GameObject quitPopup;
 
     [Header("Scenes")] 
     [SerializeField] [Scene] private int tutorialScene;
@@ -81,5 +82,15 @@ public class MainMenuManager : MonoBehaviour
         creditsButton.image.sprite = creditsButtonIcons[mainScreenActive ? 1 : 0];
 
         mainScreenActive = !mainScreenActive;
+    }
+
+    public void OnPressQuitGameButton(bool force)
+    {
+        if (force)
+        {
+            Application.Quit();
+        }
+        
+        quitPopup.SetActive(true);
     }
 }
