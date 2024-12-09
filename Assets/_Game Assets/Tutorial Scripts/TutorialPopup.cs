@@ -16,6 +16,7 @@ public class TutorialPopup : MonoBehaviour
     [SerializeField] private bool playOnAwake;
     [SerializeField] private bool isOneShot = false;
     private bool hasPlayed = false;
+    private bool hasFinished = false;
 
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupTriggerUnityEvent;
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupStopUnityEvent;
@@ -62,7 +63,7 @@ public class TutorialPopup : MonoBehaviour
 
     public void Stop(float stopDelay = 0)
     {
-        if (hasPlayed) StartCoroutine(StopCoroutine(stopDelay));
+        if (hasPlayed && !hasFinished) StartCoroutine(StopCoroutine(stopDelay));
     }
 
     private IEnumerator StopCoroutine(float stopDelay)
@@ -83,6 +84,8 @@ public class TutorialPopup : MonoBehaviour
         });
         // HideChildren(true);
         Debug.Log("Time un-frozen");
+
+        hasFinished = true;
     }
     
     private void HideChildren(bool hidden)

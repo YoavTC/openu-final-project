@@ -11,7 +11,7 @@ public class TutorialPopupManager : MonoBehaviour
 
     public void OnPopupStopped(TutorialPopup popup)
     {
-        Debug.Log("Popup stopped!");
+        Debug.Log($"Popup {popup} stopped");
         currentPopup = null;
     }
 
