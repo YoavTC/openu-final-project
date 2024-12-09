@@ -17,20 +17,21 @@ public class TimescaleController : MonoBehaviour
     private void Start()
     {
         button = GetComponent<Button>();
-        ApplyVisual();
+        // ApplyVisual();
     }
 
     public void OnClickButton()
     {
-        EnumerateSpeed();
+        // EnumerateSpeed();
+        if (Time.timeScale != 0f) EnumerateSpeed();
     }
 
-    private void EnumerateSpeed(float newSpeed = 0)
+    private void EnumerateSpeed()
     {
         currentSpeedIndex++;
         if (currentSpeedIndex + 1 > speeds.Length) currentSpeedIndex = 0;
-        
-        Time.timeScale = newSpeed == 0 ? speeds[currentSpeedIndex] : newSpeed;
+
+        Time.timeScale = speeds[currentSpeedIndex];
 
         ApplyVisual();
     }
@@ -39,11 +40,5 @@ public class TimescaleController : MonoBehaviour
     {
         clockImage?.DoEffect();
         displayText.text = Time.timeScale.ToString("F0") + "x";
-    }
-
-    public void ToggleInteractable(bool state, float newSpeed = -1f)
-    {
-        button.interactable = state;
-        if (newSpeed != -1) EnumerateSpeed(newSpeed);
     }
 }
