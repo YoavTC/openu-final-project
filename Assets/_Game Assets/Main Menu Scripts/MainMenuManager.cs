@@ -19,6 +19,7 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Intro")] 
     [SerializeField] private PlayableDirector introDirector;
+    [SerializeField] private KeyCode[] skipKeyCodes;
 
     [Header("Screens")] 
     [SerializeField] private RectTransform mainScreen;
@@ -42,10 +43,20 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (introDirector.state == PlayState.Playing && Input.anyKey)
+        if (introDirector.state == PlayState.Playing && UserSkippingIntro())
         {
             SkipIntro();
         }
+    }
+
+    private bool UserSkippingIntro()
+    {
+        for (int i = 0; i < skipKeyCodes.Length; i++)
+        {
+            if (Input.GetKey(skipKeyCodes[i])) return true;
+        }
+
+        return false;
     }
 
     private void SkipIntro()

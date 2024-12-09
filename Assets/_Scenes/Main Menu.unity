@@ -1460,6 +1460,7 @@ MonoBehaviour:
   tutorialScene: 4
   levelSelectionScene: 1
   introDirector: {fileID: 599418032}
+  skipKeyCodes: 1b0000002000000043010000440100000d000000
   mainScreen: {fileID: 879558466}
   creditsScreen: {fileID: 867119177}
   screenTransitionDuration: 0.5
