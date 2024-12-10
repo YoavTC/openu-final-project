@@ -1011,7 +1011,7 @@ GameObject:
   - component: {fileID: 268984172}
   - component: {fileID: 268984171}
   m_Layer: 5
-  m_Name: Credits Image
+  m_Name: Music Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
