@@ -26,6 +26,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button musicToggleButton;
     [SerializeField] private Sprite[] musicToggleIcons;
     [SerializeField] private float musicTransitionDuration;
+    [SerializeField] private float musicForceMuteDuration;
     [SerializeField] [ReadOnly] private bool musicToggleState;
     [SerializeField] [ReadOnly] private float initialMusicVolume; 
 
@@ -106,12 +107,19 @@ public class MainMenuManager : MonoBehaviour
         mainScreenActive = !mainScreenActive;
     }
 
-    public void OnPressToggleMusicButton()
+    public void OnPressToggleMusicButton(bool forceMute)
     {
-        musicToggleButton.image.sprite = musicToggleIcons[musicToggleState ? 1 : 0];
-        mainMusicSource.DOFade(musicToggleState ? initialMusicVolume : 0, musicTransitionDuration);
+        if (forceMute)
+        {
+            mainMusicSource.DOFade(0, musicForceMuteDuration);
+        }
+        else
+        {
+            musicToggleButton.image.sprite = musicToggleIcons[musicToggleState ? 1 : 0];
+            mainMusicSource.DOFade(musicToggleState ? initialMusicVolume : 0, musicTransitionDuration);
         
-        musicToggleState = !musicToggleState;
+            musicToggleState = !musicToggleState;
+        }
     }
 
     public void OnPressQuitGameButton(bool force)

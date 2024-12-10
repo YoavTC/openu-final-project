@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using External_Packages;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitionManager : Singleton<SceneTransitionManager>
@@ -24,6 +25,10 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
     [SerializeField] private float transitionDuration;
     [SerializeField] private string transitionInParam;
     [SerializeField] private string transitionOutParam;
+
+    [Header("Events")] 
+    public UnityEvent OnTransitionCalledUnityEvent;
+    public UnityEvent OnTransitionEndUnityEvent;
     
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -32,8 +37,11 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
 
     public void LoadScene(int sceneIndex)
     {
+        OnTransitionCalledUnityEvent?.Invoke();
+        
         StartCoroutine(Transition(false, () =>
         {
+            OnTransitionEndUnityEvent?.Invoke();
             SceneManager.LoadScene(sceneIndex);
         }));
     }
