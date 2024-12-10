@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using DG.Tweening;
 using External_Packages;
 using NaughtyAttributes;
 using UnityEngine;
@@ -14,9 +15,13 @@ public class IslandsManager : MonoBehaviour
     [SerializeField] private TileBridgeBuilder tileBridgeBuilder;
     [SerializeField] private Transform locksParent;
     [SerializeField] private Animation[] locks;
+    [SerializeField] private GameObject sceneTransitionManagerPrefab;
 
     [Header("New Level Settings")] 
     [SerializeField] private float buildBridgeDelay;
+
+    [Header("Music")] 
+    [SerializeField] private AudioSource mainMusicSource;
     
     private void Start()
     {
@@ -45,6 +50,8 @@ public class IslandsManager : MonoBehaviour
             // Build new bridge
             tileBridgeBuilder.RevealBridge(currentLevel.Item1 - 1, buildBridgeDelay, UnlockNewIsland);
         } else tileBridgeBuilder.RevealBridge(currentLevel.Item1 - 2, 0f, UnlockNewIsland);
+        
+        if (!SceneTransitionManager.Instance) Instantiate(sceneTransitionManagerPrefab);
     }
 
     // Called from TileBridgeBuilder class when last bridge tile has been placed
@@ -56,6 +63,12 @@ public class IslandsManager : MonoBehaviour
             LevelManager.ResetLevelUp();
         }
         CameraManager.Instance.UpdateButtonStates();
+    }
+
+    public void OnPressMainMenuButton()
+    {
+        mainMusicSource.DOFade(0, 0.5f);
+        SceneTransitionManager.Instance.LoadScene(0);
     }
     
     #region Island Pins

@@ -1,0 +1,16 @@
+{
+    "name": "SceneTransitionScripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:975783a328088b3499564ef55b58a67d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

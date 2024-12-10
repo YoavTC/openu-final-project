@@ -86,6 +86,7 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
+            OnPressToggleMusicButton(true);
             SceneTransitionManager.Instance.LoadScene(levelSelectionScene);
             // SceneManager.LoadScene(levelSelectionScene);
         }
@@ -94,6 +95,7 @@ public class MainMenuManager : MonoBehaviour
     public void OnPressPlayTutorialButton()
     {
         // SceneManager.LoadScene(tutorialScene);
+        OnPressToggleMusicButton(true);
         SceneTransitionManager.Instance.LoadScene(tutorialScene);
     }
 
