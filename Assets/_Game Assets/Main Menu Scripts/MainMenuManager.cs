@@ -21,6 +21,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private PlayableDirector introDirector;
     [SerializeField] private KeyCode[] skipKeyCodes;
 
+    [Header("Music")] 
+    [SerializeField] private AudioSource mainMusicSource;
+    [SerializeField] private Button musicToggleButton;
+    [SerializeField] private Sprite[] musicToggleIcons;
+    [SerializeField] private float musicTransitionDuration;
+    [SerializeField] [ReadOnly] private bool musicToggleState;
+    [SerializeField] [ReadOnly] private float initialMusicVolume; 
+
     [Header("Screens")] 
     [SerializeField] private RectTransform mainScreen;
     [SerializeField] private RectTransform creditsScreen;
@@ -39,6 +47,9 @@ public class MainMenuManager : MonoBehaviour
 
         mainScreenActive = true;
         screenWidth = Screen.currentResolution.width;
+
+        musicToggleState = false;
+        initialMusicVolume = mainMusicSource.volume;
     }
 
     private void Update()
@@ -93,6 +104,14 @@ public class MainMenuManager : MonoBehaviour
         creditsButton.image.sprite = creditsButtonIcons[mainScreenActive ? 1 : 0];
 
         mainScreenActive = !mainScreenActive;
+    }
+
+    public void OnPressToggleMusicButton()
+    {
+        musicToggleButton.image.sprite = musicToggleIcons[musicToggleState ? 1 : 0];
+        mainMusicSource.DOFade(musicToggleState ? initialMusicVolume : 0, musicTransitionDuration);
+        
+        musicToggleState = !musicToggleState;
     }
 
     public void OnPressQuitGameButton(bool force)
