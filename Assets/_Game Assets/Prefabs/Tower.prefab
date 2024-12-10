@@ -236,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7912085105571201998}
   - component: {fileID: 7976714890031304551}
+  - component: {fileID: 6228494343476259847}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -310,6 +311,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6228494343476259847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416829413241401758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92143a4ac1d750646ae2b8162cbf21e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  strength: 0.2
+  vibrato: 0
+  scaleFactor: 0.5
+  ignoreTimeScale: 0
+  loop: 0
+  loopType: 0
 --- !u!1 &5755313234415468641
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +674,19 @@ MonoBehaviour:
       m_Calls: []
   OnDieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5004363801077797685}
+        m_TargetAssemblyTypeName: PlayAudioTrigger, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2aa42b757137445eea181c743c2cc9e4, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthInitializedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -694,6 +726,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6228494343476259847}
+        m_TargetAssemblyTypeName: ScaleEffect, Assembly-CSharp
+        m_MethodName: DoEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5004363801077797685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,6 +751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClipSettings:
+    type: 0
     volume: 1
     loop: 0
     randomPitch: 0
@@ -723,6 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClipSettings:
+    type: 0
     volume: 1
     loop: 0
     randomPitch: 1
