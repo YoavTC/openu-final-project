@@ -49,7 +49,8 @@ public abstract class HealthBase: MonoBehaviour
         healthBarSlider.maxValue = maxHealth;
         healthBarSlider.value = maxHealth;
         
-        if (GetComponent<Enemy>()) canvas.enabled = false;
+        // if (GetComponent<Enemy>()) canvas.enabled = false;
+        canvas.enabled = false;
     }
 
     private void UpdateHealthBarUI()
