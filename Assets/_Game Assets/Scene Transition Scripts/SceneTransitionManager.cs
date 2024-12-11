@@ -24,6 +24,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
     
     public void LoadScene(string sceneName)
     {
+        Time.timeScale = 1f;
         StartCoroutine(Transition(() =>
         {
             SceneManager.LoadScene(sceneName);
@@ -32,6 +33,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
 
     public void LoadScene(int sceneIndex)
     {
+        Time.timeScale = 1f;
         StartCoroutine(Transition(() =>
         {
             SceneManager.LoadScene(sceneIndex);
@@ -40,8 +42,10 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
 
     private IEnumerator Transition(Action finishCallback = null)
     {
+        Time.timeScale = 1f;
         transitionAnimator.SetTrigger("Transition");
         yield return new WaitForSecondsRealtime(transitionDuration);
+        Time.timeScale = 1f;
         finishCallback?.Invoke();
     }
 }
