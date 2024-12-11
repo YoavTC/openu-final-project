@@ -42,11 +42,6 @@ public class EnemySpawner : MonoBehaviour
 
     private bool spawnerActive = true;
     
-    private void Start()
-    {
-        InitializeUI();
-    }
-    
     private void Update()
     {
         if (!spawnerActive) return;
@@ -80,6 +75,7 @@ public class EnemySpawner : MonoBehaviour
         enemySettingsList = EnemyTypesWeightDictionary.Keys.ToList();
         
         GenerateEnemyQueue();
+        InitializeUI();
         SetNewSpawnWave();
     }
 
