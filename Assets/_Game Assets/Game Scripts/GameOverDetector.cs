@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,11 @@ public class GameOverDetector : MonoBehaviour
     [SerializeField] private GameObject loseScreen;
     [SerializeField] private GameObject background;
     [SerializeField] private Animator animator;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioSource mainMusicSource;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip winAudioClip, loseAudioClip;
 
     [Header("Settings")] 
     [SerializeField] private Vector2 gameOverScreenDelay;
@@ -37,6 +43,10 @@ public class GameOverDetector : MonoBehaviour
         
         animator.SetTrigger(won ? "Win" : "Lose");
         if (won) LevelManager.LevelUp();
+
+        mainMusicSource.DOFade(0f, 0.5f);
+        audioSource.clip = won ? winAudioClip : loseAudioClip;
+        audioSource.Play();
         
         yield return new WaitForSecondsRealtime(gameOverScreenDelay.y);
      

@@ -16,6 +16,6 @@ MonoBehaviour:
   reward: 0
   damage: 100
   speed: 10
-  health: 0
+  health: 5
   postDeathModifierEffect: {fileID: 0}
   towerSettings: {fileID: 0}

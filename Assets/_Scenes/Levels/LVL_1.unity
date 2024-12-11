@@ -1244,6 +1244,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2164541682133764640, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
+      propertyPath: mainMusicSource
+      value: 
+      objectReference: {fileID: 1363457026}
     - target: {fileID: 4124143333862063956, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
       propertyPath: m_Name
       value: Game Over Canvas
