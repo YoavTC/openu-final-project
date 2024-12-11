@@ -15,6 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 44619f62d8a67cf499254318dc100156, type: 3}
   reward: 0
   damage: 100
-  speed: 0
+  speed: 10
   health: 0
   postDeathModifierEffect: {fileID: 0}
+  towerSettings: {fileID: 0}
