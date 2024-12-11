@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d81ca41f5f6f94fad37c8b536463cb, type: 3}
+  m_Name: LVL_6
+  m_EditorClassIdentifier: 
+  enemyCount: 750
+  spawnsPerSpawn: 3
+  EnemyTypesWeightDictionary:
+    _serializedList:
+    - Key: {fileID: 11400000, guid: 17fed4764115f8046904bd11a00f7205, type: 2}
+      Value: 2
+    - Key: {fileID: 11400000, guid: 6853c6cd2930f5548bd1fc096028ad0b, type: 2}
+      Value: 2
+    - Key: {fileID: 11400000, guid: 1f7be45f4b743b144a164074ac513117, type: 2}
+      Value: 2
+    - Key: {fileID: 11400000, guid: 52d7b4296ba659a4087f7bba6c753e96, type: 2}
+      Value: 2
+    - Key: {fileID: 11400000, guid: af549c43dc72d224e8b1fa777271939b, type: 2}
+      Value: 1
+  towerBases:
+  - {fileID: 11400000, guid: 267dd53389be0844786769b38a3a3448, type: 2}
+  - {fileID: 11400000, guid: 681c99a9257a0a44d97f0b17b8cadfa3, type: 2}
+  - {fileID: 11400000, guid: af74599ab3c9cfe469dde1b0c13cd0fd, type: 2}
+  - {fileID: 11400000, guid: 47d55ed3afe28664fb5fc142e5a87abb, type: 2}
+  - {fileID: 11400000, guid: d057a43cb6d3fad4d8c1e7e42e69ff25, type: 2}

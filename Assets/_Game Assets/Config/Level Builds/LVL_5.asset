@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32d81ca41f5f6f94fad37c8b536463cb, type: 3}
-  m_Name: LVL_1
+  m_Name: LVL_5
   m_EditorClassIdentifier: 
-  enemyCount: 50
+  enemyCount: 350
   spawnsPerSpawn: 1
   EnemyTypesWeightDictionary:
     _serializedList:
-    - Key: {fileID: 11400000, guid: 1cb4fdbe7c03612408267fe0fbf62b31, type: 2}
-      Value: 1
-    - Key: {fileID: 11400000, guid: f7ea89fe0d2db3c43b82f6ab478b5204, type: 2}
-      Value: 1
-    - Key: {fileID: 11400000, guid: 7efbdf4b9fa358440b335b7764673cd1, type: 2}
-      Value: 1
-    - Key: {fileID: 11400000, guid: ee65eead749d15b4ab3ecede71f50c02, type: 2}
+    - Key: {fileID: 11400000, guid: 52d7b4296ba659a4087f7bba6c753e96, type: 2}
+      Value: 2
+    - Key: {fileID: 11400000, guid: af549c43dc72d224e8b1fa777271939b, type: 2}
       Value: 1
   towerBases:
   - {fileID: 11400000, guid: 10115529dd067644a9282f54c5a5125c, type: 2}
-  - {fileID: 11400000, guid: a4ede70f40b99e94d83f5b645da52b67, type: 2}
+  - {fileID: 11400000, guid: e651a0ceab0f63c4885c1f7eae8c18ee, type: 2}
+  - {fileID: 11400000, guid: 681c99a9257a0a44d97f0b17b8cadfa3, type: 2}
+  - {fileID: 11400000, guid: af74599ab3c9cfe469dde1b0c13cd0fd, type: 2}
+  - {fileID: 11400000, guid: 47d55ed3afe28664fb5fc142e5a87abb, type: 2}
