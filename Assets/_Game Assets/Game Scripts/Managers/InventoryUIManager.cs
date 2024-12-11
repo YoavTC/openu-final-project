@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using External_Packages;
 using NaughtyAttributes;
 using Unity.Mathematics;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     [Header("Card Dragging Components")] 
     [SerializeField] private RectTransform cardsContainer;
     [SerializeField] private GameObject towerPrefab;
+    [SerializeField] private InGameInventoryCard inGameCardPrefab;
     
     [Header("Position Validator")] 
     [SerializeField] private Color invalidColour;
@@ -39,14 +41,20 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     private void Start()
     {
-        InitializeComponents();
         RetrieveCardsFromInventory();
         TransitionOut();
     }
 
     #region Initialization
-    private void InitializeComponents()
+    public void InitializeInventory(LevelBuildSO levelBuild)
     {
+        HelperFunctions.DestroyChildren(cardsContainer);
+        foreach (TowerSettings towerSettings in levelBuild.towerBases)
+        {
+            Instantiate(inGameCardPrefab, cardsContainer)
+                .towerSettings = towerSettings;
+        }
+        
         rectTransform = GetComponent<RectTransform>();
         mainCamera = Camera.main;
 

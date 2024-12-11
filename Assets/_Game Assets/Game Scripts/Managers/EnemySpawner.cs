@@ -44,7 +44,6 @@ public class EnemySpawner : MonoBehaviour
     
     private void Start()
     {
-        InitializeSpawner();
         InitializeUI();
     }
     
@@ -71,8 +70,12 @@ public class EnemySpawner : MonoBehaviour
     }
     
     #region Initialization
-    private void InitializeSpawner()
+    public void InitializeSpawner(LevelBuildSO levelBuild)
     {
+        EnemyTypesWeightDictionary = levelBuild.EnemyTypesWeightDictionary;
+        spawnsPerSpawn = levelBuild.spawnsPerSpawn;
+        enemyQueueLength = levelBuild.enemyCount;
+        
         nextSpawnDelay = initialCooldown;
         enemySettingsList = EnemyTypesWeightDictionary.Keys.ToList();
         
