@@ -14,28 +14,17 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
         transitionCanvas = GetComponent<Canvas>();
         transitionAnimator = GetComponentInChildren<Animator>();
     }
-    
-    void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
-    void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     [Header("Components")]
     [SerializeField] private Canvas transitionCanvas;
     [SerializeField] private Animator transitionAnimator;
     
     [Header("Transition")]
-    [SerializeField] private float transitionDuration;
-    [SerializeField] private string transitionInParam;
-    [SerializeField] private string transitionOutParam;
+    [SerializeField] private float transitionDuration = 1f;
     
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // if (scene.buildIndex != 0) 
-            StartCoroutine(Transition(true));
-    }
-
     public void LoadScene(string sceneName)
     {
-        StartCoroutine(Transition(false, () =>
+        StartCoroutine(Transition(() =>
         {
             SceneManager.LoadScene(sceneName);
         }));
@@ -43,16 +32,16 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
 
     public void LoadScene(int sceneIndex)
     {
-        StartCoroutine(Transition(false, () =>
+        StartCoroutine(Transition(() =>
         {
             SceneManager.LoadScene(sceneIndex);
         }));
     }
 
-    private IEnumerator Transition(bool transitionIn, Action finishCallback = null)
+    private IEnumerator Transition(Action finishCallback = null)
     {
-        transitionAnimator.SetTrigger(transitionIn ? transitionInParam : transitionOutParam);
-        yield return new WaitForSeconds(transitionDuration);
+        transitionAnimator.SetTrigger("Transition");
+        yield return new WaitForSecondsRealtime(transitionDuration);
         finishCallback?.Invoke();
     }
 }

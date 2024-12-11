@@ -3404,8 +3404,16 @@ PrefabInstance:
       value: Transition Manager
       objectReference: {fileID: 0}
     - target: {fileID: 5247098167735407213, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2090.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247098167735407213, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1056.8893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247098167735407213, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1274
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5684338429097334837, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
       propertyPath: m_Pivot.x
@@ -3486,38 +3494,6 @@ PrefabInstance:
     - target: {fileID: 5684338429097334837, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 535612108}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPressToggleMusicButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970183310349144316, guid: 72022f0403bdd3841bac6e80c2acd8e9, type: 3}
-      propertyPath: OnTransitionCalledUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

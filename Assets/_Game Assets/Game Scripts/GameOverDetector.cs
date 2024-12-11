@@ -39,7 +39,8 @@ public class GameOverDetector : MonoBehaviour
         if (won) LevelManager.LevelUp();
         
         yield return new WaitForSecondsRealtime(gameOverScreenDelay.y);
-        
-        SceneManager.LoadScene("Level Selection Scene");
+     
+        SceneTransitionManager.Instance.LoadScene("Level Selection Scene");
+        // SceneManager.LoadScene("Level Selection Scene");
     }
 }
