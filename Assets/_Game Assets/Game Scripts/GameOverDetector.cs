@@ -24,6 +24,9 @@ public class GameOverDetector : MonoBehaviour
     {
         if (spawnerStopped && EnemyManager.Instance.AllEntitiesDead())
         {
+            // Reset timescale
+            Time.timeScale = 1f;
+            
             StartCoroutine(SendToLevelSelectionScene(true));
         }
     }
