@@ -32,7 +32,9 @@ public class UIManager : Singleton<UIManager>
 
     public void OnPlayLevelButtonPressed()
     {
-        
+        int level = cameraManager.GetCurrentIslandIndex();
+        Debug.Log($"LVL_{level}");
+        SceneTransitionManager.Instance.LoadScene($"LVL_{level}");
     }
 
     public void OnLastLevelButtonPressed()

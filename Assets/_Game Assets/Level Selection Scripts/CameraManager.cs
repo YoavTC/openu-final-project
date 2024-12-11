@@ -76,6 +76,11 @@ public class CameraManager : Singleton<CameraManager>
         UIManager.Instance.UpdateButtonsStates(canPlay, currentIslandIndex > 0, LevelManager.GetLevel().Item1 > currentIslandIndex + 1);
     }
 
+    public int GetCurrentIslandIndex()
+    {
+        return currentIslandIndex;
+    }
+
     private IEnumerator MovePlayerSequence(bool forward)
     {
         UIManager.Instance.UpdateButtonsStates(false, false, false);

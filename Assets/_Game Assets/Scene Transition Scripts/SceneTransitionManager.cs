@@ -33,6 +33,14 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
             StartCoroutine(Transition(true));
     }
 
+    public void LoadScene(string sceneName)
+    {
+        StartCoroutine(Transition(false, () =>
+        {
+            SceneManager.LoadScene(sceneName);
+        }));
+    }
+
     public void LoadScene(int sceneIndex)
     {
         StartCoroutine(Transition(false, () =>

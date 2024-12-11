@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameOverDetector : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
     [SerializeField] private GameObject background;
+    [SerializeField] private Animator animator;
+
+    [Header("Settings")] 
+    [SerializeField] private Vector2 gameOverScreenDelay;
     
     private bool spawnerStopped;
     
@@ -25,21 +30,13 @@ public class GameOverDetector : MonoBehaviour
     
     private IEnumerator SendToLevelSelectionScene(bool won)
     {
-        yield return null;
-        // if (g)
-        // {
-        //     yield return new WaitForSecondsRealtime(1.2f);
-        //     bg.SetActive(true);
-        //     PlayerPrefs.SetInt("LVL", PlayerPrefs.GetInt("LVL") + 1);
-        //     goodScreen.SetActive(true);
-        // } else
-        // {
-        //     bg.SetActive(true);
-        //     badScreen.SetActive(true);
-        // }
-        //
-        // yield return new WaitForSecondsRealtime(2f);
-        //
-        // SceneManager.LoadScene("Level Selection Scene");
+        yield return new WaitForSecondsRealtime(gameOverScreenDelay.x);
+        
+        animator.SetTrigger(won ? "Win" : "Lose");
+        if (won) LevelManager.LevelUp();
+        
+        yield return new WaitForSecondsRealtime(gameOverScreenDelay.y);
+        
+        SceneManager.LoadScene("Level Selection Scene");
     }
 }

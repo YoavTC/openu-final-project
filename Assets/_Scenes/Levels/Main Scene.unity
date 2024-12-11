@@ -1468,6 +1468,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2164541682133764640, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 886407367}
+    - target: {fileID: 2164541682133764640, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
+      propertyPath: gameOverScreenDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4124143333862063956, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
       propertyPath: m_Name
       value: Game Over Canvas
@@ -1557,6 +1565,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
+--- !u!95 &886407367 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2149314340525016156, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
+  m_PrefabInstance: {fileID: 886407366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &936904414
 PrefabInstance:
   m_ObjectHideFlags: 0
