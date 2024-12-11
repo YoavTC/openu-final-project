@@ -59,7 +59,11 @@ public class GameOverDetector : MonoBehaviour
         yield return new WaitForSecondsRealtime(gameOverScreenDelay.x);
         
         animator.SetTrigger(won ? "Win" : "Lose");
-        if (won) LevelManager.LevelUp();
+        
+        if (won && IsPlayingMostRecentLevel())
+        {
+            LevelManager.LevelUp();
+        }
 
         mainMusicSource.DOFade(0f, 0.5f);
         audioSource.clip = won ? winAudioClip : loseAudioClip;
@@ -69,5 +73,13 @@ public class GameOverDetector : MonoBehaviour
      
         SceneTransitionManager.Instance.LoadScene("Level Selection Scene");
         // SceneManager.LoadScene("Level Selection Scene");
+    }
+
+    private bool IsPlayingMostRecentLevel()
+    {
+        var level = LevelManager.GetLevel();
+        int currentLevel = int.Parse(SceneManager.GetActiveScene().name.Split('_')[1]);
+
+        return level.Item1 - 1 == currentLevel;
     }
 }
