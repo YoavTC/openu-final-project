@@ -8,11 +8,14 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    private int health;
     [SerializeField] private List<ScaleEffect> hearts;
     [SerializeField] private float destroyDelay;
-    public UnityEvent Die;
+    [SerializeField] private AudioSource audioSource;
+    
+    private int health;
     private bool dead;
+    
+    public UnityEvent Die;
 
     private void Start()
     {
@@ -20,6 +23,7 @@ public class HealthManager : MonoBehaviour
         health = 2;
     }
     
+    [Button]
     public void OnEnemyReachEnd()
     {
         if (dead) return;
@@ -34,6 +38,7 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator PopHeart()
     {
+        audioSource.Play();
         hearts[health + 1].DoEffect();
         
         yield return new WaitForSeconds(destroyDelay);
