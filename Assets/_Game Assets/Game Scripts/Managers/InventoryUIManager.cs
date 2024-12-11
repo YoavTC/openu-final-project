@@ -41,6 +41,11 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     private void Start()
     {
+        rectTransform = GetComponent<RectTransform>();
+        mainCamera = Camera.main;
+
+        isLooping = false;
+        
         TransitionOut();
     }
 
@@ -53,11 +58,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
             Instantiate(inGameCardPrefab, cardsContainer)
                 .towerSettings = towerSettings;
         }
-        
-        rectTransform = GetComponent<RectTransform>();
-        mainCamera = Camera.main;
-
-        isLooping = false;
         
         UpdatePlacementValidationUI(validColour);
         RetrieveCardsFromInventory();
