@@ -3295,6 +3295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsContainer: {fileID: 820437024}
   towerPrefab: {fileID: 6370213566684474273, guid: d68c61622467b9d48a9098eb1764e674, type: 3}
+  inGameCardPrefab: {fileID: 2215083485967271209, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
   invalidColour: {r: 1, g: 0, b: 0, a: 0.9019608}
   validColour: {r: 0, g: 0, b: 0, a: 0}
   colourTransitionDuration: 0.2
@@ -8053,6 +8054,51 @@ MonoBehaviour:
   enemyQueueLength: 20
   enemyQueue: 
   enemyQueueIndex: 0
+--- !u!1 &1967194723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967194725}
+  - component: {fileID: 1967194724}
+  m_Layer: 0
+  m_Name: Level Build Initializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1967194724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967194723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64cdd85d858c4845ad52172ae8b3e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelBuild: {fileID: 11400000, guid: db2644a3bb4b9da44b1e096bce5e18d9, type: 2}
+--- !u!4 &1967194725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967194723}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1988098452
 GameObject:
   m_ObjectHideFlags: 0
@@ -8988,6 +9034,7 @@ SceneRoots:
   - {fileID: 151381009}
   - {fileID: 1327226995}
   - {fileID: 148598132}
+  - {fileID: 1967194725}
   - {fileID: 665409428}
   - {fileID: 1922981325}
   - {fileID: 1432050071}

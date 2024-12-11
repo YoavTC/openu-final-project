@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32d81ca41f5f6f94fad37c8b536463cb, type: 3}
-  m_Name: New Level Build SO
+  m_Name: LVL_1
   m_EditorClassIdentifier: 
-  enemyCount: 30
+  enemyCount: 50
   spawnsPerSpawn: 1
   EnemyTypesWeightDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: f7ea89fe0d2db3c43b82f6ab478b5204, type: 2}
       Value: 1
+    - Key: {fileID: 11400000, guid: 7efbdf4b9fa358440b335b7764673cd1, type: 2}
+      Value: 1
     - Key: {fileID: 11400000, guid: ee65eead749d15b4ab3ecede71f50c02, type: 2}
       Value: 1
   towerBases:
+  - {fileID: 11400000, guid: 10115529dd067644a9282f54c5a5125c, type: 2}
   - {fileID: 11400000, guid: a4ede70f40b99e94d83f5b645da52b67, type: 2}
   - {fileID: 11400000, guid: e651a0ceab0f63c4885c1f7eae8c18ee, type: 2}
-  - {fileID: 11400000, guid: 569f041afbb7b4f41a2c1602b410fc07, type: 2}

@@ -41,7 +41,6 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     private void Start()
     {
-        RetrieveCardsFromInventory();
         TransitionOut();
     }
 
@@ -61,6 +60,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         isLooping = false;
         
         UpdatePlacementValidationUI(validColour);
+        RetrieveCardsFromInventory();
     }
     
     private void RetrieveCardsFromInventory()
@@ -200,7 +200,7 @@ public class InventoryUIManager : MonoBehaviour, IBeginDragHandler, IDragHandler
         for (int i = 0; i < cards.Length; i++)
         {
             Slider cardAffordabilitySlider = cards[i].affordabilitySlider;
-            cardAffordabilitySlider.value = 1f - GetAffordability(newCount, cards[i].GetComponent<InGameInventoryCard>().towerSettings);
+            cardAffordabilitySlider.value = 1f - GetAffordability(newCount, cards[i].towerSettings);
         }
         isLooping = false;
     }
