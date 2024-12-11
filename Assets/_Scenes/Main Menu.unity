@@ -1656,8 +1656,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialPopup: {fileID: 553034412}
   quitPopup: {fileID: 1247554918}
-  tutorialScene: 4
-  levelSelectionScene: 1
+  tutorialScene: 5
+  levelSelectionScene: 2
   introDirector: {fileID: 599418032}
   skipKeyCodes: 1b0000002000000043010000440100000d000000
   mainMusicSource: {fileID: 1075981747}

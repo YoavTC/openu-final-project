@@ -68,7 +68,7 @@ public class IslandsManager : MonoBehaviour
     public void OnPressMainMenuButton()
     {
         mainMusicSource.DOFade(0, 0.5f);
-        SceneTransitionManager.Instance.LoadScene(0);
+        SceneTransitionManager.Instance.LoadScene(1);
     }
     
     #region Island Pins

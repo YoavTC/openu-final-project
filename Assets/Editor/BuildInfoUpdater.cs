@@ -10,8 +10,16 @@ public class BuildInfoUpdater : IPreprocessBuildWithReport
 
     public void OnPreprocessBuild(BuildReport report)
     {
+        // Increment build version
+        if (Application.version.Contains("."))
+        {
+            var versionNumber = Application.version.Split('.');
+            int subVersionNumber = 1 + int.Parse(versionNumber[1]);
+            PlayerSettings.bundleVersion = $"{versionNumber[0]}.{subVersionNumber}";
+        }
+        
         // Find the BuildInfo asset
-        BuildInfoSO buildInfo = AssetDatabase.LoadAssetAtPath<BuildInfoSO>("Assets/_Game Assets/Meta/BuildInfo.asset");
+        BuildInfoSO buildInfo = AssetDatabase.LoadAssetAtPath<BuildInfoSO>("Assets/_Game Assets/Meta/Build/BuildInfo.asset");
         
         if (buildInfo == null)
         {

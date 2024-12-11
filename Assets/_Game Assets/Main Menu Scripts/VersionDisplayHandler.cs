@@ -1,11 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using TMPro;
-using UnityEditor;
-using UnityEditor.Build;
-using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 [RequireComponent(typeof(TMP_Text))]
