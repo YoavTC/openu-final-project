@@ -41,20 +41,6 @@ public class AudioManager : Singleton<AudioManager>
         float audioClipLength = audioSource.clip.length;
         yield return new WaitForSecondsRealtime(audioClipLength + destroyAudioSourceDelay);
         Destroy(audioSource);
-        // emptyAudioSourceQueue.Enqueue(audioSource);
-    }
-
-    private Queue<AudioSource> emptyAudioSourceQueue = new Queue<AudioSource>();
-
-    private AudioSource GetEmptyAudioSource()
-    {
-        if (emptyAudioSourceQueue.TryDequeue(out AudioSource audioSource))
-        {
-            if (emptyAudioSourceQueue.Count > 15) emptyAudioSourceQueue.Clear();
-            return audioSource;
-        }
-
-        return gameObject.AddComponent<AudioSource>();
     }
 }
 
