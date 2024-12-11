@@ -6715,7 +6715,9 @@ MonoBehaviour:
       Value: 1
   EnemyWaveTypesWeightDictionary:
     _serializedList:
-    - Key: {fileID: 11400000, guid: 0cbd6e1daffb73c49a896dac0ecc03a2, type: 2}
+    - Key: {fileID: 11400000, guid: 90a5ec8db5611e14ab71b7be4973f1cc, type: 2}
+      Value: 1
+    - Key: {fileID: 11400000, guid: dd4df06fde78c024ab98f27d3f626276, type: 2}
       Value: 1
   initialCooldown: 2
   spawnCooldown: 1

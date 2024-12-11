@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 2211875831723846528, guid: 6b89066cc32fabf45bdd78cb9d9a5d39, type: 3}
-  _boostBeamPrefab: {fileID: 0}
+  _boostBeamPrefab: {fileID: 8955109127949211032, guid: 7bf2d84cf7936764d8957b92cfcc2d67, type: 3}
 --- !u!4 &665409428
 Transform:
   m_ObjectHideFlags: 0
@@ -3987,7 +3987,7 @@ MonoBehaviour:
       Value: 1
   EnemyWaveTypesWeightDictionary:
     _serializedList:
-    - Key: {fileID: 11400000, guid: 0cbd6e1daffb73c49a896dac0ecc03a2, type: 2}
+    - Key: {fileID: 11400000, guid: 258d7be308cad4f45b7944fc3bdd3721, type: 2}
       Value: 1
   initialCooldown: 2
   spawnCooldown: 1
