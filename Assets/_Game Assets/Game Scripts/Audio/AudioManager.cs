@@ -21,7 +21,7 @@ public class AudioManager : Singleton<AudioManager>
     
     public void PlayAudioClip(AudioClip audioClip, AudioClipSettingsStruct audioClipSettings)
     {
-        AudioSource audioSource = GetEmptyAudioSource();
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
 
         audioSource.clip = audioClip;
         audioSource.volume = audioClipSettings.volume * audioTypeVolumeMixer[audioClipSettings.type];
@@ -39,9 +39,9 @@ public class AudioManager : Singleton<AudioManager>
     IEnumerator ProcessAudioSource(AudioSource audioSource)
     {
         float audioClipLength = audioSource.clip.length;
-        yield return new WaitForSeconds(audioClipLength + destroyAudioSourceDelay);
-        // Destroy(audioSource);
-        emptyAudioSourceQueue.Enqueue(audioSource);
+        yield return new WaitForSecondsRealtime(audioClipLength + destroyAudioSourceDelay);
+        Destroy(audioSource);
+        // emptyAudioSourceQueue.Enqueue(audioSource);
     }
 
     private Queue<AudioSource> emptyAudioSourceQueue = new Queue<AudioSource>();

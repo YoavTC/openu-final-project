@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using DG.Tweening;
+using Febucci.UI;
+using Febucci.UI.Core;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,9 +20,14 @@ public class TutorialPopup : MonoBehaviour
     private bool hasPlayed = false;
     private bool hasFinished = false;
 
-    [Header("Audio")]
+    [Header("Popup Audio")]
     [SerializeField] private AudioClip popupSoundEffect;
-    [SerializeField] private AudioClipSettingsStruct audioClipSettings;
+    [SerializeField] private AudioClipSettingsStruct popupAudioSettings;
+    
+    [Header("Typing Audio")]
+    [SerializeField] private AudioClip typingSoundEffect;
+    [SerializeField] private AudioClipSettingsStruct typingAudioSettings;
+    [SerializeField] private TypewriterCore typewriter;
 
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupTriggerUnityEvent;
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupStopUnityEvent;
@@ -32,6 +39,8 @@ public class TutorialPopup : MonoBehaviour
     {
         HideChildren(true);
         tutorialPopupManager = GetComponentInParent<TutorialPopupManager>();
+        
+        typewriter.onCharacterVisible.AddListener(OnCharTypedUnityEvent);
         
         if (playOnAwake) Trigger();
     }
@@ -55,7 +64,7 @@ public class TutorialPopup : MonoBehaviour
         transform.DOPunchScale(transform.localScale * strength, enterDuration).SetUpdate(true);
         
         // Play SFX
-        AudioManager.Instance.PlayAudioClip(popupSoundEffect, audioClipSettings);
+        AudioManager.Instance.PlayAudioClip(popupSoundEffect, popupAudioSettings);
         
         // Freeze game
         originalTimeScale = Time.timeScale;
@@ -100,5 +109,10 @@ public class TutorialPopup : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(!hidden);
         }
+    }
+
+    private void OnCharTypedUnityEvent(Char character)
+    {
+        AudioManager.Instance.PlayAudioClip(typingSoundEffect, typingAudioSettings);
     }
 }

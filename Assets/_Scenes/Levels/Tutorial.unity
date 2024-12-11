@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &26562611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8856326698491202861, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+  m_PrefabInstance: {fileID: 1137151949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &68465588
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +238,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &93304564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 473440091801194503, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+  m_PrefabInstance: {fileID: 1564918021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &148598130
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,15 +706,35 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 1587246477}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
       propertyPath: popupSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
     - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
@@ -780,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 3140655360992937060, guid: 1ed59d993fe05364a9ea2894c843ec02, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563575267407249223, guid: 1ed59d993fe05364a9ea2894c843ec02, type: 3}
+      propertyPath: destroyAudioSourceDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4947559865655308068, guid: 1ed59d993fe05364a9ea2894c843ec02, type: 3}
       propertyPath: m_Name
@@ -1099,6 +1145,10 @@ PrefabInstance:
       value: Elixir Bank
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 827308038}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -1107,11 +1157,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
     - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
@@ -1251,6 +1317,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2417940604551860059, guid: 9f1cee1891a83ad418579c88e4bee0b5, type: 3}
   m_PrefabInstance: {fileID: 936904414}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &424722373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8856326698491202861, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+  m_PrefabInstance: {fileID: 2146997940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &470961515 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8856326698491202861, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+  m_PrefabInstance: {fileID: 1153998866}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &488621184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,6 +2324,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1d230066084e6ea1881c3ca4a8f26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &764390649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8856326698491202861, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+  m_PrefabInstance: {fileID: 1729228305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &793114304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8856326698491202861, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+  m_PrefabInstance: {fileID: 2020109424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &810120714
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,6 +2480,17 @@ MonoBehaviour:
   m_Spacing: {x: 30, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 1
+--- !u!114 &827308038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8856326698491202861, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+  m_PrefabInstance: {fileID: 369481781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &841231591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,15 +3039,35 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 26562611}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
       propertyPath: popupSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
     - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3047,15 +3188,35 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 470961515}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
       propertyPath: popupSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
     - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
@@ -3521,6 +3682,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 1662533188}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -3529,11 +3694,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
     - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
@@ -7245,6 +7426,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 93304564}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -7253,11 +7438,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
     - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
@@ -7286,6 +7487,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 576346437686224767, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
   m_PrefabInstance: {fileID: 1564918021}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1587246477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3884435182298338161, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+  m_PrefabInstance: {fileID: 265713543}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1618321109 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2164541682133764640, guid: b0cd32054cd66764a9014dc8276b4cbe, type: 3}
@@ -7403,6 +7615,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1662533188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8856326698491202861, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+  m_PrefabInstance: {fileID: 1285268798}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1714378995
 GameObject:
   m_ObjectHideFlags: 0
@@ -7531,6 +7754,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 764390649}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -7539,11 +7766,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
     - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
@@ -7978,6 +8221,10 @@ PrefabInstance:
       value: Enemy Count
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 793114304}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -7986,11 +8233,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
     - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
@@ -8329,6 +8592,10 @@ PrefabInstance:
       value: Cards
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: typewriter
+      value: 
+      objectReference: {fileID: 424722373}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -8337,11 +8604,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
     - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: typingSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: aa721ca594ab34e8f93917d3a8d50b46, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
       propertyPath: audioClipSettings.volume
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: typingAudioSettings.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: typingAudioSettings.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
       propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: typingAudioSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
