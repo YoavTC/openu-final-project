@@ -3872,6 +3872,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4516117497008015254, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516117497008015254, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516117497008015254, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516117497008015254, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5589312231699727269, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3952,6 +3968,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7336965512448471576, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336965512448471576, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336965512448471576, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336965512448471576, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8567355521202978045, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
       propertyPath: Die.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3959,6 +3991,22 @@ PrefabInstance:
     - target: {fileID: 8567355521202978045, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
       propertyPath: Die.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnDieUnityEventListener
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815784489770714500, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815784489770714500, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815784489770714500, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815784489770714500, guid: b17260a2464e4ae479ef8a1ec8760d41, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
