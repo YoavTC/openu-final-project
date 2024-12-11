@@ -3767,9 +3767,11 @@ MonoBehaviour:
   tileBridgeBuilder: {fileID: 2069331654}
   locksParent: {fileID: 77279857}
   locks: []
+  sceneTransitionManagerPrefab: {fileID: 0}
   buildBridgeDelay: 1
   mainMusicSource: {fileID: 1657669406}
   islandPinParent: {fileID: 1590815194}
+  popDelay: 1
 --- !u!1 &1141286003
 GameObject:
   m_ObjectHideFlags: 0

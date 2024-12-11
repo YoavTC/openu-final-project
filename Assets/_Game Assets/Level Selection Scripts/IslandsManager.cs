@@ -74,6 +74,7 @@ public class IslandsManager : MonoBehaviour
     #region Island Pins
     [Header("Island Pins")]
     [SerializeField] private Transform islandPinParent;
+    [SerializeField] private float popDelay;
     Animation[] islandPins;
     
     private void InitializeIslandPinsArray()
@@ -85,7 +86,7 @@ public class IslandsManager : MonoBehaviour
     {
         for (int i = 0; i < currentLevel.Item1; i++)
         {
-            if (i + 1 == currentLevel.Item1) yield return new WaitForSeconds(0.3f);
+            if (i + 1 == currentLevel.Item1) yield return new WaitForSeconds(popDelay);
             PopIslandPin(i, i + 1 != currentLevel.Item1);
         }
     }
