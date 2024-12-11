@@ -18,6 +18,10 @@ public class TutorialPopup : MonoBehaviour
     private bool hasPlayed = false;
     private bool hasFinished = false;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip popupSoundEffect;
+    [SerializeField] private AudioClipSettingsStruct audioClipSettings;
+
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupTriggerUnityEvent;
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupStopUnityEvent;
     
@@ -49,7 +53,9 @@ public class TutorialPopup : MonoBehaviour
         HideChildren(false);
         transform.localScale = Vector3.one;
         transform.DOPunchScale(transform.localScale * strength, enterDuration).SetUpdate(true);
-        Debug.Log("Time frozen");
+        
+        // Play SFX
+        AudioManager.Instance.PlayAudioClip(popupSoundEffect, audioClipSettings);
         
         // Freeze game
         originalTimeScale = Time.timeScale;

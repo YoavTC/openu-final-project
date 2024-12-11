@@ -684,6 +684,18 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 71bc13b94df94a24eb5b4b167f296850, type: 3}
       propertyPath: OnPopupStopUnityEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1089,6 +1101,18 @@ PrefabInstance:
     - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: f04f298f63205fb4ab557df707bbd7ff, type: 3}
       propertyPath: OnPopupStopUnityEvent.m_PersistentCalls.m_Calls.Array.size
@@ -2893,6 +2917,18 @@ PrefabInstance:
       propertyPath: isOneShot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 4a9d4a1c7ebc12e4e844bee458a6b722, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3008,6 +3044,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2173281476721429668, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
+      propertyPath: audioClipSettings.randomPitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 1d1aacf0e63eae2438e3b21f0025749c, type: 3}
@@ -3475,6 +3523,18 @@ PrefabInstance:
     - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 2a19803307880ba43a2a801348aa8580, type: 3}
       propertyPath: OnPopupStopUnityEvent.m_PersistentCalls.m_Calls.Array.size
@@ -7189,6 +7249,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 5e7f84d0039dc434984e233bed21e598, type: 3}
       propertyPath: OnPopupStopUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 363145052}
@@ -7461,6 +7533,18 @@ PrefabInstance:
     - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: aea32ca3cb8cb664792495e924cb40f2, type: 3}
       propertyPath: OnPopupStopUnityEvent.m_PersistentCalls.m_Calls.Array.size
@@ -7898,6 +7982,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 3ec55645815dedb4a9d6ecb022b7bfa2, type: 3}
       propertyPath: OnPopupStopUnityEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -8235,6 +8331,18 @@ PrefabInstance:
     - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: popupSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: fe3e71e730fa6422785c2435c4bebed9, type: 3}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: audioClipSettings.volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
+      propertyPath: audioClipSettings.randomPitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9191794893829911286, guid: 85bf7f49105f5e342aa6dec00b735c0c, type: 3}
       propertyPath: OnPopupStopUnityEvent.m_PersistentCalls.m_Calls.Array.size
