@@ -159,7 +159,11 @@ public class EnemySpawner : MonoBehaviour
     #endregion
     
     #region Event Handling
-    private void EnemyReachEndListener(Enemy enemy) => OnEnemyReachEndEvent?.Invoke(enemy);
+    private void EnemyReachEndListener(Enemy enemy)
+    {
+        Debug.Log("Called from EnemySpawner");
+        OnEnemyReachEndEvent?.Invoke(enemy);
+    }
     private void EnemyDeathListener(Enemy enemy) => OnEnemyDeathEvent?.Invoke(enemy);
     #endregion
 }

@@ -58,15 +58,7 @@ public class ElixirManager : Singleton<ElixirManager>
         currentElixir = newCount;
         ElixirCountChangeEvent?.Invoke(currentElixir);
         UpdateElixirBarUI();
-        
-        if (newCount == 0)
-        {
-            // SceneManager.LoadScene(0);
-            ded?.Invoke();
-        }
     }
-
-    public UnityEvent ded;
     
     private void UpdateElixirBarUI()
     {

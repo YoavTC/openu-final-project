@@ -30,6 +30,11 @@ public class TileBridgeBuilder : MonoBehaviour
 
     public void RevealBridge(int bridgeIndex, float delay, Action<int, bool> LastBridgeTileBuiltCallback = null)
     {
+        if (bridgeIndex == -1)
+        {
+            HideTiles(bridgeIndex + 1);
+            return;
+        }
         if (bridgeIndex > bridgesTiles.Keys.Count - 1) return;
         
         if (delay == 0f)

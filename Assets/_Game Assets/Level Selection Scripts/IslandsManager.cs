@@ -27,12 +27,12 @@ public class IslandsManager : MonoBehaviour
     {
         currentLevel =  LevelManager.GetLevel();
 
-        if (currentLevel.Item1 == 1)
-        {
-            LevelManager.LevelUp();
-            currentLevel.Item2 = true;
-        }
-        
+        // if (currentLevel.Item1 == 1)
+        // {
+        //     LevelManager.LevelUp();
+        //     currentLevel.Item2 = true;
+        // }
+        //
         InitializeIslandPinsArray();
         StartCoroutine(PopIslandPins());
 

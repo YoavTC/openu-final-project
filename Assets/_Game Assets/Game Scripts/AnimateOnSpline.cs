@@ -30,6 +30,7 @@ public class AnimateOnSpline : MonoBehaviour
 
         if (transform.position == currentSpline.GetLastPoint().position)
         {
+            Debug.Log("Called from AnimateOnSpline");
             onReachSplineEndAction?.Invoke(transform.GetComponent<Enemy>());
             removeEnemyOnReachEndAction?.Invoke();
             Destroy(this);

@@ -87,6 +87,7 @@ public class MainMenuManager : MonoBehaviour
         else
         {
             OnPressToggleMusicButton(true);
+            if (LevelManager.GetLevel().Item1 == 1) LevelManager.LevelUp();
             SceneTransitionManager.Instance.LoadScene(levelSelectionScene);
             // SceneManager.LoadScene(levelSelectionScene);
         }

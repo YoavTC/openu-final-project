@@ -22,21 +22,38 @@ public class GameOverDetector : MonoBehaviour
     [SerializeField] private Vector2 gameOverScreenDelay;
     
     private bool spawnerStopped;
+    private bool gameOver = false;
     
     public void OnSpawnerStoppedUnityEventListener() => spawnerStopped = true;
     
     public void OnDieUnityEventListener() => StartCoroutine(SendToLevelSelectionScene(false));
     public void OnEnemyKilledUnityEventListener()
     {
+        if (gameOver) return;
         if (spawnerStopped && EnemyManager.Instance.AllEntitiesDead())
         {
             // Reset timescale
             Time.timeScale = 1f;
+
+            gameOver = true;
             
             StartCoroutine(SendToLevelSelectionScene(true));
         }
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            StartCoroutine(SendToLevelSelectionScene(true));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine(SendToLevelSelectionScene(false));
+        }
+    }
+
     private IEnumerator SendToLevelSelectionScene(bool won)
     {
         yield return new WaitForSecondsRealtime(gameOverScreenDelay.x);
