@@ -28,6 +28,7 @@ public class TutorialPopup : MonoBehaviour
     [SerializeField] private AudioClip typingSoundEffect;
     [SerializeField] private AudioClipSettingsStruct typingAudioSettings;
     [SerializeField] private TypewriterCore typewriter;
+    private bool typewriterChar;
 
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupTriggerUnityEvent;
     [Foldout("Events")] public UnityEvent<TutorialPopup> OnPopupStopUnityEvent;
@@ -113,6 +114,11 @@ public class TutorialPopup : MonoBehaviour
 
     private void OnCharTypedUnityEvent(Char character)
     {
-        AudioManager.Instance.PlayAudioClip(typingSoundEffect, typingAudioSettings);
+        if (typewriterChar)
+        { 
+            AudioManager.Instance.PlayAudioClip(typingSoundEffect, typingAudioSettings);
+        }
+
+        typewriterChar = !typewriterChar;
     }
 }
