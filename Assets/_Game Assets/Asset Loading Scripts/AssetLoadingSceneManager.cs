@@ -6,7 +6,13 @@ public class AssetLoadingSceneManager : MonoBehaviour
 {
     void Start()
     {
+        #if UNITY_WEBGL
+        SceneManager.LoadScene("Main Menu");
+        #elif UNITY_EDITOR
         LoadAssets();
+        #else
+        LoadAssets();
+        #endif
     }
 
     private async void LoadAssets()

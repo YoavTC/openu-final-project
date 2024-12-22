@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f5b7deb9a649c7a0f54bc08e69ae6c, type: 3}
   m_Name: BuildInfo
   m_EditorClassIdentifier: 
-  buildDate: '[11-12-2024]'
+  buildDate: '[22-12-2024]'

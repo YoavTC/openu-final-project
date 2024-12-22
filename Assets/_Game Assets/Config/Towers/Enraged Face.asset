@@ -24,7 +24,7 @@ MonoBehaviour:
   dps: 6.5
   health: 20
   areaOfEffect: 0
-  cost: 0
+  cost: 6
   sprite: {fileID: 21300000, guid: a486bcea2469b2f4eafd29926b2537d9, type: 3}
   projectileCurve:
     serializedVersion: 2
@@ -79,3 +79,4 @@ MonoBehaviour:
   projectileModifierEffect: {fileID: 0}
   modifierAreaOfEffect: 0
   splashRadiusSprite: {fileID: 21300000, guid: 8061edafe888c23448d54f773166d8d1, type: 3}
+  boostingCount: 0
