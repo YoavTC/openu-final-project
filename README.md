@@ -17,6 +17,6 @@ The game is a simple take on the Tower Defence genre. You use your towers that a
 [![License](https://img.shields.io/badge/license-BY--NC--ND%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 
-[![Status](https://img.shields.io/badge/status-active-brightgreen)](.)
+[![Status](https://img.shields.io/badge/status-finished-gold)](.)
 
 This project uses graphics from [twemoji](https://github.com/jdecked/twemoji), licensed under the [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
